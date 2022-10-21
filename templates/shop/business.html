@@ -1,48 +1,76 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-<!DOCTYPE html>
-<html>
-<body>
 <div id="googleMap" style="width:100%;height:800px;"></div>
 <br>
-<script>
-
-{% for bs in bus %}
-function myMap() {
-  var mapOptions = {
-    center: new google.maps.LatLng({{bs.geolocation.lat}},{{bs.geolocation.lon}}),
-    zoom:9,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
 <!--    map types-->
 <!--    mapTypeId: google.maps.MapTypeId.SATELLITE-->
 <!--    mapTypeId: google.maps.MapTypeId.HYBRID-->
 <!--    mapTypeId: google.maps.MapTypeId.TERRAIN-->
-  };
+<script>
 
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+{% for bs in bus %}
+    function myMap() {
+        let cord=new google.maps.LatLng({{bs.geolocation.lat}},{{bs.geolocation.lon}})
+        let mapOptions = {
+            center: cord,
+            zoom:9,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-    var marker = new google.maps.Marker({
-        position:myCenter,
+        let map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
-        animation:google.maps.Animation.BOUNCE
-    });
+        let marker = new google.maps.Marker({
+            position:cord,
+            //icon:'{% static 'markers/computer.png' %}'
+        });
 
-    marker.setMap(map);
+        let stavanger = new google.maps.LatLng({{bs.geolocation.lat}}-1,{{bs.geolocation.lon}}-1)
+        let amsterdam = new google.maps.LatLng({{bs.geolocation.lat}}-2,{{bs.geolocation.lon}}-2)
+        let london = new google.maps.LatLng({{bs.geolocation.lat}}-2,{{bs.geolocation.lon}}-2)
 
-}
+        marker.setMap(map);
+        var myTrip = [stavanger,amsterdam,london];
+        //A Polyline is a line that is drawn through a series of coordinates in an ordered sequence.
+        let flightPath = new google.maps.Polyline({
+            path:myTrip,
+            strokeColor:"#0000FF",
+            strokeOpacity:0.8,
+            strokeWeight:2
+        });
+        flightPath.setMap(map);
+        var myTrip = [stavanger,amsterdam,london,stavanger];
+        //A Polygon is similar to a Polyline in that it consists of a series of coordinates in an
+        //ordered sequence. However, polygons are designed to define regions within a closed loop.
+        //Polygons are made of straight lines, and the shape is "closed" (all the lines connect up).
+
+        let flightPath1 = new google.maps.Polygon({
+            path:myTrip,
+            strokeColor:"#0000FF",
+            strokeOpacity:0.8,
+            strokeWeight:2,
+            fillColor:"#0000FF",
+            fillOpacity:0.4
+        });
+        flightPath1.setMap(map);
+        let myCity = new google.maps.Circle({
+            center:amsterdam,
+            radius:20000,
+            strokeColor:"#0000FF",
+            strokeOpacity:0.8,
+            strokeWeight:2,
+            fillColor:"#0000FF",
+            fillOpacity:0.4
+        });
+        myCity.setMap(map);
+        var infowindow = new google.maps.InfoWindow({
+          content:"Hello World!"
+        });
+
+        infowindow.open(map,marker);
+
+    }
 {% endfor %}
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
-</body>
-</html>
-</body>
-</html>
