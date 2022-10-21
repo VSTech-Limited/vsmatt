@@ -124,6 +124,9 @@ class BusinessProfile(models.Model):
         size=[500, 500]
     )
 
+    def __str__(self):
+        return self.name
+
 
 class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
@@ -146,6 +149,9 @@ class BusinessBranch(models.Model):
         null=True,
         size=[500, 500]
     )
+
+    def __str__(self):
+        return f"{self.business.name}'s Branch"
 
 
 class Product(models.Model):

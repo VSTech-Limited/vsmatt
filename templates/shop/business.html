@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html>
+<body>
+<div id="googleMap" style="width:100%;height:800px;"></div>
+<br>
+<script>
+
+{% for bs in bus %}
+function myMap() {
+  var mapOptions = {
+    center: new google.maps.LatLng({{bs.geolocation.lat}},{{bs.geolocation.lon}}),
+    zoom:9,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+<!--    map types-->
+<!--    mapTypeId: google.maps.MapTypeId.SATELLITE-->
+<!--    mapTypeId: google.maps.MapTypeId.HYBRID-->
+<!--    mapTypeId: google.maps.MapTypeId.TERRAIN-->
+  };
+
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+    var marker = new google.maps.Marker({
+        position:myCenter,
+
+        animation:google.maps.Animation.BOUNCE
+    });
+
+    marker.setMap(map);
+
+}
+{% endfor %}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
+</body>
+</html>
+</body>
+</html>

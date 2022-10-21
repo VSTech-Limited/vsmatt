@@ -127,4 +127,5 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GOOGLE_MAPS_API_KEY = ""
+# GOOGLE_MAPS_API_KEY = "AIzaSyBqovBTE3mf_f0ySwLd0XFpSOCuqY_3OWA"geoffre
+GOOGLE_MAPS_API_KEY = "AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo"

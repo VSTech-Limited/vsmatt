@@ -40,10 +40,10 @@ class ReviewAdmin(admin.ModelAdmin):
 
 class BusinessBranchInline(admin.TabularInline):
     prepopulated_fields = {'slug': ('name',)}
-    formfield_overrides = {
-        map_fields.AddressField: {
-            'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})},
-    }
+    # formfield_overrides = {
+    #     map_fields.AddressField: {
+    #         'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})},
+    # }
     model = BusinessBranch
 
 
@@ -52,3 +52,6 @@ class BusinessProfileAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'owner', 'address', 'geolocation']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [BusinessBranchInline]
+    # formfield_overrides = {
+    #     map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
+    # }
