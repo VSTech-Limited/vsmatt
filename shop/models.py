@@ -151,7 +151,7 @@ class BusinessBranch(models.Model):
     )
 
     def __str__(self):
-        return f"{self.business.name}'s Branch"
+        return self.name
 
 
 class Product(models.Model):
