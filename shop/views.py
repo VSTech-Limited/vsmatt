@@ -7,6 +7,8 @@ from .models import BusinessProfile, BusinessBranch, Category
 
 
 def business(request, slug=None):
-    bus = BusinessBranch.objects.all()
+    if slug:
+        pass
     categories = Category.objects.all()
+    bus = BusinessBranch.objects.all()
     return render(request, 'shop/business.html', {'bus': bus})

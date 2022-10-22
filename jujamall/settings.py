@@ -36,11 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    #Local Apps
+    # Local Apps
     'shop.apps.ShopConfig',
     'core.apps.CoreConfig',
+    'users.apps.AccountConfig',
 
-    #Third Party Apps
+    # Third Party Apps
+    # Third Party Apps
     'crispy_forms',
     'allauth',
     'allauth.account',
@@ -151,13 +153,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # GOOGLE_MAPS_API_KEY = "AIzaSyBqovBTE3mf_f0ySwLd0XFpSOCuqY_3OWA"geoffre
 GOOGLE_MAPS_API_KEY = "AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo"
 
-
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
+#     'allauth.users.auth_backends.AuthenticationBackend',
 # ]
 
-#Allauth configurations
+# Allauth configurations
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT = '/'

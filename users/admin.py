@@ -6,7 +6,7 @@ from .models import Profile
 
 @admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'image', 'description', 'phone')
-    list_filter = ('user', 'description', 'phone')
-    search_fields = ('user', 'description', 'phone')
+    list_display = ('user', 'profile_pic', 'bio', 'phone_number')
+    list_filter = ('user', 'bio', 'phone_number')
+    search_fields = ('user', 'bio', 'phone_number')
     raw_id_fields = ('user',)
