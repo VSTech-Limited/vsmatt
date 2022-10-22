@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg bg-white">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">JujaMall</a>
@@ -15,11 +16,13 @@
               Products
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Electronics</a></li>
-              <li><a class="dropdown-item" href="#">Clothes</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Groceries</a></li>
-
+              {% if categories %}
+                {% for category in categories %}
+                  <li><a class="dropdown-item" href="{{category.get_absolute_url}}">{{category}}</a></li>
+                {% endfor %}
+              {% endif %}
             </ul>
           </li>
           <li class="nav-item">
@@ -33,16 +36,36 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-user-circle fa-lg fa-fw" aria-hidden="true"></i>
-              </a>
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar avatar-online">
+                    {% if user.is_authenticated %}
+                      {% if user.profile.profile_pic %}
+                        <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
+                      {% else %}
+                        <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                      {% endif %}
+                    {% else %}
+                      <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                    {% endif %}
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <span class="fw-semibold d-block">{{user}}</span>
+                    <small class="text-muted">{% if user.is_superuser %}Admin{% else %}{{user.profile.account_type}}{% endif %}</small>
+                  </div>
+                </div>
+                </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Register</a></li>
-                <li><a class="dropdown-item" href="#">Login</a></li>
-                <li><a class="dropdown-item" href="#">Profile</</li>
-                <li><a class="dropdown-item" href="#">Email</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
-  
+                {% if user.is_authenticated %}
+                  <li><a class="dropdown-item" href="#">Profile</</li>
+                  <li><a class="dropdown-item" href="#">Email</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                {% else %}
+                  <li><a class="dropdown-item" href="#">Register</a></li>
+                  <li><a class="dropdown-item" href="#">Login</a></li>
+                {% endif %}
               </ul>
             </li>
             <li class="nav-item">
@@ -53,6 +76,59 @@
               <a class="nav-link"><i class="fa fa-search fa-lg fa-fw" aria-hidden="true"></i></a>
             </li>
           </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li>
+              <a class="dropdown-item" href="#">
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar avatar-online">
+                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <span class="fw-semibold d-block">John Doe</span>
+                    <small class="text-muted">Admin</small>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <div class="dropdown-divider"></div>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="bx bx-user me-2"></i>
+                <span class="align-middle">My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="bx bx-cog me-2"></i>
+                <span class="align-middle">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <span class="d-flex align-items-center align-middle">
+                  <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                  <span class="flex-grow-1 align-middle">Billing</span>
+                  <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <div class="dropdown-divider"></div>
+            </li>
+            <li>
+              <a class="dropdown-item" href="auth-login-basic.html">
+                <i class="bx bx-power-off me-2"></i>
+                <span class="align-middle">Log Out</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--/ User -->
+      </ul>
       </div>
     </div>
   </nav>

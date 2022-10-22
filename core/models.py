@@ -17,10 +17,10 @@ class Team(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='profile/')
-    phone = models.CharField(max_length=200)
-    facebook_link = models.URLField(max_length=200)
-    twitter_link = models.URLField(max_length=200)
+    profile_pic = models.ImageField(upload_to='profile/', blank=True, null=True)
+    phone = models.CharField(max_length=200, null=True, blank=True)
+    facebook_link = models.URLField(max_length=200, null=True, blank=True)
+    twitter_link = models.URLField(max_length=200, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.user.username
