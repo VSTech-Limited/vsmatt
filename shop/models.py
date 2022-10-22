@@ -45,7 +45,7 @@ def business_branch_file_name(instance, filename):
 def product_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s_%s.%s" % (instance.slug, instance.id, instance.category.slug, ext)
-    return os.path.join(BUSINESS_IMAGES_PATH, instance.business.name, 'branch', 'products', 'primary', filename)
+    return os.path.join(BUSINESS_IMAGES_PATH, instance.branch.name, 'branch', 'products', 'primary', filename)
 
 
 def product_secondary_image_name(instance, filename):
@@ -158,8 +158,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
-    tags = models.ManyToManyField(Tag, related_name="products")
-    branch = models.ManyToManyField(BusinessBranch, related_name='products')
+    tags = models.ManyToManyField(Tag, related_name="products", blank=True)
+    branch = models.ManyToManyField(BusinessBranch, related_name='products', blank=True)
     image = ResizedImageField(
         upload_to=product_file_name,
         blank=True,
