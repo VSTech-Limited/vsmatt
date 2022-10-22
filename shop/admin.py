@@ -1,14 +1,7 @@
 from django.contrib import admin
-from django_google_maps import fields as map_fields
-from django_google_maps import widgets as map_widgets
+
 # Register your models here.
-from shop.models import Category, ProductSecondaryImages, Tag, Product, Review, BusinessProfile, BusinessBranch
-
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}
+from shop.models import ProductSecondaryImages, Tag, Product, Review, BusinessProfile, BusinessBranch
 
 
 @admin.register(Tag)
