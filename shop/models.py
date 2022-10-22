@@ -105,7 +105,7 @@ class Tag(models.Model):
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, db_index=True)
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # long = models.DecimalField(max_digits=9, decimal_places=6)
     # lat = models.DecimalField(max_digits=9, decimal_places=6)
     # location = PointField()
