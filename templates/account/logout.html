@@ -1,21 +1,33 @@
-{% extends "account/base.html" %}
-
 {% load i18n %}
-
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
-
-{% block content %}
-<h1>{% trans "Sign Out" %}</h1>
-
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
-
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
-
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include 'partials/css.html' %}
+  <title>{{user}} - Logout</title>
+</head>
+<body>
+    <div class="container">
+      <div class="row align-items-center justify-content-center" style="min-height: 90vh;">
+        <div class="col-xl-5">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{% trans "Sign Out" %}</h3>
+              <p class="card-text">{% trans 'Are you sure you want to sign out?' %}</p>
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                  <input type="submit" class="btn btn-danger" value="{% trans 'Sign Out' %}"/>
+                  <a href="/" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Home</a>
+              </form>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+</body>
+</html>

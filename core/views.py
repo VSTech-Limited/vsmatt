@@ -1,4 +1,5 @@
 from turtle import title
+from unicodedata import category
 from django.shortcuts import render
 from shop.models import BusinessProfile, BusinessBranch, Category
 # Create your views here.
@@ -30,7 +31,10 @@ def contact(request):
 
 def products(request):
     title = 'Products'
+    categories = Category.objects.all()
     context = {
-        'title':title
+        'title':title,
+        'categories': categories,
     }
     return render(request, 'products.html', context)
+

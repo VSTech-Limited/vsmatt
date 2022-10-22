@@ -9,6 +9,16 @@
 </head>
 <body>
     {% include 'partials/top-bar.html' %}
+    {% if messages %}
+        <div>
+        <strong>Messages:</strong>
+        <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
     {% if title != 'home' %}
           {% include 'partials/common-header.html' %}
     {% endif %}
