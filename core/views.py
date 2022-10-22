@@ -24,6 +24,7 @@ def about(request):
 
 def contact(request):
     title = 'Contact us'
+    categories = Category.objects.all()
     context = {
         'title':title,
         'categories': categories,
