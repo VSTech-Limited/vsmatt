@@ -1,5 +1,90 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}About us{% endblock %} 
 {% block content %}
-About
+<!-- About us -->
+<div class="container my-5">
+    <h2>JujaMall</h2>
+    <p><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, maxime? Repudiandae recusandae unde, quibusdam officiis nostrum eaque! Aliquid, laudantium saepe harum consequuntur perspiciatis aliquam id quibusdam! Rerum ut ex id.</span><span>Rerum eius, praesentium, iure ab ex sint, omnis atque facere nulla dolorem nisi. Commodi fuga dolores ea, reiciendis vel nisi repudiandae molestias? Magni omnis dicta architecto enim laboriosam impedit accusamus.</span><span>Ducimus quae vero aut deserunt, hic obcaecati incidunt quis nam nisi repudiandae commodi cum possimus beatae voluptas similique distinctio iusto dolorem quibusdam. Veniam, illum! Dolorum nihil dolores dolor veniam corporis.</span></p>
+</div>
+<!-- Meet Team -->
+<div class="container my-5">
+    <h2 class="py-2">Meet Our Great Team</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{% static 'img/avatars/1.png' %}" class="card-img" alt="Team Member">
+                <h4 class="card-header text-primary">Team Member</h4>
+                <p class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem ad non, atque veritatis, quas culpa recusandae assumenda dolorum consectetur, sequi repellendus officia explicabo nam quaerat! Neque commodi aperiam quis consequatur!
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{% static 'img/avatars/5.png' %}" class="card-img" alt="Team Member">
+                <h4 class="card-header text-primary">Team Member</h4>
+                <p class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem ad non, atque veritatis, quas culpa recusandae assumenda dolorum consectetur, sequi repellendus officia explicabo nam quaerat! Neque commodi aperiam quis consequatur!
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{% static 'img/avatars/6.png' %}" class="card-img" alt="Team Member">
+                <h4 class="card-header text-primary">Team Member</h4>
+                <p class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem ad non, atque veritatis, quas culpa recusandae assumenda dolorum consectetur, sequi repellendus officia explicabo nam quaerat! Neque commodi aperiam quis consequatur!
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{% static 'img/avatars/7.png' %}" class="card-img" alt="Team Member">
+                <h4 class="card-header text-primary">Team Member</h4>
+                <p class="card-body">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem ad non, atque veritatis, quas culpa recusandae assumenda dolorum consectetur, sequi repellendus officia explicabo nam quaerat! Neque commodi aperiam quis consequatur!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Counter -->
+<div class="container my-5">
+    <h2 class="py-2">Why Choose JujaMall</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-primary">80</h1>
+                    <p>Happy Businesses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-primary">750</h1>
+                    <p>Happy Customers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-primary">100</h1>
+                    <p>Happy Suppliers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-primary">10</h1>
+                    <p>Happy Patners</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

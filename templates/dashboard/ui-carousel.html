@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -17,7 +19,7 @@
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="../assets/"
+  data-assets-path="{% static '"
   data-template="vertical-menu-template-free"
 >
   <head>
@@ -32,7 +34,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,25 +44,7 @@
       rel="stylesheet"
     />
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/css/demo.css" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="../assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../assets/js/config.js"></script>
+   {% include 'partials/css.html' %}
   </head>
 
   <body>
@@ -509,7 +493,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{% static 'img/avatars/1.png' %}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -518,7 +502,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="{% static 'img/avatars/1.png' %}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -590,21 +574,21 @@
                     </ol>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/img/elements/13.jpg" alt="First slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/13.jpg' %}" alt="First slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>First slide</h3>
                           <p>Eos mutat malis maluisset et, agam ancillae quo te, in vim congue pertinacia.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/img/elements/2.jpg" alt="Second slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/2.jpg' %}" alt="Second slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>Second slide</h3>
                           <p>In numquam omittam sea.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/img/elements/18.jpg" alt="Third slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/18.jpg' %}" alt="Third slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>Third slide</h3>
                           <p>Lorem ipsum dolor sit amet, virtute consequat ea qui, minim graeco mel no.</p>
@@ -637,21 +621,21 @@
                     </ol>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/img/elements/18.jpg" alt="First slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/18.jpg' %}" alt="First slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>First slide</h3>
                           <p>Eos mutat malis maluisset et, agam ancillae quo te, in vim congue pertinacia.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/img/elements/13.jpg" alt="Second slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/13.jpg' %" alt="Second slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>Second slide</h3>
                           <p>In numquam omittam sea.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/img/elements/2.jpg" alt="Third slide" />
+                        <img class="d-block w-100" src="{% static 'img/elements/2.jpg' %}" alt="Third slide" />
                         <div class="carousel-caption d-none d-md-block">
                           <h3>Third slide</h3>
                           <p>Lorem ipsum dolor sit amet, virtute consequat ea qui, minim graeco mel no.</p>
@@ -726,24 +710,6 @@
       >
     </div>
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
-
-    <!-- Page JS -->
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+   {% include 'partials/js.html' %}
   </body>
 </html>

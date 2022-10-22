@@ -4,14 +4,11 @@
 {% block content %}
 
 <div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
-<br>
-<div class="container-fluid">
-    
-</div>
 <!--    map types-->
 <!--    mapTypeId: google.maps.MapTypeId.SATELLITE-->
 <!--    mapTypeId: google.maps.MapTypeId.HYBRID-->
 <!--    mapTypeId: google.maps.MapTypeId.TERRAIN-->
+{{title}}
 <script>
 
     var p;
@@ -23,7 +20,7 @@
     }
     function callBack(position){
         p = position
-        alert("" + p.coords.latitude + " " + p.coords.longitude)
+        //alert("" + p.coords.latitude + " " + p.coords.longitude)
     }
 
     function myMap() {

@@ -9,6 +9,9 @@
 </head>
 <body>
     {% include 'partials/top-bar.html' %}
+    {% if title != 'home' %}
+          {% include 'partials/common-header.html' %}
+    {% endif %}
     {% block content %}
     
     {% endblock %}

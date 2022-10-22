@@ -1,42 +1,98 @@
 {% extends 'base.html' %}
 {% block title %}Contact us{% endblock %}
 {% block content %}
-<div id="carouselId" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselId" data-slide-to="1"></li>
-        <li data-target="#carouselId" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-            <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
+          <!-- Content wrapper -->
+          <div class="content-wrapper my-5 py-3">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+
+              <!-- Basic Layout -->
+              <div class="row">
+                <div class="col-xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0640368305403!2d37.00841191517318!3d-1.114128335777882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f47952563285d%3A0x70d092fb85ccb757!2sVSTech%20Limited%20Company!5e0!3m2!1sen!2ske!4v1666419478938!5m2!1sen!2ske" class="w-100 h-100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">Contact Us</h5>
+                      <small class="text-muted float-end">You are welcomed to leave a feedback or suggestion</small>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                              ><i class="bx bx-user"></i
+                            ></span>
+                            <input
+                              required
+                              type="text"
+                              class="form-control"
+                              id="basic-icon-default-fullname"
+                              placeholder="Jeff Odhiambo"
+                              aria-label="Jeff Odhiambo"
+                              aria-describedby="basic-icon-default-fullname2"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-email">Email</label>
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                            <input
+                              required
+                              type="email"
+                              id="basic-icon-default-email"
+                              class="form-control"
+                              placeholder="jeff.odhiambo"
+                              aria-label="jeff.odhiambo"
+                              aria-describedby="basic-icon-default-email2"
+                            />
+                            <span id="basic-icon-default-email2" class="input-group-text">@jujamall.co.ke</span>
+                          </div>
+                          <div class="form-text">You can use letters, numbers & periods</div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-phone">Phone No</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-phone2" class="input-group-text"
+                              ><i class="bx bx-phone"></i
+                            ></span>
+                            <input
+                              type="text"
+                              id="basic-icon-default-phone"
+                              class="form-control phone-mask"
+                              placeholder="254 795 067 776"
+                              aria-label="254 795 067 776"
+                              aria-describedby="basic-icon-default-phone2"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-message">Message</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-message2" class="input-group-text"
+                              ><i class="bx bx-comment"></i
+                            ></span>
+                            <textarea
+                              required
+                              id="basic-icon-default-message"
+                              class="form-control"
+                              placeholder="Hi, Do you have a moment to talk?"
+                              aria-label="Hi, Do you have a moment to talk?"
+                              aria-describedby="basic-icon-default-message2"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img data-src="holder.js/900x500/auto/#666:#444/text:Third slide" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Title</h3>
-                <p>Description</p>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+            <!-- / Content -->
+
 {% endblock %}
