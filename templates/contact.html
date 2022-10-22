@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Contact us{% endblock %}
 {% block content %}
           <!-- Content wrapper -->
@@ -19,73 +20,9 @@
                       <small class="text-muted float-end">You are welcomed to leave a feedback or suggestion</small>
                     </div>
                     <div class="card-body">
-                      <form>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-fullname2" class="input-group-text"
-                              ><i class="bx bx-user"></i
-                            ></span>
-                            <input
-                              required
-                              type="text"
-                              class="form-control"
-                              id="basic-icon-default-fullname"
-                              placeholder="Jeff Odhiambo"
-                              aria-label="Jeff Odhiambo"
-                              aria-describedby="basic-icon-default-fullname2"
-                            />
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-email">Email</label>
-                          <div class="input-group input-group-merge">
-                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                            <input
-                              required
-                              type="email"
-                              id="basic-icon-default-email"
-                              class="form-control"
-                              placeholder="jeff.odhiambo"
-                              aria-label="jeff.odhiambo"
-                              aria-describedby="basic-icon-default-email2"
-                            />
-                            <span id="basic-icon-default-email2" class="input-group-text">@jujamall.co.ke</span>
-                          </div>
-                          <div class="form-text">You can use letters, numbers & periods</div>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-phone">Phone No</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-phone2" class="input-group-text"
-                              ><i class="bx bx-phone"></i
-                            ></span>
-                            <input
-                              type="text"
-                              id="basic-icon-default-phone"
-                              class="form-control phone-mask"
-                              placeholder="254 795 067 776"
-                              aria-label="254 795 067 776"
-                              aria-describedby="basic-icon-default-phone2"
-                            />
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-message">Message</label>
-                          <div class="input-group input-group-merge">
-                            <span id="basic-icon-default-message2" class="input-group-text"
-                              ><i class="bx bx-comment"></i
-                            ></span>
-                            <textarea
-                              required
-                              id="basic-icon-default-message"
-                              class="form-control"
-                              placeholder="Hi, Do you have a moment to talk?"
-                              aria-label="Hi, Do you have a moment to talk?"
-                              aria-describedby="basic-icon-default-message2"
-                            ></textarea>
-                          </div>
-                        </div>
+                      <form method="post">
+                        {% csrf_token %}
+                        {{form | crispy}}
                         <button type="submit" class="btn btn-primary">Send</button>
                       </form>
                     </div>
@@ -94,5 +31,6 @@
               </div>
             </div>
             <!-- / Content -->
+          </div>
 
 {% endblock %}
