@@ -28,6 +28,7 @@ def about(request):
 
 def contact(request):
     title = 'Contact us'
+
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -43,6 +44,7 @@ def contact(request):
     #         'message': '',
     #
     #     })
+
 
     context = {
         'title': title,
