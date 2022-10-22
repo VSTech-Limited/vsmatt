@@ -23,7 +23,7 @@ django-resized==1.0.2
 djangorestframework==3.14.0
 idna==3.3
 kombu==5.2.4
-oauthlib==3.2.0
+oauthlib==3.2.1
 phonenumbers==8.12.57
 Pillow==9.2.0
 prompt-toolkit==3.0.31
