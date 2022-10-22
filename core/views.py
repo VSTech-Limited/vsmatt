@@ -25,7 +25,8 @@ def about(request):
 def contact(request):
     title = 'Contact us'
     context = {
-        'title':title
+        'title':title,
+        'categories': categories,
     }
     return render(request, 'contact.html', context)
 
@@ -37,4 +38,5 @@ def products(request):
         'categories': categories,
     }
     return render(request, 'products.html', context)
+
 
