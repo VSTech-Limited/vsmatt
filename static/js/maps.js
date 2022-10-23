@@ -1,4 +1,5 @@
 let map, infoWindow;
+let markersArray = [];
 function myMap() {
     let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
     let mapOptions = {
@@ -112,12 +113,22 @@ function myMap() {
             url: 'http://127.0.0.1:8000/shops/business/',
             method: 'GET',
             success: (result, status, resp) => {
+                clearOverlays()
+                markersArray = []
                 let business = result['business'];
-                // console.log(business);
-                $('ul').empty()
                 for (const bs of business) {
-
-                    $('ul').append("<li>" + bs.name + "</li>")
+                    console.log(bs)
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(bs.latitude, bs.longitude),
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE,
+                        title: bs.name,
+                        //icon: { url: bs.marker, scaledSize: new google.maps.Size(50, 50) },
+                    });
+                    marker.addListener("click", ()=>{
+                        //add window info
+                    });
+                    markersArray.push(marker)
                 }
 
             },
@@ -126,7 +137,7 @@ function myMap() {
             }
         });
     },
-    1000);
+        2000);
 
     //     {% for bs in bus %}
     //     marker = new google.maps.Marker({
@@ -156,4 +167,11 @@ function myMap() {
             icon: { url: "{% static 'markers/2_1.png' %}", scaledSize: new google.maps.Size(50, 50) },
         });
     }
+}
+
+function clearOverlays() {
+    for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(null);
+    }
+    markersArray.length = 0;
 }
