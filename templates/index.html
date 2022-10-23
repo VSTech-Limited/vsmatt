@@ -9,21 +9,7 @@
 <!--    mapTypeId: google.maps.MapTypeId.HYBRID-->
 <!--    mapTypeId: google.maps.MapTypeId.TERRAIN-->
 <script>
-
-    var p;
-    function getLocation() {
-      if (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(callBack)
-      else
-        alert("Sorry! your browser is not supporting")
-    }
-    function callBack(position) {
-      p = position
-      alert("" + p.coords.latitude + " " + p.coords.longitude)
-    }
-  
     function myMap() {
-      getLocation()
       mapOptions = {
         //center: new google.maps.LatLng(p.coords.latitude, p.coords.longitude),
         center: new google.maps.LatLng(-1.2841, 36.8155),
