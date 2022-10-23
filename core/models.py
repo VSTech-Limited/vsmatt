@@ -99,7 +99,7 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('category', args=[self.slug])
+        return reverse('shop:product_list_by_category', args=[self.slug])
 
 
 class Tag(models.Model):
