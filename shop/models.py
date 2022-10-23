@@ -100,13 +100,13 @@ class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
     name = models.CharField(max_length=100)
     slug = models.SlugField(db_index=True)
-    # long = models.DecimalField(max_digits=9, decimal_places=6)
-    # lat = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=22, decimal_places=16)
+    latitude = models.DecimalField(max_digits=22, decimal_places=16)
     # location = PointField()
     # address = models.CharField(max_length=100)
-    address = map_fields.AddressField(max_length=200)
+    # address = map_fields.AddressField(max_length=200)
     marker = models.ImageField(blank=False, null=False, upload_to=markers_file_name)
-    geolocation = map_fields.GeoLocationField(max_length=100)
+    # geolocation = map_fields.GeoLocationField(max_length=100)
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -121,6 +121,9 @@ class BusinessBranch(models.Model):
 
     def __str__(self):
         return self.name
+
+    def geolocation(self):
+        return f"{self.latitude}, {self.longitude}"
 
 
 class Product(models.Model):
