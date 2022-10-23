@@ -34,7 +34,8 @@ function myMap() {
     });
     //add vstec infowindow
     new google.maps.InfoWindow({ content: "vstec limited company" }).open(map, vstecMarker);
-
+    const input = document.getElementById("pac-input");
+    //var searchBox = new google.maps.places.SearchBox(input);
     let infoWindow = new google.maps.InfoWindow();
     // create button and give it styling
     const locationButton = document.createElement("button");
@@ -114,18 +115,17 @@ function myMap() {
             method: 'GET',
             success: (result, status, resp) => {
                 clearOverlays()
-                markersArray = []
                 let business = result['business'];
                 for (const bs of business) {
-                    console.log(bs)
+                    console.log(`'http://127.0.0.1:8000/media/${bs.marker}'`)
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(bs.latitude, bs.longitude),
                         map: map,
                         animation: google.maps.Animation.BOUNCE,
-                        title: bs.name,
-                        //icon: { url: bs.marker, scaledSize: new google.maps.Size(50, 50) },
+                        title: bs.name
+                        //icon: { url: `'${bs.marker}'`, scaledSize: new google.maps.Size(50, 50) },
                     });
-                    marker.addListener("click", ()=>{
+                    marker.addListener("click", () => {
                         //add window info
                     });
                     markersArray.push(marker)

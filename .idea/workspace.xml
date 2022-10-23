@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/migrations/0004_remove_testimony_title_alter_team_photo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop/migrations/0004_delete_tag_remove_businessprofile_geolocation_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/shop/register_business.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/maps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/business.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/business.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

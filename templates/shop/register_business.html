@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block title %}Regiter{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {{bs_reg_form|crispy}}
+        </div>
+        <div class="col-md-6 p-5">
+            <div id="googleMap" style="width:100%;height:100%;"></div>
+        </div>
+    </div>
+</div>
+<script>
+    let map, infoWindow;
+    function myMap() {
+        let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
+        let mapOptions = {
+            center: vstecPosition,
+            zoom: 9,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            panControl: true,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true,
+            rotateControl: true,
+        };
+        map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+        const vstecMarker = new google.maps.Marker({
+            position: vstecPosition,
+            map: map,
+            icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
+        });
+        let infoWindow = new google.maps.InfoWindow();
+        let lat = document.querySelector('#id_longitude');
+        // lat.addEventListener('click', () => { alert("Clicked") });
+        lat.value = -1.1139084362152138
+        let lng = document.querySelector('#id_latitude');
+        lng.value = 37.0106327842076
+        const locationButton = document.createElement("button");
+        locationButton.textContent = "Pan to Current Location";
+        locationButton.className = "custom-map-control-button btn btn-success btn-lg text-dark fw-bold"
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+        let currentPositionMarker
+        locationButton.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        lat.value = position.coords.latitude
+                        lng.value = position.coords.longitude
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
+                        // infoWindow.setPosition(pos);
+                        infoWindow.setContent("your current Location found.Drag to change your location");
+                        if (!currentPositionMarker) {
+                            currentPositionMarker = new google.maps.Marker({
+                                position: pos,
+                                map: map,
+                                icon: { url: "{% static 'markers/7.png' %}", scaledSize: new google.maps.Size(70, 70) },
+                                draggable: true
+                            });
+                        }
+
+                        google.maps.event.addListener(currentPositionMarker, "drag", (e) => {
+                            lat.value = e.latLng.lat()
+                            lng.value = e.latLng.lng()
+
+                        });
+                        map.setZoom(18)
+                        infoWindow.open(map, currentPositionMarker);
+                        map.setCenter(pos);
+                        //set marker on current position
+
+                    },
+                    (error) => {
+                        //user doent allow the location permision
+                        showError(error)
+                    }
+                );
+            } else {
+                // Browser doesn't support Geolocation
+                alert("Browser dont surpot geolocation")
+            }
+        });
+        function showError(error) {
+            //could be used in place for above handleLocationError
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+    }
+
+</script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}

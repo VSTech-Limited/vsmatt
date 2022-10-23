@@ -59,12 +59,11 @@ class BusinessProfile(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, db_index=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    # long = models.DecimalField(max_digits=9, decimal_places=6)
-    # lat = models.DecimalField(max_digits=9, decimal_places=6)
     # location = PointField()
     # address = models.CharField(max_length=100)
+    longitude = models.DecimalField(max_digits=22, decimal_places=16)
+    latitude = models.DecimalField(max_digits=22, decimal_places=16)
     address = map_fields.AddressField(max_length=200)
-    geolocation = map_fields.GeoLocationField(max_length=100)
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -79,6 +78,9 @@ class BusinessProfile(models.Model):
 
     def __str__(self):
         return self.name
+
+    def geolocation(self):
+        return f"{self.latitude}, {self.longitude}"
 
 
 class BusinessBranch(models.Model):

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
+from .forms import BusinessRegistrationForm
 from .models import BusinessProfile, BusinessBranch, Category
 from django.http import JsonResponse
 
@@ -19,3 +20,8 @@ def get_business(request):
     business = list(business)
     # print(business)
     return JsonResponse({'business': business})
+
+
+def register_business(request):
+    bs_reg_form = BusinessRegistrationForm()
+    return render(request, "shop/register_business.html", {'bs_reg_form': bs_reg_form})
