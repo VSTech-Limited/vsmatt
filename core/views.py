@@ -7,12 +7,10 @@ from shop.models import BusinessProfile, BusinessBranch, Category
 # Create your views here.
 def index(request):
     bus = BusinessBranch.objects.all()
-    categories = Category.objects.all()
     title = 'home'
     context = {
         'bus': bus,
         'title': title,
-        'categories': categories,
     }
     # print(f"\n\n{title}\n\n")
     return render(request, 'index.html', context)

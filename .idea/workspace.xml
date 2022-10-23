@@ -2,30 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/bank_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/gymnastics_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/hotel_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/bank_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/gymnastics_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/hotel_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/hotel_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/super-market_None.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/super-market_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/context_processor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0002_alter_profile_facebook_link_alter_profile_phone_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0003_contact_created_contact_email_contact_message_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0004_category_language_tag_testimony_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/migrations/0002_alter_product_branch_alter_product_tags.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/migrations/0003_alter_businessprofile_owner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shop/business.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/business.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jujamall/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/jujamall/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

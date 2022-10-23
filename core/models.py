@@ -32,10 +32,6 @@ CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category")
 MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
 
 
-# Create your models here.
-# A Class called Team and Contact
-# Team has a name, position, photo, facebook link, twitter link, and a created date, email and phone number
-# Contact has a name, email, phone number, message, and a created date
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
@@ -57,7 +53,7 @@ def markers_file_name(instance, filename):
 class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     position = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='team/')
+    photo = models.ImageField(upload_to=content_file_name)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -99,7 +95,7 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('category', args=[self.slug])
+        return reverse('shop:product_list_by_category', args=[self.slug])
 
 
 class Tag(models.Model):
