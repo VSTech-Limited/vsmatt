@@ -2,6 +2,7 @@ from django.db import models
 import os
 from phonenumber_field.modelfields import PhoneNumberField
 from django.urls import reverse
+from django_resized import ResizedImageField
 
 LANGUAGE_CHOICES = (
     ('English', 'English'),
@@ -27,6 +28,8 @@ GENDER_CHOICES = (
     ('Female', 'Female'),
     ('Other', 'Other'),
 )
+CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category")
+MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
 
 
 # Create your models here.
@@ -37,6 +40,18 @@ def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
     return os.path.join('uploads', 'JujaMall', 'team', "profile", filename)
+
+
+def category_file_name(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
+    return os.path.join(CATEGORY_IMAGES_PATH, filename)
+
+
+def markers_file_name(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
+    return os.path.join(MARKER_IMAGES_PATH, filename)
 
 
 class Team(models.Model):
@@ -56,8 +71,6 @@ class Language(models.Model):
         return self.name
 
 
-
-
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=255)
@@ -69,7 +82,13 @@ class Contact(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
-    image = models.ImageField(upload_to='category/', blank=True, null=True)
+    image = ResizedImageField(
+        upload_to=category_file_name,
+        blank=True,
+        null=True,
+        size=[100, 100]
+    )
+
     created_by = models.ForeignKey('auth.User', related_name='category_author', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

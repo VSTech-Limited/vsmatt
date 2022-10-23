@@ -7,9 +7,8 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 
 # Create your models here.
+from core.models import Category, markers_file_name
 
-
-CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category")
 BUSINESS_IMAGES_PATH = os.path.join("uploads", "shop", "business")
 PRODUCTS_IMAGES_PATH = os.path.join("uploads", "shop", "products", "primary")
 PRODUCTS_SECONDARY_IMAGES_PATH = os.path.join("uploads", "shop", "products", "secondary")
@@ -22,12 +21,6 @@ RATING_CHOICES = [
     (4, 4),
     (5, 5)
 ]
-
-
-def category_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
-    return os.path.join(CATEGORY_IMAGES_PATH, filename)
 
 
 def business_file_name(instance, filename):
@@ -61,31 +54,6 @@ def tag_file_name(instance, filename):
     return os.path.join(TAGS_IMAGES_PATH, filename)
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, db_index=True)
-    image = ResizedImageField(
-        default=os.path.join(CATEGORY_IMAGES_PATH, "default.jpg"),
-        upload_to=category_file_name,
-        blank=True,
-        size=[100, 100]
-    )
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse(
-            'shop:product_list_by_category',
-            args=[self.slug]
-        )
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
@@ -105,7 +73,7 @@ class Tag(models.Model):
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, db_index=True)
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # long = models.DecimalField(max_digits=9, decimal_places=6)
     # lat = models.DecimalField(max_digits=9, decimal_places=6)
     # location = PointField()
@@ -137,6 +105,7 @@ class BusinessBranch(models.Model):
     # location = PointField()
     # address = models.CharField(max_length=100)
     address = map_fields.AddressField(max_length=200)
+    marker = models.ImageField(blank=False, null=False, upload_to=markers_file_name)
     geolocation = map_fields.GeoLocationField(max_length=100)
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
