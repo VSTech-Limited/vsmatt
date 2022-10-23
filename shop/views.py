@@ -11,4 +11,4 @@ def business(request, slug=None):
         pass
     categories = Category.objects.all()
     bus = BusinessBranch.objects.all()
-    return render(request, 'shop/business.html', {'bus': bus})
+    return render(request, 'shop/business.html', {'bus': bus,'categories': categories})
