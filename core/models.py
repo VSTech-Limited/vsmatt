@@ -32,6 +32,10 @@ CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category")
 MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
 
 
+# Create your models here.
+# A Class called Team and Contact
+# Team has a name, position, photo, facebook link, twitter link, and a created date, email and phone number
+# Contact has a name, email, phone number, message, and a created date
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
@@ -53,7 +57,7 @@ def markers_file_name(instance, filename):
 class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     position = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to=content_file_name)
+    photo = models.ImageField(upload_to='team/')
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -111,7 +115,6 @@ class Tag(models.Model):
 
 class Testimony(models.Model):
     user = models.ForeignKey('auth.User', related_name="user_testimony", on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -120,4 +123,4 @@ class Testimony(models.Model):
         ordering = ('-updated_at',)
 
     def __str__(self):
-        return self.title
+        return self.description

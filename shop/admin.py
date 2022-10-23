@@ -1,14 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from shop.models import ProductSecondaryImages, Tag, Product, Review, BusinessProfile, BusinessBranch
-
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}
-
+from shop.models import ProductSecondaryImages, Product, Review, BusinessProfile, BusinessBranch
 
 class ProductSecondaryImagesInline(admin.TabularInline):
     model = ProductSecondaryImages

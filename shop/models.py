@@ -54,21 +54,6 @@ def tag_file_name(instance, filename):
     return os.path.join(TAGS_IMAGES_PATH, filename)
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    description = models.TextField()
-    image = ResizedImageField(
-        upload_to=tag_file_name,
-        blank=False,
-        null=False,
-        size=[430, 1000]
-    )
-
-    def __str__(self):
-        return self.name
-
-
 # https://youtu.be/_vCT42vDfgw
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=100)
@@ -130,7 +115,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
-    tags = models.ManyToManyField(Tag, related_name="products", blank=True)
+    tags = models.ManyToManyField('core.Tag', related_name="products", blank=True)
     branch = models.ManyToManyField(BusinessBranch, related_name='products', blank=True)
     image = ResizedImageField(
         upload_to=product_file_name,
