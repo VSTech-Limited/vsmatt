@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from core.forms import ContactForm
+from core.models import Team
 from shop.models import BusinessProfile, BusinessBranch, Category
 
 
@@ -18,8 +19,10 @@ def index(request):
 
 def about(request):
     title = 'About Us'
+    team = Team.objects.all()
     context = {
         'title': title,
+        'team': team
     }
     return render(request, 'about.html', context)
 

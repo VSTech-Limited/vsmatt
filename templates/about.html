@@ -1,94 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}About us{% endblock %} 
+{% block title %}About us{% endblock %}
 {% block content %}
 <!-- About us -->
+{% if jujamall %}
 <div class="container my-5">
-    <h2>JujaMall</h2>
-    <p><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, maxime? Repudiandae recusandae unde, quibusdam officiis nostrum eaque! Aliquid, laudantium saepe harum consequuntur perspiciatis aliquam id quibusdam! Rerum ut ex id.</span><span>Rerum eius, praesentium, iure ab ex sint, omnis atque facere nulla dolorem nisi. Commodi fuga dolores ea, reiciendis vel nisi repudiandae molestias? Magni omnis dicta architecto enim laboriosam impedit accusamus.</span><span>Ducimus quae vero aut deserunt, hic obcaecati incidunt quis nam nisi repudiandae commodi cum possimus beatae voluptas similique distinctio iusto dolorem quibusdam. Veniam, illum! Dolorum nihil dolores dolor veniam corporis.</span></p>
+    hello
+    <h2>{{jujamall.title}}</h2>
+    <p><span>
+            {{jujamall.about_us}}
+        </span></p>
 </div>
+{% endif %}
 <!-- Meet Team -->
+{% if team %}
 <div class="container my-5">
     <h2 class="py-2">Meet Our Great Team</h2>
     <div class="row">
+        {% for member in team %}
         <div class="col-md-3">
             <div class="card">
-                <img src="{% static 'img/avatars/1.png' %}" class="card-img" alt="Team Member">
-                <h4 class="card-header text-primary">Team Member</h4>
+                <img src="{{member.photo.url}}" class="card-img" alt="Team Member">
+                <h4 class="card-header text-primary">{{member.user.get_full_name}}</h4>
                 <p class="card-body">
-                    position <br>
-                    <span class="font-weight-bold h1">.</span><span class="text-muted small">Lorem ipsum dolor sit amet consectetur.</span>
-                    <div class="mx-5 my-0 py-0">
-                        <span class="d-flex justify-content-evenly">
-                            <a href=""><i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
-                        </span>
-                    </div>
+                    {{member.position}} <br>
+                    {% if member.description %}
+                    <span class="font-weight-bold h1">.</span><span
+                        class="text-muted small">{{member.description}}</span>
+                    {% endif %}
+
+                <div class="mx-5 my-0 py-0">
+                    <span class="d-flex justify-content-evenly">
+                        <a href="tel: {{member.user.profile.phone_number}}"
+                            title="{{member.user.profile.phone_number}}"><i class="fa fa-phone fa-lg fa-fw"
+                                aria-hidden="true"></i></a>
+                        <a href="mailto: {{member.user.email}}" title="{{member.user.email}}"><i
+                                class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
+                        <a href="{{member.user.profile.twitter_link}}"><i class="fab fa-twitter fa-lg fa-fw"
+                                aria-hidden="true"></i></a>
+                        <a href="{{member.user.profile.facebook_link}}"><i class="fab fa-facebook fa-lg fa-fw"
+                                aria-hidden="true"></i></a>
+                        <a href="{{member.user.profile.linked_in_link}}"><i class="fab fa-linkedin fa-lg fa-fw"
+                                aria-hidden="true"></i></a>
+                    </span>
+                </div>
                 </p>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <img src="{% static 'img/avatars/5.png' %}" class="card-img" alt="Team Member">
-                <h4 class="card-header text-primary">Team Member</h4>
-                <p class="card-body">
-                    position <br>
-                    <span class="font-weight-bold h1">.</span><span class="text-muted small">Lorem ipsum dolor sit amet consectetur.</span>
-                    <div class="mx-5 my-0 py-0">
-                        <span class="d-flex justify-content-evenly">
-                            <a href=""><i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
-                        </span>
-                    </div>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <img src="{% static 'img/avatars/6.png' %}" class="card-img" alt="Team Member">
-                <h4 class="card-header text-primary">Team Member</h4>
-                <p class="card-body">
-                    position <br>
-                    <span class="font-weight-bold h1">.</span><span class="text-muted small">Lorem ipsum dolor sit amet consectetur.</span>
-                    <div class="mx-5 my-0 py-0">
-                        <span class="d-flex justify-content-evenly">
-                            <a href=""><i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
-                        </span>
-                    </div>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <img src="{% static 'img/avatars/7.png' %}" class="card-img" alt="Team Member">
-                <h4 class="card-header text-secondary">Team Member <br></h4>  
-                <p class="card-body">
-                    position <br>
-                    <span class="font-weight-bold h1">.</span><span class="text-muted small">Lorem ipsum dolor sit amet consectetur.</span>
-                    <div class="mx-5 my-0 py-0">
-                        <span class="d-flex justify-content-evenly">
-                            <a href=""><i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
-                            <a href=""><i class="fab fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
-                        </span>
-                    </div>
-                </p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
 <!-- Counter -->
 <div class="container my-5">
     <h2 class="py-2">Why Choose JujaMall</h2>

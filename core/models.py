@@ -57,8 +57,9 @@ def markers_file_name(instance, filename):
 class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     position = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='team/')
+    photo = models.ImageField(upload_to=content_file_name)
     created_date = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -124,3 +125,19 @@ class Testimony(models.Model):
 
     def __str__(self):
         return self.description
+
+
+# containes general information
+class JujaMall(models.Model):
+    title = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='uploads/jujamall/logo', blank=True, null=True)
+    about_us = models.TextField(blank=True, null=True)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    twitter_handle = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    linked_in = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    address = models.CharField(blank=True, null=True, max_length=256)
+    set_current = models.BooleanField(default=False)

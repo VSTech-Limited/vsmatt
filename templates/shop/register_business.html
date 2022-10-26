@@ -34,6 +34,9 @@
             streetViewControl: true,
             overviewMapControl: true,
             rotateControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            }
         };
         map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
         const vstecMarker = new google.maps.Marker({
@@ -75,6 +78,10 @@
                 }
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));
+        //const searchButton = document.createElement("input");
+        //searchButton.type = "text"
+        //searchButton.className = "border-0 shadow-none"
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
         const locationButton = document.createElement("button");
         locationButton.textContent = "Pan to Current Location";
         locationButton.className = "custom-map-control-button btn btn-success btn-sm text-dark fw-bold"

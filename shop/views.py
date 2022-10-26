@@ -27,6 +27,7 @@ def get_business(request):
     # print(business)
     return JsonResponse({'business': business})
 
+
 @login_required
 def register_business(request):
     bs_reg_form = BusinessRegistrationForm()
@@ -52,6 +53,7 @@ def register_business(request):
             return redirect('home')
 
     return render(request, "shop/register_business.html", {'bs_reg_form': bs_reg_form})
+
 
 @login_required
 def register_branch(request, bs_id):
