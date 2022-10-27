@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/media/uploads/users/profile/1_Jeff.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/shop/add_products.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/shop/business_detailed.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/shop/my_business.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/auto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shop/business.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/business.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shop/register_business.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/register_business.html" afterDir="false" />
-    </list>
+    <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -35,14 +35,18 @@ function aheadOfTimeSearch(country) {
                 results = resp['results'];
                 for (const result of results) {
                     const displayString = result['displayString'];
-                    countries.push(displayString);
-                    // console.log(displayString)
-                    // console.log(countries)
+                    if (countries.indexOf(displayString) === -1) {
+                        countries.push(displayString);
+                        // console.log(displayString)
+                        // console.log(countries)
+                    }
+
                 }
             },
         );
     }
 }
+
 
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -136,7 +140,7 @@ function autocomplete(inp, arr) {
                 x[i].parentNode.removeChild(x[i]);
             }
         }
-        
+
     }
     /*execute a function when someone clicks in the document:*/
     document.addEventListener("click", function (e) {
