@@ -76,6 +76,12 @@ class BusinessProfile(models.Model):
         size=[500, 500]
     )
 
+    def get_absolute_url(self):
+        return reverse(
+            'shop:business_detailed',
+            args=[self.id, self.slug]
+        )
+
     def __str__(self):
         return self.name
 

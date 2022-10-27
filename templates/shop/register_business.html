@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-6 p-5">
             <form autocomplete="off" action="">
-                <div class="autocomplete" style="width:300px;">
+                <div class="autocomplete" style="width:300px; position: relative; display: inline-block;">
                     <input id="myInput" type="text" name="myCountry" placeholder="location">
                 </div>
                 <input type="submit">
@@ -30,8 +30,6 @@
     </div>
 </div>
 <script>
-    var locations = [];
-
     let map, infoWindow;
     function myMap() {
         let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
@@ -165,7 +163,6 @@
 
 
     }
-
 </script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>

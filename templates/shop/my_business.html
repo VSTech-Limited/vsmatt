@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add product{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Owner</th>
+            <!-- <th>coordinates</th> -->
+            <th>Address</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </thead>
+        <tbody>
+            {% for business in businesses %}
+            <tr>
+                <td><a href="{{business.get_absolute_url}}">{{business.name}}</a></td>
+                <td>{{business.owner}}</td>
+                <!-- <td>{{business.geolocation}}</td> -->
+                <td>{{business.address}}</td>
+                <td>{{business.created}}</td>
+                <td>{{business.updated}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
