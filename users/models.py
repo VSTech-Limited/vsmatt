@@ -19,7 +19,7 @@ def content_file_name(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    profile_pic = ResizedImageField(
+    image = ResizedImageField(
         default=os.path.join("uploads", "profile", "default.jpg"),
         upload_to=content_file_name,
         blank=True,
@@ -29,10 +29,10 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True, null=True)
     languages = models.ManyToManyField(Language, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    github_link = models.URLField(max_length=300, blank=True, null=True)
-    linked_in_link = models.URLField(max_length=300, blank=True, null=True)
-    facebook_link = models.URLField(max_length=300, null=True, blank=True)
-    twitter_link = models.URLField(max_length=300, null=True, blank=True)
+    github_url = models.URLField(max_length=300, blank=True, null=True)
+    linkedin_url = models.URLField(max_length=300, blank=True, null=True)
+    facebook_url = models.URLField(max_length=300, null=True, blank=True)
+    twitter_url = models.URLField(max_length=300, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

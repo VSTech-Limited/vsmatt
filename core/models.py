@@ -57,9 +57,9 @@ def markers_file_name(instance, filename):
 class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     position = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to=content_file_name)
+    image = models.ImageField(upload_to=content_file_name)
     created_date = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username
@@ -78,7 +78,13 @@ class Contact(models.Model):
     phone_number = PhoneNumberField(null=True, blank=True)
     message = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    is_addressed = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ('-created_at',)
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
@@ -95,6 +101,8 @@ class Category(models.Model):
 
     class Meta:
         ordering = ('title',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.title
@@ -133,9 +141,9 @@ class JujaMall(models.Model):
     logo = models.ImageField(upload_to='uploads/jujamall/logo', blank=True, null=True)
     about_us = models.TextField(blank=True, null=True)
     phone_number = PhoneNumberField(blank=True, null=True)
-    twitter_handle = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
-    linked_in = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     github = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
