@@ -28,7 +28,7 @@ class Profile(models.Model):
     phone_number = PhoneNumberField(null=True, blank=True)
     bio = models.TextField(max_length=500, blank=True, null=True)
     languages = models.ManyToManyField(Language, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
+    dob = models.DateField(null=True, blank=True)
     github_url = models.URLField(max_length=300, blank=True, null=True)
     linkedin_url = models.URLField(max_length=300, blank=True, null=True)
     facebook_url = models.URLField(max_length=300, null=True, blank=True)

@@ -58,7 +58,7 @@ class Team(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     position = models.CharField(max_length=200)
     image = models.ImageField(upload_to=content_file_name)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -79,7 +79,7 @@ class Contact(models.Model):
     message = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     is_addressed = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return self.name
     
@@ -149,3 +149,6 @@ class JujaMall(models.Model):
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(blank=True, null=True, max_length=256)
     set_current = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title

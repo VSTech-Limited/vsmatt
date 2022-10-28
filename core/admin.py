@@ -26,15 +26,15 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(JujaMall)
 class JujaMallAdmin(admin.ModelAdmin):
-    list_display = ['phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
-    list_editable = ['phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
+    list_display = ['title', 'logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
+    list_editable = ['logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
 
 
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ['user', 'position', 'photo']
-    list_editable = ['position', 'photo']
+    list_display = ['user', 'position', 'image']
+    list_editable = ['position', 'image']
     search_fields = ['user', 'position']
-    list_filter = ['position']
-    date_hierarchy = 'created_at'
+    list_filter = ['position', 'created_at', 'updated_at']
+    date_hierarchy = 'updated_at'
