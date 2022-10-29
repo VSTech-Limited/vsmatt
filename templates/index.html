@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Home{% endblock %}
+
 {% block content %}
 
 <div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
@@ -9,55 +10,59 @@
 <!--    mapTypeId: google.maps.MapTypeId.HYBRID-->
 <!--    mapTypeId: google.maps.MapTypeId.TERRAIN-->
 <script>
-    function myMap() {
-      mapOptions = {
-        //center: new google.maps.LatLng(p.coords.latitude, p.coords.longitude),
-        center: new google.maps.LatLng(-1.2841, 36.8155),
-        zoom: 9,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      let marker;
-      //create map object
-      let map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-      let info_window = new google.maps.InfoWindow();
-  
-      {% for bs in bus %}
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng({{ bs.geolocation }}),
-        map: map,
-        icon: {url:"{{bs.marker.url}}", scaledSize: new google.maps.Size(50, 50)},
-        
-    });
-    google.maps.event.addListener(marker, 'click', function () {
-      //display business
-      info_window.setContent("{{bs}}");
-      info_window.open(map, marker);
-      //zoom on marker clicked
-      map.setZoom(9);
-      map.setCenter(marker.getPosition());
-    });
-    {% endfor %}
-  
-    google.maps.event.addListener(map, 'click', function (event) {
-      placeMarker(map, event.latLng);
-    });
-  
-    function placeMarker(map, location) {
-      var marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: {url:"{% static 'markers/2_1.png' %}", scaledSize: new google.maps.Size(50, 50)},
-        title: 'Click to zoom'
-  
-      });
-      //var infowindow = new google.maps.InfoWindow({
-      //content: 'Latitude: ' + location.lat() +
-      // '<br>Longitude: ' + location.lng()
-      //});
-      info_window.open(map, marker);
-    }
-  }
-  </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
+  function myMap() {
+    mapOptions = {
+      //center: new google.maps.LatLng(p.coords.latitude, p.coords.longitude),
+      center: new google.maps.LatLng(-1.2841, 36.8155),
+      zoom: 9,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    let marker;
+    //create map object
+    let map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+    let info_window = new google.maps.InfoWindow();
 
+    {% for bs in bus %}
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng({{ bs.geolocation }}),
+      map: map,
+        icon: { url: "{{bs.marker.url}}", scaledSize: new google.maps.Size(50, 50) },
+
+  });
+  google.maps.event.addListener(marker, 'click', function () {
+    //display business
+    info_window.setContent("{{bs}}");
+    info_window.open(map, marker);
+    //zoom on marker clicked
+    map.setZoom(9);
+    map.setCenter(marker.getPosition());
+  });
+  {% endfor %}
+
+  google.maps.event.addListener(map, 'click', function (event) {
+    placeMarker(map, event.latLng);
+  });
+
+  function placeMarker(map, location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: { url: "{% static 'markers/2_1.png' %}", scaledSize: new google.maps.Size(50, 50) },
+      title: 'Click to zoom'
+
+    });
+    //var infowindow = new google.maps.InfoWindow({
+    //content: 'Latitude: ' + location.lat() +
+    // '<br>Longitude: ' + location.lng()
+    //});
+    info_window.open(map, marker);
+  }
+  }
+</script>
+
+
+{% endblock %}
+{% block mapdependancies %}
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
 {% endblock %}
