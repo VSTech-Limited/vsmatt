@@ -31,6 +31,7 @@
 </div>
 <script>
     let map, infoWindow;
+
     function myMap() {
         let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
         let mapOptions = {
@@ -170,8 +171,28 @@
             icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
         });
         ok.addEventListener('click', () => {
+
+            $.getJSON(
+                `http://www.mapquestapi.com/geocoding/v1/address?key=2dVBKmPmnGAdhlP4AG9HPv7X4dAznIYt&location=${place.value}`,
+                (data, status, resp) => {
+
+                    const results = data['results'];
+                    for (const result in results) {
+                        const locations = result['locations'];
+                        for (const location in locations) {
+                            alert(resp)
+                            const latLng = location['latLng'];
+                            console.log(latLng);
+                            alert("Lat: " + latLng['lat'] + "long: " + latLng['lng']);
+                        }
+                    }
+
+                    // location['latLng']
+                    // alert("Lat: " + location['lat']+ "long: "+ location['lng'])
+                }
+            )
             //clear all markers
-            currentPositionMarker.setMap(null);
+            // currentPositionMarker.setMap(null);
             vstecMarker.setMap(null)
             //create new marker and plot it
             //TODO ADD THE MAKER HERE
@@ -180,6 +201,9 @@
 
     }
 </script>
+
+
+{% block mapdependancies %}
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -187,4 +211,7 @@
 <script>
     autocomplete(document.getElementById("myInput"), countries);
 </script>
+
+{% endblock %}
+
 {% endblock %}

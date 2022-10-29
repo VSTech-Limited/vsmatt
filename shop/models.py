@@ -7,7 +7,7 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 
 # Create your models here.
-from core.models import Category, markers_file_name
+from core.models import ProductCategory, markers_file_name, BusinessCategory
 
 BUSINESS_IMAGES_PATH = os.path.join("uploads", "shop", "business")
 PRODUCTS_IMAGES_PATH = os.path.join("uploads", "shop", "products", "primary")
@@ -92,13 +92,13 @@ class BusinessProfile(models.Model):
 class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
     name = models.CharField(max_length=100)
+    category = models.ForeignKey(BusinessCategory, related_name='branches', on_delete=models.CASCADE)
     slug = models.SlugField(db_index=True)
     longitude = models.DecimalField(max_digits=22, decimal_places=16)
     latitude = models.DecimalField(max_digits=22, decimal_places=16)
     # location = PointField()
     # address = models.CharField(max_length=100)
     # address = map_fields.AddressField(max_length=200)
-    marker = models.ImageField(blank=False, null=False, upload_to=markers_file_name)
     # geolocation = map_fields.GeoLocationField(max_length=100)
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
@@ -120,7 +120,7 @@ class BusinessBranch(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
+    category = models.ForeignKey(ProductCategory, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     tags = models.ManyToManyField('core.Tag', related_name="products", blank=True)

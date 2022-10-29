@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from core.forms import ContactForm
 from core.models import Team
-from shop.models import BusinessProfile, BusinessBranch, Category
+from shop.models import BusinessProfile, BusinessBranch, ProductCategory
 
 
 # Create your views here.
@@ -56,7 +56,7 @@ def contact(request):
 
 def products(request):
     title = 'Products'
-    categories = Category.objects.all()
+    categories = ProductCategory.objects.all()
     context = {
         'title': title,
         'categories': categories,

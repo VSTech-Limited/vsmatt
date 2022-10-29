@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.text import slugify
 from geopy.geocoders import Nominatim, GoogleV3
 from .forms import BusinessRegistrationForm
-from .models import BusinessProfile, BusinessBranch, Category
+from .models import BusinessProfile, BusinessBranch, ProductCategory
 from django.http import JsonResponse
 
 
@@ -15,6 +15,10 @@ from django.http import JsonResponse
 
 
 def business(request, slug=None):
+    return render(request, 'shop/business.html')
+
+
+def businesses(request, slug=None):
     return render(request, 'shop/business.html')
 
 

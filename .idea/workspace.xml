@@ -1,7 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="" />
+    <list default="true" id="13754271-f461-410e-b766-a6f3af61cabc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/migrations/0002_rename_category_productcategory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/shop/business/Wajeff Foods AND DRINKS/main/wajeff-foods-and-drinks_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/Product/computer-and-loptops_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/business/hotel_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/computer-and-loptops_None.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/context_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/context_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0002_remove_category_marker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0003_alter_team_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0004_remove_testimony_title_alter_team_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0005_jujamall.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0006_jujamall_set_current.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0007_jujamall_title.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0008_alter_team_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0009_team_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0010_alter_category_options_alter_contact_options_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jujamall/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/jujamall/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile/admin-blog.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/JujaMall/team/profile/1_.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/uploads/JujaMall/team/profile/1_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/business/mama-jr-and-daughters/main/_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/bank_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/fruits_None.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/gymnastics_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/hotel_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/ass_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/bank_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/gymnastics_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/hahahahaha_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/hotel_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/hotel_None.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/uploads/shop/category/marker/hotel_None.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/jeff-odhis_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/jeff_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/kaka_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/mama-otis-gim_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/mangondo_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-chemist_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-chemist_4_Xdkcmox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-salone_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-salone_3_xhv6e3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-sweetness_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/min-otis-sweetness_2_Qs8Vmcx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/ntayhiwa-hotel_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/ntayhiwa-hotel_1_TY1cbPd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/super-market_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/test-branch-1_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/test-branch-2_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/marker/test-branch-3_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/category/super-market_None.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/shop/tags/fresh_None.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/uploads/users/profile/1_Jeff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0002_businessbranch_marker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0003_remove_businessbranch_address_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0004_delete_tag_remove_businessprofile_geolocation_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/auto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/top-bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/top-bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/register_business.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/register_business.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/0002_rename_birth_date_profile_dob_and_more.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,9 +1,13 @@
-from .models import Category, JujaMall
+from .models import ProductCategory, JujaMall, BusinessCategory
 
 
-def categories(request):
-    return {"categories": Category.objects.all()}
+def product_categories(request):
+    return {"product_categories": ProductCategory.objects.all()}
 
 
 def jujamall(request):
     return {'jujamall': JujaMall.objects.filter(set_current=True).first()}
+
+
+def business_category(request):
+    return {'business_categories': BusinessCategory.objects.all()}

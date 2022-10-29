@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Category, Tag, JujaMall, Team
+from .models import Contact, ProductCategory, Tag, JujaMall, Team, BusinessCategory
 
 
 @admin.register(Contact)
@@ -8,7 +8,8 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ['name', 'email', 'phone_number', 'message']
     date_hierarchy = 'created_at'
 
-@admin.register(Category)
+
+@admin.register(ProductCategory)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'created_by', 'created_at', 'updated_at']
     prepopulated_fields = {'slug': ('title',)}
@@ -16,6 +17,17 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ['title', 'slug']
     date_hierarchy = 'created_at'
     list_editable = ['slug', 'created_by']
+
+
+@admin.register(BusinessCategory)
+class BusinessCategoryAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug', 'created_by', 'created_at', 'updated_at']
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ['created_at', 'updated_at']
+    search_fields = ['title', 'slug']
+    date_hierarchy = 'created_at'
+    list_editable = ['slug', 'created_by']
+
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -26,9 +38,10 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(JujaMall)
 class JujaMallAdmin(admin.ModelAdmin):
-    list_display = ['title', 'logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
-    list_editable = ['logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email', 'address']
-
+    list_display = ['title', 'logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',
+                    'address']
+    list_editable = ['logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',
+                     'address']
 
 
 @admin.register(Team)

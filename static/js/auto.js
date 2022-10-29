@@ -1,5 +1,5 @@
 
-var countries1 = [
+var places1 = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia",
     "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
     "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands",
@@ -26,19 +26,19 @@ var countries1 = [
     "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu",
     "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"
 ];
-var countries = [];
+var places = [];
 function aheadOfTimeSearch(country) {
-    if (country.length > 0) {
+    if (country.length > 2) {
         $.getJSON(
             `http://www.mapquestapi.com/search/v3/prediction?key=2dVBKmPmnGAdhlP4AG9HPv7X4dAznIYt&limit=5&collection=adminArea,poi,address,category,franchise,airport&q=${country}`,
             (resp) => {
                 results = resp['results'];
                 for (const result of results) {
                     const displayString = result['displayString'];
-                    if (countries.indexOf(displayString) === -1) {
-                        countries.push(displayString);
+                    if (places.indexOf(displayString) === -1) {
+                        places.push(displayString);
                         // console.log(displayString)
-                        // console.log(countries)
+                        // console.log(places)
                     }
 
                 }

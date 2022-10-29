@@ -18,8 +18,22 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
               <li><hr class="dropdown-divider"></li>
-              {% if categories %}
-                {% for category in categories %}
+              {% if product_categories %}
+                {% for category in product_categories %}
+                  <li><a class="dropdown-item" href="{{category.get_absolute_url}}">{{category}}</a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Business Farms
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">All Business Farms </a></li>
+              <li><hr class="dropdown-divider"></li>
+              {% if business_category %}
+                {% for category in business_category %}
                   <li><a class="dropdown-item" href="{{category.get_absolute_url}}">{{category}}</a></li>
                 {% endfor %}
               {% endif %}
