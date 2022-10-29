@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
     '*.azurewebsites.net',
     'jujamall.azurewebsites.net',
     '*.vstech.live',
-    ]
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -40,16 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'whitenoise.runserver_nostatic',
 
     # Local Apps
     'shop.apps.ShopConfig',
     'core.apps.CoreConfig',
     'users.apps.AccountConfig',
 
-    # Third Party Apps
     # Third Party Apps
     'crispy_forms',
     'allauth',
@@ -60,8 +59,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # ...
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    # ...
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -96,7 +97,7 @@ WSGI_APPLICATION = 'jujamall.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -159,13 +160,12 @@ STATIC_ROOT = BASE_DIR / 'static'
 #     BASE_DIR / "static",
 # ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('shops/', include('shop.urls', namespace='shop')),
     path('accounts/', include('allauth.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
