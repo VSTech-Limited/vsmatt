@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3dxpn&!736o$(pbypmhr4hnd$gftc&%+n2iinx-3h%7@+&0zd2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -104,32 +104,20 @@ if DEBUG:
         }
     }
 else:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': os.getenv('DB_NAME'),
-    #         'USER': os.getenv('DB_USER'),
-    #         'PASSWORD': os.getenv('DB_PASSWORD'),
-    #         'HOST': os.getenv('DB_HOST'),
-    #         'PORT': os.getenv('DB_PORT'),
-    #         'OPTIONS': {
-    #             'sslmode': 'require',
-    #         }
-    #     }
-    # }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'jujamall-db',
-            'USER': 'vstechadmin',
-            'PASSWORD': 'Jeff1234',
-            'HOST': 'vstech-postgres-db-server.postgres.database.azure.com',
-            'PORT': '5432',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
             'OPTIONS': {
                 'sslmode': 'require',
             }
         }
     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
