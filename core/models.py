@@ -186,7 +186,3 @@ class JujaMall(models.Model):
 
     def __str__(self):
         return self.title
-from places.fields import PlacesField
-
-class MyLocation(models.Model):
-    location = PlacesField()
