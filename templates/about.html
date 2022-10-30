@@ -5,7 +5,6 @@
 <!-- About us -->
 {% if jujamall %}
 <div class="container my-5">
-    hello
     <h2>{{jujamall.title}}</h2>
     <p><span>
             {{jujamall.about_us}}
@@ -20,7 +19,7 @@
         {% for member in team %}
         <div class="col-md-3">
             <div class="card">
-                <img src="{{member.photo.url}}" class="card-img" alt="Team Member">
+                <img src="{{member.image.url}}" class="card-img" alt="Team Member">
                 <h4 class="card-header text-primary">{{member.user.get_full_name}}</h4>
                 <p class="card-body">
                     {{member.position}} <br>

@@ -18,28 +18,36 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     let marker;
+    let infoWindow;
     //create map object
     let map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-    let info_window = new google.maps.InfoWindow();
+    
 
-    {% for bs in bus %}
+    {% for category in business_categories %}
+    {% with businesses=category.branches.all %}
+    {% for business in businesses %}
+
     marker = new google.maps.Marker({
-      position: new google.maps.LatLng({{ bs.geolocation }}),
+      position: new google.maps.LatLng({{ business.geolocation }}),
       map: map,
-        icon: { url: "{{bs.marker.url}}", scaledSize: new google.maps.Size(50, 50) },
+        icon: { url: "{{category.marker.url}}", scaledSize: new google.maps.Size(50, 50) },
 
-  });
-  google.maps.event.addListener(marker, 'click', function () {
-    //display business
-    info_window.setContent("{{bs}}");
-    info_window.open(map, marker);
-    //zoom on marker clicked
-    map.setZoom(9);
-    map.setCenter(marker.getPosition());
-  });
+    });
+    infoWindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', ()=>{
+      //display business
+      infoWindow.setContent("{{business}}")
+      infoWindow.open(map, marker);
+      //zoom on marker clicked
+      map.setZoom(9);
+      map.setCenter(marker.getPosition());
+    });
+
+  {% endfor %}
+  {% endwith %}
   {% endfor %}
 
-  google.maps.event.addListener(map, 'click', function (event) {
+  /*google.maps.event.addListener(map, 'click', function (event) {
     placeMarker(map, event.latLng);
   });
 
@@ -51,12 +59,12 @@
       title: 'Click to zoom'
 
     });
-    //var infowindow = new google.maps.InfoWindow({
-    //content: 'Latitude: ' + location.lat() +
-    // '<br>Longitude: ' + location.lng()
-    //});
-    info_window.open(map, marker);
-  }
+  //var infowindow = new google.maps.InfoWindow({
+  //content: 'Latitude: ' + location.lat() +
+  // '<br>Longitude: ' + location.lng()
+  //});
+  info_window.open(map, marker);
+  }*/
   }
 </script>
 
