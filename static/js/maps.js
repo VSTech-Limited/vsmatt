@@ -6,7 +6,7 @@ function myMap() {
         //disables default map controls which are Zoom ,Pan , MapType , Street View
         //disableDefaultUI: true,
         center: vstecPosition,
-        zoom: 9,
+        zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         //addming all the controls
         panControl: true,
