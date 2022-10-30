@@ -94,7 +94,7 @@ class BusinessProfile(models.Model):
 class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
     name = models.CharField(max_length=100)
-    category = models.ForeignKey(BusinessCategory, related_name='branches', on_delete=models.CASCADE)
+    category = models.ForeignKey(BusinessCategory, related_name='businesses', on_delete=models.CASCADE)
     slug = models.SlugField(db_index=True)
     longitude = models.DecimalField(max_digits=22, decimal_places=16)
     latitude = models.DecimalField(max_digits=22, decimal_places=16)
