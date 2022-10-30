@@ -57,7 +57,7 @@ function myMap() {
                     let currentPositionMarker = new google.maps.Marker({
                         position: pos,
                         map: map,
-                        //icon: { url: "{% static 'markers/1.png' %}", scaledSize: new google.maps.Size(50, 50) },
+                        icon: { url: "{% static 'markers/1.png' %}", scaledSize: new google.maps.Size(50, 50) },
                     });
                     map.setZoom(15)
                     infoWindow.open(map, currentPositionMarker);

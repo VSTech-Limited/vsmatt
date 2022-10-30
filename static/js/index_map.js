@@ -18,15 +18,13 @@ function myMap() {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
         }
     };
-    //create map object
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-    //add vstec marker
+
     const vstecMarker = new google.maps.Marker({
         position: vstecPosition,
         map: map,
         //icon: { url: "./..markers/6.png", scaledSize: new google.maps.Size(70, 70) },
     });
-    //add vstec infowindow
     new google.maps.InfoWindow({ content: "VSTech Limited Company" }).open(map, vstecMarker);
     const input = document.getElementById("pac-input");
     //var searchBox = new google.maps.places.SearchBox(input);
@@ -132,24 +130,6 @@ function myMap() {
         });
     },
         2000);
-
-    //     {% for bs in bus %}
-    //     marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng({{ bs.geolocation }}),
-    //         map: map,
-    //             icon: { url: "{{bs.marker.url}}", scaledSize: new google.maps.Size(50, 50) },
-
-    // });
-    // google.maps.event.addListener(marker, 'click', function () {
-    //     //display business
-    //     info_window.setContent("{{bs}}");
-    //     info_window.open(map, marker);
-    //     //zoom on marker clicked
-    //     map.setZoom(9);
-    //     map.setCenter(marker.getPosition());
-    // });
-    // {% endfor %}
-
     google.maps.event.addListener(map, 'click', function (event) {
         placeMarker(map, event.latLng);
     });
@@ -168,4 +148,18 @@ function clearOverlays() {
         markersArray[i].setMap(null);
     }
     markersArray.length = 0;
+}
+
+function mapBusinessMarkers(map){
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/businesses/",
+        method: 'GET',
+        success: (data, status, resp)=>{
+            console.log(data)
+        },
+        error: (data, status, resp) =>{
+          console.log(data)
+        }
+        
+      })
 }
