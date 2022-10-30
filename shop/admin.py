@@ -35,7 +35,7 @@ class BusinessBranchInline(admin.TabularInline):
 
 @admin.register(BusinessProfile)
 class BusinessProfileAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'owner', 'address', 'geolocation']
+    list_display = ['name', 'slug', 'owner', 'address', 'geolocation', 'is_approved', 'created', 'updated']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [BusinessBranchInline]
     # formfield_overrides = {

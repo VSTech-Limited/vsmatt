@@ -68,8 +68,9 @@ class BusinessProfile(models.Model):
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     additional_info = models.TextField(blank=True, null=True)
+    is_approved = models.BooleanField(default=False)
     image = ResizedImageField(
         upload_to=business_file_name,
         blank=True,
@@ -104,7 +105,7 @@ class BusinessBranch(models.Model):
     # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     additional_info = models.TextField(blank=True, null=True)
     image = ResizedImageField(
         upload_to=business_branch_file_name,
@@ -112,6 +113,7 @@ class BusinessBranch(models.Model):
         null=True,
         size=[500, 500]
     )
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

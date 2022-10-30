@@ -1,30 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}Add product{% endblock %}
+{% block title %}{{user}}'s Businesses{% endblock %}
 {% block content %}
-<div class="container-fluid">
-    <table class="table">
-        <thead>
-            <th>Name</th>
-            <th>Owner</th>
-            <!-- <th>coordinates</th> -->
-            <th>Address</th>
-            <th>Created</th>
-            <th>Updated</th>
-        </thead>
-        <tbody>
-            {% for business in businesses %}
-            <tr>
-                <td><a href="{{business.get_absolute_url}}">{{business.name}}</a></td>
-                <td>{{business.owner}}</td>
-                <!-- <td>{{business.geolocation}}</td> -->
-                <td>{{business.address}}</td>
-                <td>{{business.created}}</td>
-                <td>{{business.updated}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container-fluid py-5">
+    <div class="card">
+        <h5 class="card-header">{{user}}'s Registered Businesses</h5>
+        <div class="table-responsive text-nowrap"></div>
+            <table class="table table-striped">
+                <thead class="table table-head">
+                    <th>Name</th>
+                    <th>Branches</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </thead>
+                <tbody class="table table-body">
+                    {% if businesses %}
+                    {% for business in businesses %}
+                    <tr>
+                        <td><a href="{{business.get_absolute_url}}">{{business.name}}</a></td>
+                        <td>
+                            <!-- For Branches -->
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="Business Branch 1">
+                                <img src="{% static 'img/avatars/5.png' %}" alt="Avatar" class="rounded-circle">
+                                </li>
+                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="Business Branch 2">
+                                <img src="{% static 'img/avatars/6.png' %}" alt="Avatar" class="rounded-circle">
+                                </li>
+                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="Business Branch 3">
+                                <img src="{% static 'img/avatars/7.png' %}" alt="Avatar" class="rounded-circle">
+                                </li>
+                            </ul>
+                        </td>
+                        <!-- <td>{{business.geolocation}}</td> -->
+                        <td>
+                            {% if business.is_approved %}
+                                <span class="badge bg-label-success me-1">Approved</span>
+                            {% else %}
+                                <span class="badge bg-label-warning me-1">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>{{business.created}}</td>
+                        <td>
+                            <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="py-4 text-center"><h3>No business found, <a href="{% url 'shop:register_business' %}">Create one now!</a> and enjoy selling.</h3></td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}
