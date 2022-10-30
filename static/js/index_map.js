@@ -19,7 +19,7 @@ function myMap() {
         }
     };
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-    getLiveData(map)
+    getLiveData(map, "http://127.0.0.1:8000/api/category/")
     const vstecMarker = new google.maps.Marker({
         position: vstecPosition,
         map: map,
@@ -97,7 +97,7 @@ function myMap() {
         }
     }
     setInterval(() => {
-        getLiveData(map)
+        getLiveData(map, "http://127.0.0.1:8000/api/category/")
     },
         5000);
 }
@@ -107,9 +107,89 @@ function clearOverlays() {
     }
     markersArray.length = 0;
 }
-function getLiveData(map) {
+function getLiveData(map, url) {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/businesses/",
+        url: url,
+        method: 'GET',
+        success: (categories, status, resp) => {
+            clearOverlays()
+            for (const category of categories) {
+                const markerIcon = category['marker'];
+                const businesses = category['businesses'];
+                for (const business of businesses) {
+                    business.category = category['title'];
+                    placeBusinessMarkers(map, markerIcon, business);
+                }
+            }
+        },
+        error: (data, status, resp) => {
+            console.log(result.status);
+        }
+
+    });
+}
+function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
+    let position = new google.maps.LatLng(lat, lng)
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: business['name'],
+        animation: google.maps.Animation.BOUNCE,
+        icon: { url: markerIcon, scaledSize: new google.maps.Size(50, 50) },
+    });
+    //add listener on marker
+    google.maps.event.addListener(marker, 'click', (event) => {
+        map.setCenter(position);
+        map.setZoom(12)
+        let info = new google.maps.InfoWindow({
+            content: `${business['name']} ${business['address']} ${business['category']}`
+        });
+        //add listener on info window
+        google.maps.event.addListener(info, 'click', (event) => {
+            alert("yes yes");
+        });
+
+        info.open(map, marker);
+    });
+    markersArray.push(marker)
+}
+
+function placeBusinessMarkers(map, markerIcon, business) {
+    const lat = business['latitude'];
+    const lng = business['longitude'];
+    const name = business['name'];
+    const address = business['address'];
+    const category = business['category'];
+    const position = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: name,
+        animation: google.maps.Animation.BOUNCE,
+        icon: { url: markerIcon, scaledSize: new google.maps.Size(50, 50) },
+    });
+    //add listener on marker
+    google.maps.event.addListener(marker, 'click', (event) => {
+        map.setCenter(position);
+        map.setZoom(12)
+        let info = new google.maps.InfoWindow({
+            content: `${name} ${address} ${category}`
+        });
+        //add listener on info window
+        google.maps.event.addListener(info, 'click', (event) => {
+            alert("yes yes");
+        });
+
+        info.open(map, marker);
+    });
+    markersArray.push(marker)
+}
+
+/*
+function getLiveData(map, url) {
+    //http://127.0.0.1:8000/api/businesses/
+    $.ajax({
+        url: url,
         method: 'GET',
         success: (businesses, status, resp) => {
             clearOverlays()
@@ -132,8 +212,9 @@ function getLiveData(map) {
             console.log(result.status);
         }
 
-    })
-}
+    });
+}*/
+/*
 function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
     let position = new google.maps.LatLng(lat, lng)
     var marker = new google.maps.Marker({
@@ -152,10 +233,10 @@ function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
         });
         //add listener on info window
         google.maps.event.addListener(info, 'click', (event) => {
-            alert("yes yes")
+            alert("yes yes");
         });
 
         info.open(map, marker);
     });
     markersArray.push(marker)
-}
+}*/
