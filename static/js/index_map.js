@@ -5,7 +5,7 @@ function myMap() {
     let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
     let mapOptions = {
         center: vstecPosition,
-        zoom: 8,
+        zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: true,
         zoomControl: true,
