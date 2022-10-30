@@ -18,10 +18,10 @@ def index(request):
 
 def about(request):
     title = 'About Us'
-    teams = Team.objects.all()
+    team = Team.objects.all()
     context = {
         'title': title,
-        'teams': teams
+        'team': team
     }
     return render(request, 'about.html', context)
 
