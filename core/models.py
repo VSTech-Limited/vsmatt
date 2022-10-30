@@ -48,6 +48,7 @@ def category_file_name(instance, filename):
     filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
     return os.path.join(CATEGORY_IMAGES_PATH, filename)
 
+
 def bs_category_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
@@ -186,7 +187,10 @@ class JujaMall(models.Model):
 
     def __str__(self):
         return self.title
-from places.fields import PlacesField
 
-class MyLocation(models.Model):
-    location = PlacesField()
+
+# from places.fields import PlacesField
+#
+#
+# class MyLocation(models.Model):
+#     location = PlacesField()

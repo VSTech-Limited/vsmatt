@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, MyLocation, ProductCategory, Tag, JujaMall, Team, BusinessCategory
+from .models import Contact, ProductCategory, Tag, JujaMall, Team, BusinessCategory
 
 
 @admin.register(Contact)
@@ -52,6 +52,6 @@ class TeamAdmin(admin.ModelAdmin):
     list_filter = ['position', 'created_at', 'updated_at']
     date_hierarchy = 'updated_at'
 
-@admin.register(MyLocation)
-class MyLocationAdmin(admin.ModelAdmin):
-    list_display = ['location']
+# @admin.register(MyLocation)
+# class MyLocationAdmin(admin.ModelAdmin):
+#     list_display = ['location']

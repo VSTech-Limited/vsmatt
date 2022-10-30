@@ -1,6 +1,6 @@
 from django import forms
 
-from core.models import Contact, MyLocation
+from core.models import Contact  #, MyLocation
 
 
 class ContactForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = "__all__"
 
-class MyLocationForm(forms.ModelForm):
-    class Meta:
-        model = MyLocation
-        fields = "__all__"
+# class MyLocationForm(forms.ModelForm):
+#     class Meta:
+#         model = MyLocation
+#         fields = "__all__"

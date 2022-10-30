@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from core.forms import ContactForm, MyLocationForm
+from core.forms import ContactForm  #, MyLocationForm
 from core.models import Team
 from shop.models import BusinessProfile, BusinessBranch, ProductCategory
 
@@ -8,11 +8,11 @@ from shop.models import BusinessProfile, BusinessBranch, ProductCategory
 # Create your views here.
 def index(request):
     bus = BusinessBranch.objects.all()
-    form = MyLocationForm()
+    # form = MyLocationForm()
     title = 'home'
     context = {
         'title': title,
-        'form': form,
+        # 'form': form,
         'bus': bus,
     }
     # print(f"\n\n{title}\n\n")

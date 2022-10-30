@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'places',
+    # 'places',
 
     # 'django.contrib.gis', #needs a lot of dependencies
 ]
