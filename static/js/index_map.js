@@ -25,7 +25,7 @@ function myMap() {
         map: map,
         //icon: { url: "./..markers/6.png", scaledSize: new google.maps.Size(70, 70) },
     });
-    new google.maps.InfoWindow({ content: "VSTech Limited Company" }).open(map, vstecMarker);
+
     const input = document.getElementById("pac-input");
     //var searchBox = new google.maps.places.SearchBox(input);
     let infoWindow = new google.maps.InfoWindow();
@@ -96,51 +96,10 @@ function myMap() {
                 break;
         }
     }
-
-
-    let marker;
-
     setInterval(() => {
-        //alert("Hellow")
-        $.ajax({
-            url: 'http://127.0.0.1:8000/shops/business/',
-            method: 'GET',
-            success: (result, status, resp) => {
-                clearOverlays()
-                let business = result['business'];
-                for (const bs of business) {
-                    console.log(`'http://127.0.0.1:8000/media/${bs.marker}'`)
-                    marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(bs.latitude, bs.longitude),
-                        map: map,
-                        animation: google.maps.Animation.BOUNCE,
-                        title: bs.name
-                        //icon: { url: `'${bs.marker}'`, scaledSize: new google.maps.Size(50, 50) },
-                    });
-                    marker.addListener("click", () => {
-                        //add window info
-                    });
-                    markersArray.push(marker)
-                }
-
-            },
-            error: (result, status, resp) => {
-                console.log(result.status);
-            }
-        });
+        getLiveData(map)
     },
-        2000);
-    google.maps.event.addListener(map, 'click', function (event) {
-        placeMarker(map, event.latLng);
-    });
-
-    function placeMarker(map, location) {
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            icon: { url: "{% static 'markers/2_1.png' %}", scaledSize: new google.maps.Size(50, 50) },
-        });
-    }
+    2000);
 }
 
 function clearOverlays() {
@@ -150,16 +109,57 @@ function clearOverlays() {
     markersArray.length = 0;
 }
 
-function mapBusinessMarkers(map){
+function getLiveData(map) {
     $.ajax({
         url: "http://127.0.0.1:8000/api/businesses/",
         method: 'GET',
-        success: (data, status, resp)=>{
-            console.log(data)
+        success: (businesses, status, resp) => {
+            clearOverlays()
+            for (const business of businesses) {
+                const branches = business['branch'];
+                for (const branch of branches) {
+                    const markerIcon = branch['category']['marker'];
+                    const lat = branch['latitude'];
+                    const lng = branch['longitude'];
+                    const name = branch['name'];
+                    const address = branch['address'];
+                    const category = branch['category']['title']
+                    const bs = { 'name': name, "address": address, "category": category }
+                    placeBusinessMarkers(map, lat, lng, markerIcon, bs);
+
+                }
+            }
         },
-        error: (data, status, resp) =>{
-          console.log(data)
+        error: (data, status, resp) => {
+            console.log(result.status);
         }
-        
-      })
+
+    })
+}
+
+function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: map,
+        title: business['name'],
+        animation: google.maps.Animation.BOUNCE,
+        icon: { url: markerIcon, scaledSize: new google.maps.Size(50, 50) },
+    });
+
+    //add listener on marker
+    google.maps.event.addListener(marker, 'click', (event) => {
+        let info = new google.maps.InfoWindow({
+            content: `${business['name']} ${business['address']} ${business['category']}`
+        });
+
+
+
+        //add listener on info window
+        google.maps.event.addListener(info, 'click', (event) => {
+            alert("yes yes")
+        });
+
+        info.open(map, marker);
+    });
+    markersArray.push(marker)
 }
