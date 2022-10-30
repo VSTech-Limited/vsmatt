@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
+{% include 'partials/base-search.html' %}
 <div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
 <script src="{% static 'js/maps.js' %}"></script>
 
