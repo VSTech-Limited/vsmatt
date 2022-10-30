@@ -6,7 +6,7 @@ function myMap() {
         //disables default map controls which are Zoom ,Pan , MapType , Street View
         //disableDefaultUI: true,
         center: vstecPosition,
-        zoom: 9,
+        zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         //addming all the controls
         panControl: true,
@@ -33,14 +33,14 @@ function myMap() {
         icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
     });
     //add vstec infowindow
-    new google.maps.InfoWindow({ content: "vstec limited company" }).open(map, vstecMarker);
+    new google.maps.InfoWindow({ content: "VSTech Limited Company" }).open(map, vstecMarker);
     const input = document.getElementById("pac-input");
     //var searchBox = new google.maps.places.SearchBox(input);
     let infoWindow = new google.maps.InfoWindow();
     // create button and give it styling
     const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.className = "custom-map-control-button btn btn-success btn-lg text-dark fw-bold"
+    locationButton.textContent = "Find my location";
+    locationButton.className = "custom-map-control-button btn btn-light bg-white shadow m-3 p-3 btn-sm text-muted fw-light";
     //add the created butTon on the map at the specified position(TOP_CENTER) BY PUSHING IT TO ITS STACK
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
@@ -53,7 +53,7 @@ function myMap() {
                         lng: position.coords.longitude,
                     };
                     // infoWindow.setPosition(pos);
-                    infoWindow.setContent("your current Location found.");
+                    infoWindow.setContent("Your current Location.");
                     let currentPositionMarker = new google.maps.Marker({
                         position: pos,
                         map: map,
