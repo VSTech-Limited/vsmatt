@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Contact, ProductCategory, Tag, JujaMall, Team, BusinessCategory
+from .models import Contact, Language, ProductCategory, Tag, JujaMall, Team, BusinessCategory
 
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'phone_number', 'message']
+    list_display = ['name', 'email', 'phone_number', 'message','is_addressed', 'created_at']
+    list_filter = ['is_addressed', 'created_at']
     search_fields = ['name', 'email', 'phone_number', 'message']
     date_hierarchy = 'created_at'
 
@@ -52,6 +53,7 @@ class TeamAdmin(admin.ModelAdmin):
     list_filter = ['position', 'created_at', 'updated_at']
     date_hierarchy = 'updated_at'
 
-# @admin.register(MyLocation)
-# class MyLocationAdmin(admin.ModelAdmin):
-#     list_display = ['location']
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']

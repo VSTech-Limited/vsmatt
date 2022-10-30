@@ -13,13 +13,14 @@
 <body>
     {% include 'partials/top-bar.html' %}
     {% if messages %}
-    <div>
-        <strong>Messages:</strong>
-        <ul>
+    <div class="container">
+        {% if messages %}
             {% for message in messages %}
-            <li>{{message}}</li>
+                <div class="text-center my-3 mx-5 alert alert-{{ message.tags }}" role="alert">
+                    {{message}}
+                </div>
             {% endfor %}
-        </ul>
+        {% endif %}
     </div>
     {% endif %}
     {% if title != 'home' %}

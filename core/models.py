@@ -128,7 +128,6 @@ class ProductCategory(models.Model):
         null=True,
         size=[100, 100]
     )
-    marker = models.ImageField(upload_to=markers_file_name, blank=True, null=True)
     created_by = models.ForeignKey('auth.User', related_name='category_author', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
