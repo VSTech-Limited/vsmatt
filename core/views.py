@@ -11,9 +11,9 @@ def index(request):
     form = MyLocationForm()
     title = 'home'
     context = {
-        'bus': bus,
         'title': title,
         'form': form,
+        'bus': bus,
     }
     # print(f"\n\n{title}\n\n")
     return render(request, 'index.html', context)

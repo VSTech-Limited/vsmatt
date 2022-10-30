@@ -9,5 +9,5 @@ def jujamall(request):
     return {'jujamall': JujaMall.objects.filter(set_current=True).first()}
 
 
-def business_category(request):
+def business_categories(request):
     return {'business_categories': BusinessCategory.objects.all()}
