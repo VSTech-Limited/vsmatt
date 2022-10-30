@@ -12,38 +12,40 @@
 </div>
 {% endif %}
 <!-- Meet Team -->
-{% if team %}
+{% if teams %}
 <div class="container my-5">
     <h2 class="py-2">Meet Our Great Team</h2>
     <div class="row">
-        {% for member in team %}
+        {% for team in teams %}
         <div class="col-md-3">
             <div class="card">
-                <img src="{{member.image.url}}" class="card-img" alt="Team Member">
-                <h4 class="card-header text-primary">{{member.user.get_full_name}}</h4>
-                <p class="card-body">
-                    {{member.position}} <br>
-                    {% if member.description %}
-                    <span class="font-weight-bold h1">.</span><span
-                        class="text-muted small">{{member.description}}</span>
-                    {% endif %}
-
-                <div class="mx-5 my-0 py-0">
-                    <span class="d-flex justify-content-evenly">
-                        <a href="tel: {{member.user.profile.phone_number}}"
-                            title="{{member.user.profile.phone_number}}"><i class="fa fa-phone fa-lg fa-fw"
-                                aria-hidden="true"></i></a>
-                        <a href="mailto: {{member.user.email}}" title="{{member.user.email}}"><i
-                                class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                        <a href="{{member.user.profile.twitter_link}}"><i class="fab fa-twitter fa-lg fa-fw"
-                                aria-hidden="true"></i></a>
-                        <a href="{{member.user.profile.facebook_link}}"><i class="fab fa-facebook fa-lg fa-fw"
-                                aria-hidden="true"></i></a>
-                        <a href="{{member.user.profile.linked_in_link}}"><i class="fab fa-linkedin fa-lg fa-fw"
-                                aria-hidden="true"></i></a>
-                    </span>
+                <img src="{{team.image.url}}" class="card-img" alt="Team team">
+                <h4 class="card-header text-primary">{{team.user.get_full_name}}</h4>
+                <div class="card-body">
+                    <h5>{{team.position}}</h5>
+                    <div class="mx-5 my-0 py-0">
+                        <span class="d-flex justify-content-evenly">
+                            {% if team.user.profile.phone_number %}
+                                <a href="tel: {{team.user.profile.phone_number}}" title="{{team.user.profile.phone_number}}"><i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% if team.user.email %}
+                                <a href="mailto: {{team.user.email}}" title="{{team.user.email}}"><i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% if team.user.profile.twitter_url %}
+                                <a href="{{team.user.profile.twitter_url}}"><i class="fab fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% if team.user.profile.facebook_url %}
+                                <a href="{{team.user.profile.facebook_url}}"><i class="fab fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% if team.user.profile.linkedin_url %}
+                                <a href="{{team.user.profile.linkedin_url}}"><i class="fab fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% if team.user.profile.github_url %}
+                                <a href="{{team.user.profile.github_url}}"><i class="fab fa-github fa-lg fa-fw" aria-hidden="true"></i></a>
+                            {% endif %}
+                        </span>
+                    </div>
                 </div>
-                </p>
             </div>
         </div>
         {% endfor %}
