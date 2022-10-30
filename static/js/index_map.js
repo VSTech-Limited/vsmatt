@@ -49,7 +49,7 @@ function myMap() {
                     let currentPositionMarker = new google.maps.Marker({
                         position: pos,
                         map: map,
-                        icon: { url: "{% static 'markers/1.png' %}", scaledSize: new google.maps.Size(50, 50) },
+                        //icon: { url: "{% static 'markers/1.png' %}", scaledSize: new google.maps.Size(50, 50) },
                     });
                     map.setZoom(15)
                     infoWindow.open(map, currentPositionMarker);
@@ -99,16 +99,14 @@ function myMap() {
     setInterval(() => {
         getLiveData(map)
     },
-    2000);
+        5000);
 }
-
 function clearOverlays() {
     for (var i = 0; i < markersArray.length; i++) {
         markersArray[i].setMap(null);
     }
     markersArray.length = 0;
 }
-
 function getLiveData(map) {
     $.ajax({
         url: "http://127.0.0.1:8000/api/businesses/",
@@ -136,7 +134,6 @@ function getLiveData(map) {
 
     })
 }
-
 function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
@@ -145,15 +142,13 @@ function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
         animation: google.maps.Animation.BOUNCE,
         icon: { url: markerIcon, scaledSize: new google.maps.Size(50, 50) },
     });
-
     //add listener on marker
     google.maps.event.addListener(marker, 'click', (event) => {
+        map.setCenter({lat:lat, lng:lng});
+        map.setZoom(12)
         let info = new google.maps.InfoWindow({
             content: `${business['name']} ${business['address']} ${business['category']}`
         });
-
-
-
         //add listener on info window
         google.maps.event.addListener(info, 'click', (event) => {
             alert("yes yes")
