@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from core.forms import ContactForm
 from core.models import Team
 from shop.models import BusinessProfile, BusinessBranch, ProductCategory
-
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -33,17 +33,8 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
-
-    # if request.user.is_authenticated:
-    #     form = ContactForm(initial={
-    #         'name': request.user.get_full_name(),
-    #         'email': request.user.email,
-    #         'phone_number':request.user.profile.phone_number,
-    #         'message': '',
-    #
-    #     })
-
+            messages.success(request, 'Your message has been sent successfully')
+            return redirect('index')
 
     context = {
         'title': title,

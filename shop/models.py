@@ -7,7 +7,7 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 
 # Create your models here.
-from core.models import ProductCategory, markers_file_name, BusinessCategory
+from core.models import ProductCategory, BusinessCategory
 
 BUSINESS_IMAGES_PATH = os.path.join("uploads", "shop", "business")
 PRODUCTS_IMAGES_PATH = os.path.join("uploads", "shop", "products", "primary")
