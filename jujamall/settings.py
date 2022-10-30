@@ -48,12 +48,14 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'core.apps.CoreConfig',
     'users.apps.AccountConfig',
+    'api.apps.ApiConfig',
 
     # Third Party Apps
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_framework',
 
     # 'django.contrib.gis', #needs a lot of dependencies
 ]
