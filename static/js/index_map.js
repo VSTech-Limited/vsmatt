@@ -1,5 +1,6 @@
 let map, infoWindow;
 let markersArray = [];
+let category_slug = ""
 function myMap() {
 
     let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
@@ -19,7 +20,7 @@ function myMap() {
         }
     };
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-    getLiveData(map, "http://127.0.0.1:8000/api/category/")
+    getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
     const vstecMarker = new google.maps.Marker({
         position: vstecPosition,
         map: map,
@@ -97,7 +98,7 @@ function myMap() {
         }
     }
     setInterval(() => {
-        getLiveData(map, "http://127.0.0.1:8000/api/category/")
+        getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
     },
         5000);
 }
@@ -183,6 +184,11 @@ function placeBusinessMarkers(map, markerIcon, business) {
         info.open(map, marker);
     });
     markersArray.push(marker)
+}
+
+function getCartegorySlug(slug) {
+    category_slug = slug
+    getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
 }
 
 /*
