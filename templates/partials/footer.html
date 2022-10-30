@@ -10,24 +10,36 @@
   
       <!-- Right -->
       <div>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 link-secondary">
-          <i class="fab fa-github"></i>
-        </a>
+        {% if jujamall.facebook %}
+          <a href="{{ jujamall.facebook }}" class="me-4 link-secondary">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        {% endif %}
+        {% if jujamall.twitter %}
+          <a href="{{ jujamall.twitter }}" class="me-4 link-secondary">
+            <i class="fab fa-twitter"></i>
+          </a>
+        {% endif %}
+        {% if jujamall.instagram %}
+          <a href="{{ jujamall.instagram }}" class="me-4 link-secondary">
+            <i class="fab fa-instagram"></i>
+          </a>
+        {% endif %}
+        {% if jujamall.email %}
+          <a href="mailto:{{ jujamall.email }}" class="me-4 link-secondary">
+            <i class="fab fa-google"></i>
+          </a>
+        {% endif %}
+        {% if jujamall.linkedin %}
+          <a href="{{ jujamall.linkedin }}" class="me-4 link-secondary">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        {% endif %}
+        {% if jujamall.github %}
+          <a href="{{ jujamall.github }}" class="me-4 link-secondary">
+            <i class="fab fa-github"></i>
+          </a>
+        {% endif %}
       </div>
       <!-- Right -->
     </section>
@@ -82,6 +94,9 @@
               <a href="{% url 'products' %}" class="text-reset">Products</a>
             </p>
             <p>
+              <a href="{% url 'shop:business' %}" class="text-reset">Businesses</a>
+            </p>
+            <p>
               <a href="{% url 'about' %}" class="text-reset">About us</a>
             </p>
             <p>
@@ -97,13 +112,13 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fas fa-home me-3 text-secondary"></i> JKUAT Juja, KE 10012</p>
+            <p><i class="fas fa-home me-3 text-secondary"></i> {{jujamall.address | default:"Juja KE 52106-00100"}} </p>
             <p>
               <i class="fas fa-envelope me-3 text-secondary"></i>
-              info@jujamall.co.ke
+              {{jujamall.email | default:"info@jujamall.co.ke"}}
             </p>
-            <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3 text-secondary"></i> + 07 950 677 76</p>
+            <p><i class="fas fa-phone me-3 text-secondary"></i> {{ jujamall.phone_number | default:"+25495067776"}} </p>
+            <p><i class="fas fa-print me-3 text-secondary"></i> +254 20 234 6703</p>
           </div>
           <!-- Grid column -->
         </div>
