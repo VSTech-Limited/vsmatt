@@ -110,7 +110,7 @@ class BusinessCategory(models.Model):
     class Meta:
         ordering = ('title',)
         verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name_plural = 'Business Categories'
 
     def __str__(self):
         return self.title
@@ -136,7 +136,7 @@ class ProductCategory(models.Model):
     class Meta:
         ordering = ('title',)
         verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name_plural = 'Product Categories'
 
     def __str__(self):
         return self.title
