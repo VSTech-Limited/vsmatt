@@ -85,7 +85,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processor.product_categories',
-                'core.context_processor.business_category',
+                'core.context_processor.business_categories',
                 'core.context_processor.jujamall',
 
             ],
