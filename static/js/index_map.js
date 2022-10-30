@@ -5,7 +5,7 @@ function myMap() {
     let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
     let mapOptions = {
         center: vstecPosition,
-        zoom: 16,
+        zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: true,
         zoomControl: true,
@@ -19,7 +19,7 @@ function myMap() {
         }
     };
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-
+    getLiveData(map)
     const vstecMarker = new google.maps.Marker({
         position: vstecPosition,
         map: map,
@@ -135,8 +135,9 @@ function getLiveData(map) {
     })
 }
 function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
+    let position = new google.maps.LatLng(lat, lng)
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(lat, lng),
+        position: position,
         map: map,
         title: business['name'],
         animation: google.maps.Animation.BOUNCE,
@@ -144,7 +145,7 @@ function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
     });
     //add listener on marker
     google.maps.event.addListener(marker, 'click', (event) => {
-        map.setCenter({lat:lat, lng:lng});
+        map.setCenter(position);
         map.setZoom(12)
         let info = new google.maps.InfoWindow({
             content: `${business['name']} ${business['address']} ${business['category']}`
