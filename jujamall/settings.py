@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'places',
 
     # 'django.contrib.gis', #needs a lot of dependencies
 ]
@@ -188,8 +187,3 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_USERNAME_REQUIRED = True
-
-PLACES_MAPS_API_KEY='AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo'
-PLACES_MAP_WIDGET_HEIGHT=480
-PLACES_MAP_OPTIONS='{"center": { "lat": 38.971584, "lng": -95.235072 }, "zoom": 12}'
-PLACES_MARKER_OPTIONS='{"draggable": true}'

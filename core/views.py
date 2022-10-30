@@ -1,19 +1,16 @@
 from django.shortcuts import render, redirect
-
-from core.forms import ContactForm  #, MyLocationForm
+from core.forms import ContactForm
 from core.models import Team
 from shop.models import BusinessProfile, BusinessBranch, ProductCategory
 
 
 # Create your views here.
 def index(request):
-    bus = BusinessBranch.objects.all()
-    # form = MyLocationForm()
+    business_branch = BusinessBranch.objects.all()
     title = 'home'
     context = {
         'title': title,
-        # 'form': form,
-        'bus': bus,
+        'business_branch': business_branch
     }
     # print(f"\n\n{title}\n\n")
     return render(request, 'index.html', context)
@@ -31,7 +28,6 @@ def about(request):
 
 def contact(request):
     title = 'Contact us'
-
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -64,3 +60,10 @@ def products(request):
         'categories': categories,
     }
     return render(request, 'products.html', context)
+
+def faq(request):
+    title = 'FAQ'
+    context = {
+        'title': title,
+    }
+    return render(request, 'faq.html', context)
