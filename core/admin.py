@@ -51,3 +51,7 @@ class TeamAdmin(admin.ModelAdmin):
     search_fields = ['user', 'position']
     list_filter = ['position', 'created_at', 'updated_at']
     date_hierarchy = 'updated_at'
+
+# @admin.register(MyLocation)
+# class MyLocationAdmin(admin.ModelAdmin):
+#     list_display = ['location']

@@ -183,6 +183,11 @@ class JujaMall(models.Model):
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(blank=True, null=True, max_length=256)
     set_current = models.BooleanField(default=False)
+    longitude = models.DecimalField(max_digits=22, decimal_places=16, default=37.0106327842076)
+    latitude = models.DecimalField(max_digits=22, decimal_places=16, default=-1.1139084362152138)
 
     def __str__(self):
         return self.title
+
+    def geolocation(self):
+        return f"{self.latitude}, {self.longitude}"
