@@ -26,6 +26,10 @@ def businesses(request, slug=None):
     return render(request, 'shop/business.html')
 
 
+def business_index(request):
+    return render(request, 'shop/business/index.html')
+
+
 @login_required
 def register_business(request):
     bs_reg_form = BusinessRegistrationForm()
