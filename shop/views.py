@@ -7,29 +7,22 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.text import slugify
 from geopy.geocoders import Nominatim, GoogleV3
 from .forms import BusinessRegistrationForm
-from .models import BusinessProfile, BusinessBranch, ProductCategory
+from .models import BusinessProfile, BusinessBranch, ProductCategory, Product
 from django.http import JsonResponse
 
 
 # Create your views here.
 
 
-def business(request, slug=None):
-    return render(request, 'shop/business.html')
+def products_view(request, category_slug=None):
+    products = Product.objects.all()
+    if category_slug:
+        products = Product.objects.filter(category__slug=category_slug)
+    return render(request, 'shop/products/list.html', {'products': products})
 
 
 def businesses(request, slug=None):
     return render(request, 'shop/business.html')
-
-
-def get_business(request):
-    business = BusinessBranch.objects.all().values()
-    # for bs in business:
-    #     print(bs)
-    # category = get_object_or_404(Category, slug=slug)
-    business = list(business)
-    # print(business)
-    return JsonResponse({'business': business})
 
 
 @login_required
@@ -103,5 +96,5 @@ def business_detailed(request, bs_id, bs_slug):
     return render(request, "shop/business_detailed.html", {'business': business})
 
 
-def view_business_products(request, business_id, branch_id, branch_slug):
+def view_business_products(request, business_slug, branch_slug):
     return render(request, "shop/business/index.html")

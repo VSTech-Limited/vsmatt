@@ -17,13 +17,13 @@
             Products
           </a>
           <ul class="dropdown-menu">
-            <li><span class="dropdown-item" onclick="getProductCartegorySlug('')">All Products</span></li>
+            <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item" >All Products</span></a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
             {% if product_categories %}
             {% for category in product_categories %}
-            <li><span class="dropdown-item" onclick="getProductCartegorySlug('{{category.slug}}')">{{category}}</span></li>
+            <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a></li>
             <hr class="dropdown-divider">
             {% endfor %}
             {% endif %}
