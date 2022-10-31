@@ -101,3 +101,7 @@ def business_list(request):
 def business_detailed(request, bs_id, bs_slug):
     business = get_object_or_404(BusinessProfile, id=bs_id, slug=bs_slug)
     return render(request, "shop/business_detailed.html", {'business': business})
+
+
+def view_business_products(request, business_id, branch_id, branch_slug):
+    return render(request, "shop/business/index.html")
