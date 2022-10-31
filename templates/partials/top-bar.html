@@ -17,13 +17,14 @@
             Products
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
+            <li><span class="dropdown-item" onclick="getProductCartegorySlug('')">All Products</span></li>
             <li>
               <hr class="dropdown-divider">
             </li>
             {% if product_categories %}
             {% for category in product_categories %}
-            <li><a class="dropdown-item" href="{{category.get_absolute_url}}">{{category}}</a></li>
+            <li><span class="dropdown-item" onclick="getProductCartegorySlug('{{category.slug}}')">{{category}}</span></li>
+            <hr class="dropdown-divider">
             {% endfor %}
             {% endif %}
           </ul>
@@ -33,13 +34,13 @@
             Business Farms
           </a>
           <ul class="dropdown-menu">
-            <li> <span class="dropdown-item" onclick="getCartegorySlug('')">All Business Farms</span></button></li>
+            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('')">All Business Farms</span></button></li>
             <li>
               <hr class="dropdown-divider">
             </li>
             {% if business_categories %}
             {% for category in business_categories %}
-            <li> <span class="dropdown-item" onclick="getCartegorySlug('{{category.slug}}')">{{category}}</span> </li>
+            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span> </li>
             <hr class="dropdown-divider">
             {% endfor %}
             {% endif %}

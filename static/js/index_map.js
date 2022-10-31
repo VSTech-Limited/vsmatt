@@ -1,6 +1,7 @@
 let map, infoWindow;
 let markersArray = [];
-let category_slug = ""
+var business_category_slug = ""
+var product_cartegory_slug = ""
 function myMap() {
 
     let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
@@ -20,7 +21,7 @@ function myMap() {
         }
     };
     map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-    getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
+    getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
     const vstecMarker = new google.maps.Marker({
         position: vstecPosition,
         map: map,
@@ -98,7 +99,7 @@ function myMap() {
         }
     }
     setInterval(() => {
-        getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
+        getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
     },
         5000);
 }
@@ -162,6 +163,7 @@ function placeBusinessMarkers(map, markerIcon, business) {
     const address = business['address'];
     const category = business['category'];
     const position = new google.maps.LatLng(lat, lng);
+    const page = `shops/${business['business']}/${business['id']}/${business['slug']}/`;
     var marker = new google.maps.Marker({
         position: position,
         map: map,
@@ -174,21 +176,35 @@ function placeBusinessMarkers(map, markerIcon, business) {
         map.setCenter(position);
         map.setZoom(12)
         let info = new google.maps.InfoWindow({
-            content: `${name} ${address} ${category}`
+            content: `<a href="${page}">
+            Name: <b>${name}</b> <br/>
+            Category: ${category} <br/>
+            Address: ${address}  <br/>
+            Lattitude: ${lat} <br/>
+            Longitude: ${lng} <br/>
+            </a>
+            `
         });
         //add listener on info window
-        google.maps.event.addListener(info, 'click', (event) => {
-            alert("yes yes");
-        });
-
         info.open(map, marker);
     });
     markersArray.push(marker)
 }
 
-function getCartegorySlug(slug) {
-    category_slug = slug
-    getLiveData(map, `http://127.0.0.1:8000/api/category/${category_slug}`);
+function getBusinessCartegorySlug(slug) {
+    business_category_slug = slug;
+    if (slug.length > 0)
+        business_category_slug += `/detailed/`;
+    // alert('business_category_slug: ' + business_category_slug);
+    getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
+}
+
+function getProductCartegorySlug(slug) {
+    product_cartegory_slug = slug;
+    if (slug.length > 0)
+        product_cartegory_slug += "/";
+    getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
+
 }
 
 /*

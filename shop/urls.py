@@ -11,4 +11,7 @@ urlpatterns = [
     path('business/register', views.register_business, name='register_business'),
     path('business/<int:bs_id>/branch/add', views.register_branch, name='register_branch'),
     path('<slug:bs_slug>/<slug:br_slug>/product/add', views.register_branch, name='register_branch'),
+
+    # when changing url don't change bellow
+    path("<int:business_id>/<int:branch_id>/<slug:branch_slug>/", views.view_business_products)
 ]
