@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.AccountConfig',
     'api.apps.ApiConfig',
+    'business.apps.BusinessConfig',
+    'products.app.ProductsConfig',
 
     # Third Party Apps
     'crispy_forms',
@@ -86,8 +88,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'core.context_processor.product_categories',
-                'core.context_processor.business_categories',
+                'products.context_processor.product_categories',
+                'business.context_processor.business_categories',
                 'core.context_processor.jujamall',
 
             ],

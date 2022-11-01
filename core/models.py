@@ -28,9 +28,6 @@ GENDER_CHOICES = (
     ('Female', 'Female'),
     ('Other', 'Other'),
 )
-CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category", 'Product')
-BS_CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category", 'business')
-MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
 
 
 # Create your models here.
@@ -41,23 +38,6 @@ def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
     return os.path.join('uploads', 'JujaMall', 'team', "profile", filename)
-
-
-def category_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
-    return os.path.join(CATEGORY_IMAGES_PATH, filename)
-
-def bs_category_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
-    return os.path.join(BS_CATEGORY_IMAGES_PATH, filename)
-
-
-def markers_file_name(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s_%s.%s" % (instance.slug, instance.id, ext)
-    return os.path.join(MARKER_IMAGES_PATH, filename)
 
 
 class Team(models.Model):
@@ -91,57 +71,6 @@ class Contact(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
-
-
-class BusinessCategory(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
-    image = ResizedImageField(
-        upload_to=bs_category_file_name,
-        blank=True,
-        null=True,
-        size=[100, 100]
-    )
-    marker = models.ImageField(upload_to=markers_file_name, blank=True, null=True)
-    created_by = models.ForeignKey('auth.User', related_name='business_category_author', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ('title',)
-        verbose_name = 'category'
-        verbose_name_plural = 'Business Categories'
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('shop:business_list_by_category', args=[self.slug])
-
-
-class ProductCategory(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
-    image = ResizedImageField(
-        upload_to=category_file_name,
-        blank=True,
-        null=True,
-        size=[100, 100]
-    )
-    created_by = models.ForeignKey('auth.User', related_name='category_author', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ('title',)
-        verbose_name = 'category'
-        verbose_name_plural = 'Product Categories'
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('shop:category_products_list', args=[self.slug])
 
 
 class Tag(models.Model):
