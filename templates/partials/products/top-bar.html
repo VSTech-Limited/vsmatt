@@ -17,7 +17,8 @@
                         Products
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'products:products_list' %}"><span class="dropdown-item">All Products</span></a>
+                        <li><a href="{% url 'products:products_list' %}"><span class="dropdown-item">All
+                                    Products</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -38,15 +39,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'business:all_businesses_list' %}"><span class="dropdown-item">All Business
-                                Farms</span></a></button>
+                                    Farms</span></a></button>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         {% if business_categories %}
                         {% for category in business_categories %}
-                        <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item"
-                                >{{category}}</span></a>
+                        <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a>
                         </li>
                         <hr class="dropdown-divider">
                         {% endfor %}
@@ -70,12 +70,15 @@
                                 <div class="avatar avatar-online">
                                     {% if user.is_authenticated %}
                                     {% if user.profile.profile_pic %}
-                                    <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="..." style="height: 50px;">
+                                    <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="..."
+                                        style="height: 50px;">
                                     {% else %}
-                                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="..." style="height: 50px;">
+                                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="..."
+                                        style="height: 50px;">
                                     {% endif %}
                                     {% else %}
-                                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="..." style="height: 50px;">
+                                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="..."
+                                        style="height: 50px;">
                                     {% endif %}
                                 </div>
                             </div>
@@ -113,6 +116,7 @@
                                 </span>
                             </a>
                         </li>
+                        {% include 'partials/actions.html' %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -139,7 +143,7 @@
                         class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location
                     </span><span>Mirpur 1 Bus Stand, Dhaka</span></p>
             </div>
-            
+
         </div>
     </div>
 </nav>

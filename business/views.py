@@ -64,17 +64,17 @@ def register_branch(request, business_slug):
 @login_required
 def own_businesses_list(request):
     businesses = BusinessProfile.objects.filter(owner=request.user)
-    return render(request, "shop/my_business.html", {'businesses': businesses})
+    return render(request, "farm/own_business.html", {'businesses': businesses})
 
 
 @login_required
 def own_business_detailed(request, business_slug):
     business = get_object_or_404(BusinessProfile, slug=business_slug)
-    return render(request, "shop/business_detailed.html", {'business': business})
+    return render(request, "farm/business/business_detailed.html", {'business': business})
 
 
 def own_business_branch_detailed(request, business_slug, branch_slug):
-    return render(request, "shop/business/index.html")
+    return render(request, "farm/own_business.html")
 
 
 def businesses(request, category_slug=None):
