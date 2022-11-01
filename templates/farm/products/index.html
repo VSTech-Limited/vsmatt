@@ -1,4 +1,4 @@
-{% extends 'shop/products/base.html' %}
+{% extends 'farm/products/base.html' %}
 {% load static %}
 {% block content %}
 <main class="main" id="top">
@@ -11,7 +11,7 @@
         <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
           <div class="card card-span h-100">
             <div class="position-relative"> <img class="img-fluid rounded-3 w-100"
-                src="{% static 'shop/assets/img/gallery/discount-item-1.png' %}" alt="..." />
+                src="{% static 'products/assets/img/gallery/discount-item-1.png' %}" alt="..." />
               <div class="card-actions">
                 <div class="badge badge-foodwagon bg-primary p-4">
                   <div class="d-flex flex-between-center">
@@ -47,28 +47,28 @@
           </div>
           <div class="row">
             <div class="col-sm-6 col-md-3 mb-6">
-              <div class="text-center"><img class="shadow-icon" src="{% static 'shop/assets/img/gallery/location.png' %}" height="112"
+              <div class="text-center"><img class="shadow-icon" src="{% static 'products/assets/img/gallery/location.png' %}" height="112"
                   alt="..." />
                 <h5 class="mt-4 fw-bold">Select location</h5>
                 <p class="mb-md-0">Choose the location where your food will be delivered.</p>
               </div>
             </div>
             <div class="col-sm-6 col-md-3 mb-6">
-              <div class="text-center"><img class="shadow-icon" src="{% static 'shop/assets/img/gallery/order.png' %}" height="112"
+              <div class="text-center"><img class="shadow-icon" src="{% static 'products/assets/img/gallery/order.png' %}" height="112"
                   alt="..." />
                 <h5 class="mt-4 fw-bold">Choose order</h5>
                 <p class="mb-md-0">Check over hundreds of menus to pick your favorite food</p>
               </div>
             </div>
             <div class="col-sm-6 col-md-3 mb-6">
-              <div class="text-center"><img class="shadow-icon" src="{% static 'shop/assets/img/gallery/pay.png' %}" height="112"
+              <div class="text-center"><img class="shadow-icon" src="{% static 'products/assets/img/gallery/pay.png' %}" height="112"
                   alt="..." />
                 <h5 class="mt-4 fw-bold">Pay advanced</h5>
                 <p class="mb-md-0">It's quick, safe, and simple. Select several methods of payment</p>
               </div>
             </div>
             <div class="col-sm-6 col-md-3 mb-6">
-              <div class="text-center"><img class="shadow-icon" src="{% static 'shop/assets/img/gallery/meals.png' %}" height="112"
+              <div class="text-center"><img class="shadow-icon" src="{% static 'products/assets/img/gallery/meals.png' %}" height="112"
                   alt="..." />
                 <h5 class="mt-4 fw-bold">Enjoy meals</h5>
                 <p class="mb-md-0">Food is made and delivered directly to your home.</p>
@@ -100,7 +100,7 @@
                   {% for product in products %}
                   <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
                     <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100"
-                        src="{% static 'shop/assets/img/gallery/cheese-burger.png' %}" alt="..." />
+                        src="{% static 'products/assets/img/gallery/cheese-burger.png' %}" alt="..." />
                       <div class="card-body ps-0">
                         <h5 class="fw-bold text-1000 text-truncate mb-1">Cheese Burger</h5>
                         <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span
@@ -142,14 +142,14 @@
         <!-- LOOP FEATURED PRODUCTS -->
         <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
           <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100"
-              src="{% static 'shop/assets/img/gallery/food-world.png' %}" alt="..." />
+              src="{% static 'products/assets/img/gallery/food-world.png' %}" alt="..." />
             <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
                   class="fas fa-tag me-2 fs-0"></i><span class="fs-0">20% off</span></span><span
                 class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
                   class="fs-0">Fast</span></span></div>
             <div class="card-body ps-0">
               <div class="d-flex align-items-center mb-3"><img class="img-fluid"
-                  src="{% static 'shop/assets/img/gallery/food-world-logo.png' %}" alt="" />
+                  src="{% static 'products/assets/img/gallery/food-world-logo.png' %}" alt="" />
                 <div class="flex-1 ms-3">
                   <h5 class="mb-0 fw-bold text-1000">Food world</h5><span class="text-primary fs--1 me-1"><i
                       class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
@@ -180,7 +180,7 @@
               <div class="row justify-content-evenly">
                 <div class="col-md-3">
                   <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img
-                      src="{% static 'shop/assets/img/icons/discounts.png' %}" width="100" alt="..." />
+                      src="{% static 'products/assets/img/icons/discounts.png' %}" width="100" alt="..." />
                     <div class="d-flex d-lg-block d-xl-flex flex-center">
                       <h2 class="fw-bolder text-1000 mb-0 text-gradient">Daily<br class="d-none d-md-block" />Discounts
                       </h2>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="col-md-3 hr-vertical">
                   <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img
-                      src="{% static 'shop/assets/img/icons/live-tracking.png' %}" width="100" alt="..." />
+                      src="{% static 'products/assets/img/icons/live-tracking.png' %}" width="100" alt="..." />
                     <div class="d-flex d-lg-block d-xl-flex flex-center">
                       <h2 class="fw-bolder text-1000 mb-0 text-gradient">Live Tracking</h2>
                     </div>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="col-md-3 hr-vertical">
                   <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img
-                      src="{% static 'shop/assets/img/icons/quick-delivery.png' %}" width="100" alt="..." />
+                      src="{% static 'products/assets/img/icons/quick-delivery.png' %}" width="100" alt="..." />
                     <div class="d-flex d-lg-block d-xl-flex flex-center">
                       <h2 class="fw-bolder text-1000 mb-0 text-gradient">Quick Delivery </h2>
                     </div>
@@ -210,13 +210,13 @@
       </div>
       <div class="row flex-center mt-md-8">
         <div class="col-lg-5 d-none d-lg-block" style="margin-bottom: -122px;"> <img class="w-100"
-            src="{% static 'shop/assets/img/gallery/phone-cta-one.png' %}" alt="..." /></div>
+            src="{% static 'products/assets/img/gallery/phone-cta-one.png' %}" alt="..." /></div>
         <div class="col-lg-5 mt-7 mt-md-0">
           <h1 class="text-primary">Install the app</h1>
           <p>It's never been easier to order food. Look for the finest <br class="d-none d-xl-block" />discounts and
             you'll be lost in a world of delectable food.</p><a class="pe-2" href="https://www.apple.com/app-store/"
-            target="_blank"><img src="{% static 'shop/assets/img/gallery/app-store.svg' %}" width="160" alt="" /></a><a
-            href="https://play.google.com/store/apps" target="_blank"><img src="{% static 'shop/assets/img/gallery/google-play.svg' %}"
+            target="_blank"><img src="{% static 'products/assets/img/gallery/app-store.svg' %}" width="160" alt="" /></a><a
+            href="https://play.google.com/store/apps" target="_blank"><img src="{% static 'products/assets/img/gallery/google-play.svg' %}"
               width="160" alt="" /></a>
         </div>
       </div>

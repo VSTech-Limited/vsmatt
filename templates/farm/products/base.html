@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
-    {% include 'partials/shop/css.html' %}
+    {% include 'partials/products/css.html' %}
     <title>JujaMall - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    {% include 'partials/shop/top-bar.html' %}
-    {% include 'partials/shop/product_head.html' %}
+    {% include 'partials/products/top-bar.html' %}
+    {% include 'partials/products/product_head.html' %}
 
     {% if messages %}
     <div class="container">
@@ -29,7 +29,7 @@
 
     {% endblock %}
     {% include 'partials/footer.html' %}
-    {% include 'partials/shop/js.html' %}
+    {% include 'partials/products/js.html' %}
 
     {% block mapdependancies %}
 

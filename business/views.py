@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.text import slugify
 
 from .forms import BusinessRegistrationForm
-from .models import BusinessProfile
+from .models import BusinessProfile, BusinessBranch
 
 
 @login_required
@@ -78,4 +78,7 @@ def own_business_branch_detailed(request, business_slug, branch_slug):
 
 
 def businesses(request, category_slug=None):
-    return render(request, 'shop/business.html')
+    businesses = BusinessBranch.objects.all()
+    if category_slug:
+        businesses = BusinessProfile.objects.filter(category__slug=category_slug)
+    return render(request, 'farm/business/index.html', {'businesses': businesses})
