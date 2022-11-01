@@ -32,7 +32,7 @@ def register_business(request):
             new_bs.save()
             return redirect('home')
 
-    return render(request, "shop/register_business.html", {'bs_reg_form': bs_reg_form})
+    return render(request, "farm/register_business.html", {'bs_reg_form': bs_reg_form})
 
 
 @login_required

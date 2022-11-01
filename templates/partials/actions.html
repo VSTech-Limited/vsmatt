@@ -4,9 +4,9 @@
         <span class="align-middle"> Actions Center</span>
     </a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href=""> Register Business</a></li>
-        <li><a class="dropdown-item" href=""> Register Branch</a></li>
-        <li><a class="dropdown-item" href=""> My Businesses </a></li>
+        <li><a class="dropdown-item" href="{% url 'business:own_business_list' %}"> My Businesses </a></li>
+        <li><a class="dropdown-item" href="{% url 'business:register_business' %}"> Register Business</a></li>
+        <!-- {# <li><a class="dropdown-item" href="{% url 'business:register_branch' %}"> Register Branch</a></li> #}-->
     </ul>
 </li>
 
