@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from shop.models import BusinessProfile, BusinessBranch
-from core.models import BusinessCategory
+
+from business.models import BusinessCategory, BusinessBranch, BusinessProfile
 
 
 class BusinessCategorySerializer(serializers.ModelSerializer):

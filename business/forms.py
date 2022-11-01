@@ -1,6 +1,6 @@
 from django import forms
 
-from shop.models import BusinessProfile, BusinessBranch
+from .models import BusinessProfile, BusinessBranch
 
 
 class BusinessRegistrationForm(forms.ModelForm):

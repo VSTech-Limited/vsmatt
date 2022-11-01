@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from shop.models import BusinessProfile
+from business.models import BusinessProfile, BusinessCategory
+from products.models import ProductCategory
 from .serializers.busineness_by_cartegory_serialisers import BusinessCategorySerializer
 from .serializers.serializers import BusinessSerializer
-from core.models import BusinessCategory, ProductCategory
 
 
 # Create your views here.

@@ -1,8 +1,7 @@
-from django.db import models
 import os
+
+from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.urls import reverse
-from django_resized import ResizedImageField
 
 LANGUAGE_CHOICES = (
     ('English', 'English'),

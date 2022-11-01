@@ -36,8 +36,8 @@ def register_business(request):
 
 
 @login_required
-def register_branch(request, bs_id):
-    business_profile = get_object_or_404(BusinessProfile, id=bs_id, owner=request.user)
+def register_branch(request, business_slug):
+    business_profile = get_object_or_404(BusinessProfile, slug=business_slug, owner=request.user)
     branch_reg_form = BusinessRegistrationForm()
     if request.method == 'POST':
         form = BusinessRegistrationForm(
@@ -59,3 +59,23 @@ def register_branch(request, bs_id):
             new_branch.save()
             return redirect('home')
     return render(request, "shop/register_business.html", {'bs_reg_form': branch_reg_form})
+
+
+@login_required
+def own_businesses_list(request):
+    businesses = BusinessProfile.objects.filter(owner=request.user)
+    return render(request, "shop/my_business.html", {'businesses': businesses})
+
+
+@login_required
+def own_business_detailed(request, business_slug):
+    business = get_object_or_404(BusinessProfile, slug=business_slug)
+    return render(request, "shop/business_detailed.html", {'business': business})
+
+
+def own_business_branch_detailed(request, business_slug, branch_slug):
+    return render(request, "shop/business/index.html")
+
+
+def businesses(request, category_slug=None):
+    return render(request, 'shop/business.html')

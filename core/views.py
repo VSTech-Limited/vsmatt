@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from business.models import BusinessBranch
 from core.forms import ContactForm
 from core.models import Team
-from shop.models import BusinessProfile, BusinessBranch, ProductCategory
 from django.contrib import messages
+
 
 # Create your views here.
 def index(request):
@@ -42,15 +43,6 @@ def contact(request):
     }
     return render(request, 'contact.html', context)
 
-
-def products(request):
-    title = 'Products'
-    categories = ProductCategory.objects.all()
-    context = {
-        'title': title,
-        'categories': categories,
-    }
-    return render(request, 'products.html', context)
 
 def faq(request):
     title = 'FAQ'
