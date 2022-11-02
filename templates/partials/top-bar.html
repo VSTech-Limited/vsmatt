@@ -63,13 +63,13 @@
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
                   {% if user.is_authenticated %}
-                  {% if user.profile.profile_pic %}
-                  <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
+                    {% if user.profile.profile_pic %}
+                      <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
+                    {% else %}
+                      <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                    {% endif %}
                   {% else %}
-                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
-                  {% endif %}
-                  {% else %}
-                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
                   {% endif %}
                 </div>
               </div>
@@ -86,7 +86,7 @@
           <ul class="dropdown-menu">
             {% if user.is_authenticated %}
             <li>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{% url 'profile' %}">
                 <i class="bx bx-user me-2"></i>
                 <span class="align-middle">My Profile</span>
               </a>
@@ -97,7 +97,7 @@
                 <span class="align-middle">Settings</span>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a class="dropdown-item" href="#">
                 <span class="d-flex align-items-center align-middle">
                   <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
@@ -105,7 +105,7 @@
                   <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                 </span>
               </a>
-            </li>
+            </li> -->
             {% include 'partials/actions.html' %}
             <li>
               <hr class="dropdown-divider">
@@ -124,9 +124,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link mx-1" href="#"><i class="fas fa-cart-plus fa-lg fa-fw"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><i class="fa fa-search fa-lg fa-fw" aria-hidden="true"></i></a>
         </li>
       </ul>
     </div>

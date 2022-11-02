@@ -20,7 +20,7 @@ class Profile(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     image = ResizedImageField(
-        default=os.path.join("uploads", "profile", "default.jpg"),
+        null = True,
         upload_to=content_file_name,
         blank=True,
         size=[500, 500]

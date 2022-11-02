@@ -23,9 +23,10 @@ urlpatterns = [
     path('', include('core.urls')),
     path('shops/', include('shop.urls', namespace='shop')),
     path('accounts/', include('allauth.urls')),
-    path('api/', include('api.urls')),
-    path('business/', include('business.urls', namespace='business')),
+    path('apis/', include('api.urls')),
+    path('businesses/', include('business.urls', namespace='business')),
     path('products/', include('products.urls', namespace='products')),
+    path('profile/', include('users.urls')),
 ]
 
 if settings.DEBUG:
