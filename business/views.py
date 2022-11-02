@@ -1,15 +1,24 @@
+from decimal import Decimal
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+<<<<<<< HEAD
 from products.models import ProductCategory
+=======
+from django.contrib import messages
+>>>>>>> 0135381962d6a2412604dfdb36cf04b825d04025
 # Create your views here.
 from django.utils.text import slugify
 
-from .forms import BusinessRegistrationForm
+from geo.geofactory import GeoMapQuestFactory
+from .forms import BusinessRegistrationForm, BranchRegistrationForm
 from .models import BusinessProfile, BusinessBranch
 
 
 @login_required
 def register_business(request):
+    geo = GeoMapQuestFactory.createReverse(settings.MAPS_QUEST_API_KEY)
     bs_reg_form = BusinessRegistrationForm()
     if request.method == 'POST':
         form = BusinessRegistrationForm(
@@ -21,24 +30,25 @@ def register_business(request):
             new_bs = form.save(commit=False)
             new_bs.name = slugify(cd['name'])
             new_bs.owner = request.user
-            # geolocator = GoogleV3(settings.GOOGLE_MAPS_API_KEY)
-            # location = geolocator.reverse((Decimal(cd['latitude']), Decimal(cd['longitude'])))
-
-            # try:
-            #     print(location)
-            # new_bs.address = location
-            # except AttributeError:
-            #     messages.error(request, "The address is invalid")
+            lat = Decimal(cd['latitude'])
+            lng = Decimal(cd['longitude'])
+            data = geo.reverse((lat, lng))[0]
+            location = data.results[0].locations[0]
+            address = f"{location.street}, {location.admin_area4}"
+            new_bs.address = address
+            messages.error(request, "The address is invalid")
             new_bs.save()
-            return redirect('home')
-
+            new_bs.slug = f"{slugify(cd['name'])}-{new_bs.id}"
+            new_bs.save()
+            return redirect('index')
     return render(request, "farm/register_business.html", {'bs_reg_form': bs_reg_form})
 
 
 @login_required
 def register_branch(request, business_slug):
+    geo = GeoMapQuestFactory.createReverse(settings.MAPS_QUEST_API_KEY)
     business_profile = get_object_or_404(BusinessProfile, slug=business_slug, owner=request.user)
-    branch_reg_form = BusinessRegistrationForm()
+    branch_reg_form = BranchRegistrationForm()
     if request.method == 'POST':
         form = BusinessRegistrationForm(
             data=request.POST,
@@ -49,16 +59,15 @@ def register_branch(request, business_slug):
             new_branch = form.save(commit=False)
             new_branch.name = slugify(cd['name'])
             new_branch.business = business_profile
-            # geolocator = GoogleV3(settings.GOOGLE_MAPS_API_KEY)
-            # location = geolocator.reverse((Decimal(cd['latitude']), Decimal(cd['longitude'])))
-            # try:
-            #     print(location)
-            # new_branch.address = location
-            # except AttributeError:
-            #     messages.error(request, "The address is invalid")
+            lat = Decimal(cd['latitude'])
+            lng = Decimal(cd['longitude'])
+            data = geo.reverse((lat, lng))[0]
+            location = data.results[0].locations[0]
+            address = f"{location.street}, {location.admin_area4}"
+            new_branch.address = address
             new_branch.save()
             return redirect('home')
-    return render(request, "shop/register_business.html", {'bs_reg_form': branch_reg_form})
+    return render(request, "farm/register_business.html", {'bs_reg_form': branch_reg_form})
 
 
 @login_required

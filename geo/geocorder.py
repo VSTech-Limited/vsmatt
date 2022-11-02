@@ -9,7 +9,8 @@ class GeoCoder(GeoMapQuest):
     """
     base_url = "http://www.mapquestapi.com/geocoding/v1/address"
 
-    def getPoint(self):
+    def getPoint(self, location: str):
+        self.query_params.update({'location': location})
         resp = self.get()
         if resp.status_code == 200:
             json_data = resp.json()
@@ -18,4 +19,4 @@ class GeoCoder(GeoMapQuest):
                 for result in results:
                     locations = result['locations']
                     for location in locations:
-                        return (location['latLng']['lat'], location['latLng']['lng'])
+                        return location['latLng']['lat'], location['latLng']['lng']

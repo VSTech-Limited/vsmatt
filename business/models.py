@@ -65,13 +65,9 @@ class BusinessProfile(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, db_index=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    # location = PointField()
-    # address = models.CharField(max_length=100)
     longitude = models.DecimalField(max_digits=22, decimal_places=16)
     latitude = models.DecimalField(max_digits=22, decimal_places=16)
     address = models.CharField(max_length=300)
-    # address = map_fields.AddressField(max_length=200)
-    # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     description = models.TextField(blank=True, null=True)
@@ -86,8 +82,8 @@ class BusinessProfile(models.Model):
 
     def get_absolute_url(self):
         return reverse(
-            'shop:business_detailed',
-            args=[self.id, self.slug]
+            'business:own_business_detailed',
+            args=[self.slug]
         )
 
     def __str__(self):
@@ -104,11 +100,7 @@ class BusinessBranch(models.Model):
     slug = models.SlugField(db_index=True)
     longitude = models.DecimalField(max_digits=22, decimal_places=16)
     latitude = models.DecimalField(max_digits=22, decimal_places=16)
-    # location = PointField()
     address = models.CharField(max_length=300)
-    # address = map_fields.AddressField(max_length=200)
-    # geolocation = map_fields.GeoLocationField(max_length=100)
-    # city = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     description = models.TextField(blank=True, null=True)
@@ -126,3 +118,6 @@ class BusinessBranch(models.Model):
 
     def geolocation(self):
         return f"{self.latitude}, {self.longitude}"
+
+
+

@@ -31,22 +31,17 @@
             Business Categories
           </a>
           <ul class="dropdown-menu">
-            {% if title == 'home' %}
-              <li> <span class="dropdown-item py-2" onclick="getBusinessCartegorySlug('')">All Businesses</span></button></li>
-              {% if business_categories %}
-                {% for category in business_categories %}
-                  <li><span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span></li>
-                {% endfor %}
-                <hr class="dropdown-divider">
-              {% endif %}
-            {% else %}
-              <li><a href="{% url 'business:businesses' %}"><span class="dropdown-item">All Businesses</span></a></li>
-              {% if business_categories %}
-                {% for category in business_categories %}
-                  <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a></li>
-                {% endfor %}
-                <hr class="dropdown-divider">
-              {% endif %}
+            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('')">All Business Farms</span></button>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% if business_categories %}
+            {% for category in business_categories %}
+            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span>
+            </li>
+            <hr class="dropdown-divider">
+            {% endfor %}
             {% endif %}
           </ul>
         </li>
@@ -64,13 +59,13 @@
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
                   {% if user.is_authenticated %}
-                    {% if user.profile.profile_pic %}
-                      <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
-                    {% else %}
-                      <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
-                    {% endif %}
+                  {% if user.profile.profile_pic %}
+                  <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
                   {% else %}
-                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                  {% endif %}
+                  {% else %}
+                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
                   {% endif %}
                 </div>
               </div>
