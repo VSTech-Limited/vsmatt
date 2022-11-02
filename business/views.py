@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-
+from products.models import ProductCategory
 # Create your views here.
 from django.utils.text import slugify
 
@@ -79,6 +79,11 @@ def own_business_branch_detailed(request, business_slug, branch_slug):
 
 def businesses(request, category_slug=None):
     businesses = BusinessBranch.objects.all()
+    product_categories = ProductCategory.objects.all()
     if category_slug:
         businesses = BusinessProfile.objects.filter(category__slug=category_slug)
-    return render(request, 'farm/business/index.html', {'businesses': businesses})
+    return render(request, 'farm/business/index.html', {
+        'businesses': businesses,
+        'title': "Businesses",
+        'product_categories': product_categories
+    })

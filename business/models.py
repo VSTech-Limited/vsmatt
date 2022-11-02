@@ -58,7 +58,7 @@ class BusinessCategory(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('shop:business_list_by_category', args=[self.slug])
+        return reverse('business:category', args=[self.slug])
 
 
 class BusinessProfile(models.Model):
