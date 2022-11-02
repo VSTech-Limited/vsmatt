@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.utils.text import slugify
 
 from geo.geofactory import GeoMapQuestFactory
-from .forms import BusinessRegistrationForm
+from .forms import BusinessRegistrationForm, BranchRegistrationForm
 from .models import BusinessProfile, BusinessBranch
 
 
@@ -44,7 +44,7 @@ def register_business(request):
 def register_branch(request, business_slug):
     geo = GeoMapQuestFactory.createReverse(settings.MAPS_QUEST_API_KEY)
     business_profile = get_object_or_404(BusinessProfile, slug=business_slug, owner=request.user)
-    branch_reg_form = BusinessRegistrationForm()
+    branch_reg_form = BranchRegistrationForm()
     if request.method == 'POST':
         form = BusinessRegistrationForm(
             data=request.POST,
@@ -63,7 +63,7 @@ def register_branch(request, business_slug):
             new_branch.address = address
             new_branch.save()
             return redirect('home')
-    return render(request, "shop/register_business.html", {'bs_reg_form': branch_reg_form})
+    return render(request, "farm/register_business.html", {'bs_reg_form': branch_reg_form})
 
 
 @login_required
