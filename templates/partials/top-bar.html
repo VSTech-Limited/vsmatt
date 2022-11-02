@@ -30,18 +30,20 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="{% url 'business:all_businesses_list' %}" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             Business Farms
           </a>
           <ul class="dropdown-menu">
-            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('')">All Business Farms</span></button>
+            <li><a href="{% url 'business:all_businesses_list' %}"><span class="dropdown-item">All Business
+                  Farms</span></a></button>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
             {% if business_categories %}
             {% for category in business_categories %}
-            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span>
+            <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a>
             </li>
             <hr class="dropdown-divider">
             {% endfor %}
@@ -63,13 +65,13 @@
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
                   {% if user.is_authenticated %}
-                    {% if user.profile.profile_pic %}
-                      <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
-                    {% else %}
-                      <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
-                    {% endif %}
+                  {% if user.profile.profile_pic %}
+                  <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="...">
                   {% else %}
-                    <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
+                  {% endif %}
+                  {% else %}
+                  <img src="{% static 'img/avatars/1.png' %}" class="rounded-circle" alt="...">
                   {% endif %}
                 </div>
               </div>

@@ -86,8 +86,8 @@ class BusinessProfile(models.Model):
 
     def get_absolute_url(self):
         return reverse(
-            'shop:business_detailed',
-            args=[self.id, self.slug]
+            'business:own_business_detailed',
+            args=[self.slug]
         )
 
     def __str__(self):
