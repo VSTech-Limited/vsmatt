@@ -41,7 +41,11 @@ def register_business(request):
     return render(request, "farm/register_business.html", {'bs_reg_form': bs_reg_form})
 
 
-
+@login_required
+def delete_business(request, business_slug):
+    business_profile = get_object_or_404(BusinessProfile, slug=business_slug, owner=request.user)
+    business_profile.delete()
+    return redirect('business:own_business_list')
 
 @login_required
 def update_business(request):
