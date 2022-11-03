@@ -3,196 +3,191 @@
 {% block title %}My Profile{% endblock %}
 {% block content %}
 <div class="container">
-    <div class="row py-5">
-        <div class="col-md-4">
-            <div class="card border-0">
-                <img src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'img/avatars/1.png' %}{% endif %}" class="card-img" alt="{{ user }}'s image">
-                <h4 class="card-header text-primary">{{user.get_full_name}}</h4>
-                <p class="card-body">
-                    <span class="font-weight-bold h1">{{user.profile.bio}}</span>
-                    <div class="mx-5 my-0 py-0">
-                        <span class="d-flex justify-content-evenly">
-                            {% if user.profile.phone_number %}
-                                <a href="tel: {{user.profile.phone_number}}"
-                                    title="{{user.profile.phone_number}}"><i class="fa fa-phone fa-lg fa-fw"  aria-hidden="true"></i></a>
-                            {% endif %}
-                            {% if user.email %}
-                                <a href="mailto: {{user.email}}" title="{{user.email}}"><i
-                                    class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i></a>
-                            {% endif %}
-                            {% if user.profile.linkedin_url %}
-                            <a href="{{user.profile.linkedin_url}}" title="{{user.profile.linkedin}}"><i
-                                class="fa fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
-                            {% endif %}
-                            {% if user.profile.facebook_url %}
-                                <a href="{{user.profile.facebook_url }}" title="{{user.profile.facebook}}"><i
-                                    class="fa fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
-                            {% endif %}
-                            {% if user.profile.twitter_url %}
-                                <a href="{{user.profile.twitter_url }}" title="{{user.profile.twitter}}"><i
-                                    class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
-                            {% endif %}
-                            {% if user.profile.instagram_url %}
-                                <a href="{{user.profile.instagram_url }}" title="{{user.profile.instagram}}"><i
-                                    class="fa fa-instagram fa-lg fa-fw" aria-hidden="true"></i></a>
-                            {% endif %}
-                        
-                        </span>
-                    </div>
-                </p>
-            </div>
-            <div class="card my-3 border-0">
-                <div class="card-body">
-                    <ul class="list-style-none" style="list-style: none;">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'account_change_password' %}">
-                            <i class="fa fa-lock  me-2"></i>
-                            <span class="align-middle">Change Password</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'account_email' %}">
-                            <i class="fa fa-envelope me-2" aria-hidden="true"></i>
-                            <span class="align-middle">Manage Emails</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <div class="row py-5">
+    <div class="col-md-4">
+      <div class="card border-0">
+        <img src="
+                {% if user.profile.image %}
+                {{ user.profile.image.url }}
+                {% else %}
+                {% static 'img/avatardefault.png' %}
+                {% endif %}
+                " class="card-img" alt="{{ user }}'s image">
+        <h4 class="card-header text-primary">{{user.get_full_name}}</h4>
+        <p class="card-body">
+          <span class="font-weight-bold h1">{{user.profile.bio}}</span>
+        <div class="mx-5 my-0 py-0">
+          <span class="d-flex justify-content-evenly">
+            {% if user.profile.phone_number %}
+            <a href="tel: {{user.profile.phone_number}}" title="{{user.profile.phone_number}}"><i
+                class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if user.email %}
+            <a href="mailto: {{user.email}}" title="{{user.email}}"><i class="fa fa-envelope fa-lg fa-fw"
+                aria-hidden="true"></i></a>
+            {% endif %}
+            {% if user.profile.linkedin_url %}
+            <a href="{{user.profile.linkedin_url}}" title="{{user.profile.linkedin}}"><i
+                class="fa fa-linkedin fa-lg fa-fw" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if user.profile.facebook_url %}
+            <a href="{{user.profile.facebook_url }}" title="{{user.profile.facebook}}"><i
+                class="fa fa-facebook fa-lg fa-fw" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if user.profile.twitter_url %}
+            <a href="{{user.profile.twitter_url }}" title="{{user.profile.twitter}}"><i
+                class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if user.profile.instagram_url %}
+            <a href="{{user.profile.instagram_url }}" title="{{user.profile.instagram}}"><i
+                class="fa fa-instagram fa-lg fa-fw" aria-hidden="true"></i></a>
+            {% endif %}
+
+          </span>
         </div>
-        <div class="col-md-8">
-            <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>
-                <!-- Account -->
-                <div class="card-body">
-                  <div class="d-flex align-items-start align-items-sm-center gap-4">
-                    <img  src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'img/avatars/1.png' %}{% endif %}" alt="{{user}}'s profile" class="d-block rounded" height="100"  width="100" id="uploadedAvatar"/>
-                    <div class="button-wrapper">
-                      <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                        <span class="d-none d-sm-block">Upload new photo</span>
-                        <i class="bx bx-upload d-block d-sm-none"></i>
-                        <input  type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg"/>
-                      </label>
-                      <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                        <i class="bx bx-reset d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Reset</span>
-                      </button>
-                      <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-0" />
-                <div class="card-body">
-                  <form id="formAccountSettings" method="POST" onsubmit="return false">
-                    <div class="row">
-                      <div class="mb-3 col-md-6">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input class="form-control" type="text" id="firstName" name="firstName" value="{{user.first_name}}" autofocus />
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input class="form-control" type="text" name="lastName" id="lastName" value="{{user.last_name}}" />
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input class="form-control" type="text" id="email" name="email" value="{{user.email}}" placeholder="john.doe@jujamall.co.ke"/>
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="organization" class="form-label">Gender</label>
-                        <div class="row">
-                            <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Male"> Male</span>
-                            <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Female"> Female</span>
-                        </div>
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label class="form-label" for="phoneNumber">Phone Number</label>
-                        <div class="input-group input-group-merge">
-                          <span class="input-group-text">KE</span>
-                          <input
-                            type="text"
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            class="form-control"
-                            value="{{ user.profile.phone_number }}"
-                            placeholder="+254123456789"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="facebook_url" class="form-label">Facebook Link</label>
-                        <input type="url" class="form-control" id="facebook_url" name="facebook_url" value="{{ user.profile.facebook_url }}" placeholder="https://facebook.com/name/" />
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="state" class="form-label">Twitter Link</label>
-                        <input class="form-control" type="url" id="twitter_url" name="twitter_url" placeholder="https://twitter.com/name/" value="{{ user.profile.twitter_url }}"/>
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="linkedin_url" class="form-label">Linkedin Link</label>
-                        <input
-                          type="url"
-                          class="form-control"
-                          id="linkedin_url"
-                          name="linkedin_url"
-                          value="{{ user.profile.linkedin_url }}"
-                          placeholder="https://linkedin/in/name"
-                        />
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label class="form-label" for="github_url">Github Link</label>
-                        <input type="url" name="github_url" id="github_url" value="{{ user.profile.github_url }}" placeholder="https://github.com/name/" class="form-control">
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label for="language" class="form-label">Languages</label>
-                        <select id="language" class="select2 form-select" >
-                          <option value="">Select Languagea</option>
-                          <option value="en">English</option>
-                          <option value="fr">Kiswahili</option>
-                          <option value="de">Dholuo</option>
-                          <option value="pt">Kipsigiis</option>
-                        </select>
-                      </div>
-                      
-                      <div class="mb-3 col-md-12">
-                        <label for="bio" class="form-label">Bio</label>
-                        <textarea name="bio" id="bio" cols="30" rows="5" class="form-control" placeholder="Sowe Awesome Bio">{{ user.profile.bio }}</textarea>
-                      </div>
-                    </div>
-                    <div class="mt-2">
-                      <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                      <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /Account -->
-              </div>
-              <div class="card">
-                <h5 class="card-header">Delete Account</h5>
-                <div class="card-body">
-                  <div class="mb-3 col-12 mb-0">
-                    <div class="alert alert-warning">
-                      <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                      <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                    </div>
-                  </div>
-                  <form id="formAccountDeactivation" onsubmit="return false">
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        name="accountActivation"
-                        id="accountActivation"
-                      />
-                      <label class="form-check-label" for="accountActivation"
-                        >I confirm my account deactivation</label
-                      >
-                    </div>
-                    <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-                  </form>
-                </div>
-              </div>
-            </div>
+        </p>
+      </div>
+      <div class="card my-3 border-0">
+        <div class="card-body">
+          <ul class="list-style-none" style="list-style: none;">
+            <li>
+              <a class="dropdown-item" href="{% url 'account_change_password' %}">
+                <i class="fa fa-lock  me-2"></i>
+                <span class="align-middle">Change Password</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'account_email' %}">
+                <i class="fa fa-envelope me-2" aria-hidden="true"></i>
+                <span class="align-middle">Manage Emails</span>
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <h5 class="card-header">Profile Details</h5>
+        <!-- Account -->
+        <div class="card-body">
+          <div class="d-flex align-items-start align-items-sm-center gap-4">
+            <img
+              src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'img/avatars/1.png' %}{% endif %}"
+              alt="{{user}}'s profile" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+            <div class="button-wrapper">
+              <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                <span class="d-none d-sm-block">Upload new photo</span>
+                <i class="bx bx-upload d-block d-sm-none"></i>
+                <input type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg" />
+              </label>
+              <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                <i class="bx bx-reset d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">Reset</span>
+              </button>
+              <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+            </div>
+          </div>
+        </div>
+        <hr class="my-0" />
+        <div class="card-body">
+          <form id="formAccountSettings" method="POST" onsubmit="return false">
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input class="form-control" type="text" id="firstName" name="firstName" value="{{user.first_name}}"
+                  autofocus />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input class="form-control" type="text" name="lastName" id="lastName" value="{{user.last_name}}" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="email" class="form-label">E-mail</label>
+                <input class="form-control" type="text" id="email" name="email" value="{{user.email}}"
+                  placeholder="john.doe@jujamall.co.ke" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="organization" class="form-label">Gender</label>
+                <div class="row">
+                  <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Male"> Male</span>
+                  <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Female"> Female</span>
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label" for="phoneNumber">Phone Number</label>
+                <div class="input-group input-group-merge">
+                  <span class="input-group-text">KE</span>
+                  <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                    value="{{ user.profile.phone_number }}" placeholder="+254123456789" />
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="facebook_url" class="form-label">Facebook Link</label>
+                <input type="url" class="form-control" id="facebook_url" name="facebook_url"
+                  value="{{ user.profile.facebook_url }}" placeholder="https://facebook.com/name/" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="state" class="form-label">Twitter Link</label>
+                <input class="form-control" type="url" id="twitter_url" name="twitter_url"
+                  placeholder="https://twitter.com/name/" value="{{ user.profile.twitter_url }}" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="linkedin_url" class="form-label">Linkedin Link</label>
+                <input type="url" class="form-control" id="linkedin_url" name="linkedin_url"
+                  value="{{ user.profile.linkedin_url }}" placeholder="https://linkedin/in/name" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label" for="github_url">Github Link</label>
+                <input type="url" name="github_url" id="github_url" value="{{ user.profile.github_url }}"
+                  placeholder="https://github.com/name/" class="form-control">
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="language" class="form-label">Languages</label>
+                <select id="language" class="select2 form-select">
+                  <option value="">Select Languagea</option>
+                  <option value="en">English</option>
+                  <option value="fr">Kiswahili</option>
+                  <option value="de">Dholuo</option>
+                  <option value="pt">Kipsigiis</option>
+                </select>
+              </div>
+
+              <div class="mb-3 col-md-12">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea name="bio" id="bio" cols="30" rows="5" class="form-control"
+                  placeholder="Sowe Awesome Bio">{{ user.profile.bio }}</textarea>
+              </div>
+            </div>
+            <div class="mt-2">
+              <button type="submit" class="btn btn-primary me-2">Save changes</button>
+              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!-- /Account -->
+      </div>
+      <div class="card">
+        <h5 class="card-header">Delete Account</h5>
+        <div class="card-body">
+          <div class="mb-3 col-12 mb-0">
+            <div class="alert alert-warning">
+              <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
+              <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+            </div>
+          </div>
+          <form id="formAccountDeactivation" onsubmit="return false">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
+              <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+            </div>
+            <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 {% endblock %}

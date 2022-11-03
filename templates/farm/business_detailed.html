@@ -4,4 +4,100 @@
 {% block title %}Business Detail{% endblock %}
 {% block content %}
 
+<div class="container-fluid py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">              
+                <img src="
+                {% if business.image %}
+                {{business.image.url}}
+                {% else %}
+                {% static 'img/avatars/5.png' %}
+                {% endif %}
+                " alt="...">
+                <h1 class="card-title text-center">
+                    {{business}}
+                </h1>
+                <div class="card-body">
+                    <ul class="list-unstyled ">
+                        <li><span class="fw-bold">Owner: </span>{{business.owner.get_full_name}}</li>
+                        <li><span class="fw-bold">Base location: </span>{{business.address}}</li>
+                        <li><span class="fw-bold">Created: </span>{{business.created}}</li>
+                        <li><span class="fw-bold">Updated: </span>{{business.updated}}</li>
+                        <li><span class="fw-bold">Description: </span>{{business.description}}</li>
+                        <li><span class="fw-bold">AdditionalInfo: </span>{{business.additional_info}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <h5 class="card-header">{{business}}'s Branches</h5>
+                <div class="table-responsive text-nowrap"></div>
+                <table class="table table-striped">
+                    <thead class="table table-head">
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Base Location</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody class="table table-body">
+                        {% if business %}
+                        {% for branch in business.branch.all %}
+                        <tr>
+                            <td><a href="#">{{branch.name}}</a></td>
+                            <td>
+                                {% if branch.is_approved %}
+                                <span class="badge bg-label-success me-1">Approved</span>
+                                {% else %}
+                                <span class="badge bg-label-warning me-1">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td>{{branch.created}}</td>
+                            <td>{{branch.address}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item"
+                                            href="{% url 'business:business_update' business.slug %}"><i
+                                                class="bx bx-edit-alt me-1 text-primary"></i> Edit</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'business:register_branch' business.slug %}"><i
+                                                class="fa fa-plus me-1 text-success" aria-hidden="true"></i> Add
+                                            branch</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'business:business_delete' business.slug %}"><i
+                                                class="bx bx-trash me-1 text-danger"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="py-4 text-center">
+                                <h3>No business found, <a href="{% url 'business:register_business' %}">Create one
+                                        now!</a> and enjoy selling.</h3>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><a href="{% url 'business:register_business' %}"><i class="fa fa-plus"
+                                        aria-hidden="true"></i> Add Business</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
 {% endblock %}

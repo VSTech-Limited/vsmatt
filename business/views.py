@@ -122,7 +122,7 @@ def own_businesses_list(request):
 @login_required
 def own_business_detailed(request, business_slug):
     business = get_object_or_404(BusinessProfile, slug=business_slug)
-    return render(request, "farm/business/business_detailed.html", {'business': business})
+    return render(request, "farm/business_detailed.html", {'business': business})
 
 
 def own_business_branch_detailed(request, business_slug, branch_slug):
