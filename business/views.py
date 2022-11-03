@@ -97,7 +97,6 @@ def register_branch(request, business_slug):
         if branch_reg_form.is_valid():
             cd = branch_reg_form.cleaned_data
             new_branch = branch_reg_form.save(commit=False)
-            new_branch.slug = f"{slugify(cd['name'])}-{new_branch.id}"
             new_branch.business = business_profile
             lat = Decimal(cd['latitude'])
             lng = Decimal(cd['longitude'])
@@ -109,7 +108,50 @@ def register_branch(request, business_slug):
             new_branch.address = address
             print(f"{new_branch.business.owner.id=}")
             new_branch.save()
-            return redirect('business:own_business_list')
+            new_branch.slug = f"{slugify(cd['name'])}-{new_branch.id}"
+            new_branch.save()
+            return redirect(business_profile.get_absolute_url())
+    return render(request, "farm/register_business.html", {'bs_reg_form': branch_reg_form})
+
+
+@login_required
+def delete_branch(request, business_slug, branch_slug):
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
+                               business__slug=business_slug)
+    branch.delete()
+    return redirect(branch.business.get_absolute_url())
+
+
+@login_required
+def update_branch(request, business_slug, branch_slug):
+    geo = GeoMapQuestFactory.createReverse(settings.MAPS_QUEST_API_KEY)
+
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
+                               business__slug=business_slug)
+    branch_reg_form = BranchRegistrationForm(instance=branch)
+    if request.method == 'POST':
+        branch_reg_form = BranchRegistrationForm(
+            instance=branch,
+            data=request.POST,
+            files=request.FILES
+        )
+        if branch_reg_form.is_valid():
+            cd = branch_reg_form.cleaned_data
+            new_branch = branch_reg_form.save(commit=False)
+            lat = Decimal(cd['latitude'])
+            lng = Decimal(cd['longitude'])
+            data = geo.reverse((lat, lng))[0]
+            location = data.results[0].locations[0]
+            address = f"{location.street}" \
+                      f" {location.admin_area5 if not location.admin_area4 else ''} " \
+                      f"{location.admin_area4} {location.postal_code}"
+            new_branch.address = address
+            print(f"{new_branch.business.owner.id=}")
+            new_branch.save()
+            new_branch.slug = f"{slugify(cd['name'])}-{new_branch.id}"
+            new_branch.save()
+            return redirect(new_branch.business.get_absolute_url())
+
     return render(request, "farm/register_business.html", {'bs_reg_form': branch_reg_form})
 
 

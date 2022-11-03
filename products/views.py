@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from business.models import BusinessBranch
@@ -15,6 +15,15 @@ def products_view(request, category_slug=None):
 
 
 @login_required
-def add_product(request, bs_slug, br_slug):
-    branch = get_object_or_404(BusinessBranch, slug=br_slug, business__owner=request.user, business__slug=bs_slug)
+def add_product(request, business_slug, branch_slug):
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
+                               business__slug=business_slug)
     return render(request, 'shop/add_products.html', {'branch': branch})
+
+
+@login_required
+def delete_product(request, business_slug, branch_slug):
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
+                               business__slug=business_slug)
+    # branch.delete()
+    # return redirect()

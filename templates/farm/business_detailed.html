@@ -7,12 +7,12 @@
 <div class="container-fluid py-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="card">              
+            <div class="card">
                 <img src="
                 {% if business.image %}
                 {{business.image.url}}
                 {% else %}
-                {% static 'img/avatars/5.png' %}
+                {% static 'img/business_default.png' %}
                 {% endif %}
                 " alt="...">
                 <h1 class="card-title text-center">
@@ -24,8 +24,6 @@
                         <li><span class="fw-bold">Base location: </span>{{business.address}}</li>
                         <li><span class="fw-bold">Created: </span>{{business.created}}</li>
                         <li><span class="fw-bold">Updated: </span>{{business.updated}}</li>
-                        <li><span class="fw-bold">Description: </span>{{business.description}}</li>
-                        <li><span class="fw-bold">AdditionalInfo: </span>{{business.additional_info}}</li>
                     </ul>
                 </div>
             </div>
@@ -64,14 +62,14 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item"
-                                            href="{% url 'business:business_update' business.slug %}"><i
+                                            href="{% url 'business:branch_update' business.slug branch.slug %}"><i
                                                 class="bx bx-edit-alt me-1 text-primary"></i> Edit</a>
                                         <a class="dropdown-item"
-                                            href="{% url 'business:register_branch' business.slug %}"><i
+                                            href="{% url 'products:add' business.slug branch.slug %}"><i
                                                 class="fa fa-plus me-1 text-success" aria-hidden="true"></i> Add
-                                            branch</a>
+                                            Product</a>
                                         <a class="dropdown-item"
-                                            href="{% url 'business:business_delete' business.slug %}"><i
+                                            href="{% url 'business:branch_delete' business.slug branch.slug %}"><i
                                                 class="bx bx-trash me-1 text-danger"></i> Delete</a>
                                     </div>
                                 </div>
@@ -88,12 +86,40 @@
                         {% endif %}
                         <tr>
                             <td colspan="4"></td>
-                            <td><a href="{% url 'business:register_business' %}"><i class="fa fa-plus"
-                                        aria-hidden="true"></i> Add Business</a></td>
+                            <td><a href="{% url 'business:register_branch' business.slug %}"><i class="fa fa-plus"
+                                        aria-hidden="true"></i> Add Branch</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <!-- tabs -->
+            <div class="card mt-2">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">Additional
+                            Information</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        {{business.description}}</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        {{business.additional_info}}</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">No review yet
+                    </div>
+
+                </div>
+            </div>
+            <!-- end tabs -->
         </div>
     </div>
 </div>
