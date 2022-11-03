@@ -22,7 +22,6 @@
               {% for category in product_categories %}
                 <li><a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a></li>
               {% endfor %}
-              <hr class="dropdown-divider">
             {% endif %}
           </ul>
         </li>
@@ -30,20 +29,25 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Business Categories
           </a>
-          <ul class="dropdown-menu">
-            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('')">All Business Farms</span></button>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            {% if business_categories %}
-            {% for category in business_categories %}
-            <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span>
-            </li>
-            <hr class="dropdown-divider">
-            {% endfor %}
-            {% endif %}
-          </ul>
+          {% if title == 'home' %}
+            <ul class="dropdown-menu">
+              <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('')">All Business Categories</span></button></li>
+              {% if business_categories %}
+                {% for category in business_categories %}
+                <li> <span class="dropdown-item" onclick="getBusinessCartegorySlug('{{category.slug}}')">{{category}}</span></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          {% else %}
+            <ul class="dropdown-menu">
+              <li> <a href="{% url 'business:businesses' %}"><span class="dropdown-item">All Business Categories</span></a></li>
+              {% if business_categories %}
+                {% for category in business_categories %}
+                  <li> <a href="{{category.get_absolute_url}}"><span class="dropdown-item">{{category}}</span></a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          {% endif %}
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">About us</a>

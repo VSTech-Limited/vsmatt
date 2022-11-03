@@ -118,6 +118,3 @@ class BusinessBranch(models.Model):
 
     def geolocation(self):
         return f"{self.latitude}, {self.longitude}"
-
-
-

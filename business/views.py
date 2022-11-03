@@ -3,11 +3,8 @@ from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-<<<<<<< HEAD
 from products.models import ProductCategory
-=======
 from django.contrib import messages
->>>>>>> 0135381962d6a2412604dfdb36cf04b825d04025
 # Create your views here.
 from django.utils.text import slugify
 
@@ -90,9 +87,10 @@ def businesses(request, category_slug=None):
     businesses = BusinessBranch.objects.all()
     product_categories = ProductCategory.objects.all()
     if category_slug:
-        businesses = BusinessProfile.objects.filter(category__slug=category_slug)
+        businesses = BusinessProfile.objects.filter(slug=category_slug)
     return render(request, 'farm/business/index.html', {
         'businesses': businesses,
         'title': "Businesses",
+        'category': category_slug,
         'product_categories': product_categories
     })
