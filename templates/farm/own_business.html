@@ -13,6 +13,7 @@
                     <th>Branches</th>
                     <th>Status</th>
                     <th>Created</th>
+                    <th>Base Location</th>
                     <th>Action</th>
                 </thead>
                 <tbody class="table table-body">
@@ -49,13 +50,14 @@
                             {% endif %}
                         </td>
                         <td>{{business.created}}</td>
+                        <td>{{business.address}}</td>
                         <td>
                             <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                             <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1 text-primary"></i> Edit</a>
+                            <a class="dropdown-item" href="{% url 'business:business_update' business.slug %}"><i class="bx bx-edit-alt me-1 text-primary"></i> Edit</a>
                             <a class="dropdown-item" href="{% url 'business:register_branch' business.slug %}"><i class="fa fa-plus me-1 text-success" aria-hidden="true"></i> Add branch</a>
                             <a class="dropdown-item" href="{% url 'business:business_delete' business.slug %}"><i class="bx bx-trash me-1 text-danger"></i> Delete</a>
                             </div>
@@ -68,6 +70,10 @@
                         <td colspan="5" class="py-4 text-center"><h3>No business found, <a href="{% url 'business:register_business' %}">Create one now!</a> and enjoy selling.</h3></td>
                     </tr>
                     {% endif %}
+                    <tr>
+                        <td colspan="5"></td>
+                        <td><a href="{% url 'business:register_business' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add Business</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

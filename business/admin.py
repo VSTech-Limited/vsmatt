@@ -27,6 +27,7 @@ class BusinessBranchInline(admin.TabularInline):
 class BusinessProfileAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'owner', 'address', 'geolocation', 'is_approved', 'created', 'updated']
     prepopulated_fields = {'slug': ('name',)}
+    list_editable = ['is_approved']
     inlines = [BusinessBranchInline]
     # formfield_overrides = {
     #     map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
