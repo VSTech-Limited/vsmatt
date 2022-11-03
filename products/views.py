@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from business.models import BusinessBranch
+from .forms import ProductsForm
 from .models import Product
 
 
@@ -18,7 +19,18 @@ def products_view(request, category_slug=None):
 def add_product(request, business_slug, branch_slug):
     branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
                                business__slug=business_slug)
-    return render(request, 'shop/add_products.html', {'branch': branch})
+    form = ProductsForm()
+
+
+    return render(request, 'farm/products/add_products.html', {'branch': branch, 'form': form})
+
+
+@login_required
+def update_product(request, business_slug, branch_slug):
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business__owner=request.user,
+                               business__slug=business_slug)
+    form = ProductsForm()
+    return render(request, 'farm/products/add_products.html', {'branch': branch, 'form': form})
 
 
 @login_required
