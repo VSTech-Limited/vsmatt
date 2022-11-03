@@ -15,7 +15,9 @@
                 " class="card-img" alt="{{ user }}'s image">
         <h4 class="card-header text-primary">{{user.get_full_name}}</h4>
         <p class="card-body">
+          {% if user.profile.bio %}
           <span class="font-weight-bold h1">{{user.profile.bio}}</span>
+          {% endif %}
         <div class="mx-5 my-0 py-0">
           <span class="d-flex justify-content-evenly">
             {% if user.profile.phone_number %}
@@ -68,103 +70,106 @@
     </div>
     <div class="col-md-8">
       <div class="card mb-4">
-        <h5 class="card-header">Profile Details</h5>
-        <!-- Account -->
-        <div class="card-body">
-          <div class="d-flex align-items-start align-items-sm-center gap-4">
-            <img
-              src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'img/avatars/1.png' %}{% endif %}"
-              alt="{{user}}'s profile" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
-            <div class="button-wrapper">
-              <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                <span class="d-none d-sm-block">Upload new photo</span>
-                <i class="bx bx-upload d-block d-sm-none"></i>
-                <input type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg" />
-              </label>
-              <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                <i class="bx bx-reset d-block d-sm-none"></i>
-                <span class="d-none d-sm-block">Reset</span>
-              </button>
-              <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+        <form method="post">
+          {% csrf_token %}
+          <h5 class="card-header">Profile Details</h5>
+          <!-- Account -->
+          <div class="card-body">
+            <div class="d-flex align-items-start align-items-sm-center gap-4">
+              <img
+                src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'img/avatardefault.png' %}{% endif %}"
+                alt="{{user}}'s profile" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+              <div class="button-wrapper">
+                  <i class="bx bx-upload d-block d-sm-none"></i>
+                  {{upload}}
+                <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+              </div>
             </div>
           </div>
-        </div>
-        <hr class="my-0" />
-        <div class="card-body">
-          <form id="formAccountSettings" method="POST" onsubmit="return false">
-            <div class="row">
-              <div class="mb-3 col-md-6">
-                <label for="firstName" class="form-label">First Name</label>
-                <input class="form-control" type="text" id="firstName" name="firstName" value="{{user.first_name}}"
-                  autofocus />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input class="form-control" type="text" name="lastName" id="lastName" value="{{user.last_name}}" />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="email" class="form-label">E-mail</label>
-                <input class="form-control" type="text" id="email" name="email" value="{{user.email}}"
-                  placeholder="john.doe@jujamall.co.ke" />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="organization" class="form-label">Gender</label>
-                <div class="row">
-                  <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Male"> Male</span>
-                  <span class="col-md-6"><input type="radio" name="gender" id="gender" value="Female"> Female</span>
+          <hr class="my-0" />
+          <div class="card-body">
+            <form id="formAccountSettings" method="POST" enctype="multipart/form-data">
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input class="form-control" type="text" id="firstName" name="firstName" value="{{user.first_name}}"
+                    autofocus />
                 </div>
-              </div>
-              <div class="mb-3 col-md-6">
-                <label class="form-label" for="phoneNumber">Phone Number</label>
-                <div class="input-group input-group-merge">
-                  <span class="input-group-text">KE</span>
-                  <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
-                    value="{{ user.profile.phone_number }}" placeholder="+254123456789" />
+                <div class="mb-3 col-md-6">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input class="form-control" type="text" name="lastName" id="lastName" value="{{user.last_name}}" />
                 </div>
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="facebook_url" class="form-label">Facebook Link</label>
-                <input type="url" class="form-control" id="facebook_url" name="facebook_url"
-                  value="{{ user.profile.facebook_url }}" placeholder="https://facebook.com/name/" />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="state" class="form-label">Twitter Link</label>
-                <input class="form-control" type="url" id="twitter_url" name="twitter_url"
-                  placeholder="https://twitter.com/name/" value="{{ user.profile.twitter_url }}" />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="linkedin_url" class="form-label">Linkedin Link</label>
-                <input type="url" class="form-control" id="linkedin_url" name="linkedin_url"
-                  value="{{ user.profile.linkedin_url }}" placeholder="https://linkedin/in/name" />
-              </div>
-              <div class="mb-3 col-md-6">
-                <label class="form-label" for="github_url">Github Link</label>
-                <input type="url" name="github_url" id="github_url" value="{{ user.profile.github_url }}"
-                  placeholder="https://github.com/name/" class="form-control">
-              </div>
-              <div class="mb-3 col-md-6">
-                <label for="language" class="form-label">Languages</label>
-                <select id="language" class="select2 form-select">
-                  <option value="">Select Languagea</option>
-                  <option value="en">English</option>
-                  <option value="fr">Kiswahili</option>
-                  <option value="de">Dholuo</option>
-                  <option value="pt">Kipsigiis</option>
-                </select>
-              </div>
+                <div class="mb-3 col-md-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input class="form-control" type="email" id="email" name="email" value="{{user.email}}"
+                    placeholder="john.doe@jujamall.co.ke" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="organization" class="form-label">Gender</label>
+                  <div class="row">
+                    <span class="col-md-6"><input type="radio" name="gender" id="gender" 
+                      value="Male" {% if user.profile.gender == 'Male' %} checked {% endif %}> Male</span>
+                    <span class="col-md-6"><input type="radio" name="gender" id="gender" 
+                      value="Female" {% if user.profile.gender == 'Female' %} checked {% endif %}> Female</span>
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label" for="phoneNumber">Phone Number</label>
+                  <div class="input-group input-group-merge">
+                    <span class="input-group-text">KE</span>
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                      value="{% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}"
+                      placeholder="+254123456789" />
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="facebook_url" class="form-label">Facebook Link</label>
+                  <input type="url" class="form-control" id="facebook_url" name="facebook_url"
+                    value="{% if user.profile.facebook_url %}{{ user.profile.facebook_url }}{% endif %}"
+                    placeholder="https://facebook.com/name/" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="state" class="form-label">Twitter Link</label>
+                  <input class="form-control" type="url" id="twitter_url" name="twitter_url"
+                    placeholder="https://twitter.com/name/"
+                    value="{% if user.profile.twitter_url %}{{ user.profile.twitter_url }}{% endif %}" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="linkedin_url" class="form-label">Linkedin Link</label>
+                  <input type="url" class="form-control" id="linkedin_url" name="linkedin_url"
+                    value="{% if user.profile.linkedin_url %}{{ user.profile.linkedin_url }}{% endif %}"
+                    placeholder="https://linkedin/in/name" />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label" for="github_url">Github Link</label>
+                  <input type="url" name="github_url" id="github_url"
+                    value="{% if user.profile.github_url %}{{ user.profile.github_url }}{% endif %}"
+                    placeholder="https://github.com/name/" class="form-control">
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="language" class="form-label">Languages</label>
+                  <select id="language" name="language" class="select2 form-select">
+                    <option value="">Select Language</option>
+                    <option value="English" {% if request.profile.language == 'English' %} selected {% endif %}>English</option>
+                    <option value="Swahili" {% if request.profile.language == 'Swahili' %} selected {% endif %}>Kiswahili</option>
+                    <option value="Dholuo" {% if request.profile.language == 'Dholuo' %} selected {% endif %}>Dholuo</option>
+                    <option value="Kalenjin" {% if request.profile.language == 'Kalenjin' %} selected {% endif %}>Kipsigiis</option>
+                  </select>
+                </div>
 
-              <div class="mb-3 col-md-12">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea name="bio" id="bio" cols="30" rows="5" class="form-control"
-                  placeholder="Sowe Awesome Bio">{{ user.profile.bio }}</textarea>
+                <div class="mb-3 col-md-12">
+                  <label for="bio" class="form-label">Bio</label>
+                  <textarea name="bio" id="bio" cols="30" rows="5" class="form-control"
+                    placeholder="Some Awesome Bio">{% if user.profile.bio %}{{ user.profile.bio }}{% endif %}</textarea>
+                </div>
               </div>
-            </div>
-            <div class="mt-2">
-              <button type="submit" class="btn btn-primary me-2">Save changes</button>
-              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-            </div>
-          </form>
-        </div>
+              <div class="mt-2">
+                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </form>
         <!-- /Account -->
       </div>
       <div class="card">
