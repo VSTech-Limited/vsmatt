@@ -25,7 +25,7 @@
                             {% if business.branch.all %}
                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                 {% for branch in business.branch.all %}
-                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="Business Branch 1">
+                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="{{branch}}">
                                 <img src="
                                 {% if branch.image %}
                                 {{branch.image.url}}

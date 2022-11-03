@@ -26,10 +26,10 @@ class BusinessRegistrationForm(forms.ModelForm):
 
 class BranchRegistrationForm(forms.ModelForm):
     description = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 3})
+        widget=forms.Textarea(attrs={'rows': 3}), required=False
     )
     additional_info = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 3})
+        widget=forms.Textarea(attrs={'rows': 3}), required=False
     )
     longitude = forms.CharField(
         widget=forms.TextInput(attrs={'readonly': True})
