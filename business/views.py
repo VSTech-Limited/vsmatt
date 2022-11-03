@@ -85,12 +85,10 @@ def own_business_branch_detailed(request, business_slug, branch_slug):
 
 def businesses(request, category_slug=None):
     businesses = BusinessBranch.objects.all()
-    product_categories = ProductCategory.objects.all()
     if category_slug:
-        businesses = BusinessProfile.objects.filter(slug=category_slug)
+        businesses = BusinessBranch.objects.filter(category__slug=category_slug)
     return render(request, 'farm/business/index.html', {
         'businesses': businesses,
         'title': "Businesses",
-        'category': category_slug,
-        'product_categories': product_categories
+        'category': category_slug
     })

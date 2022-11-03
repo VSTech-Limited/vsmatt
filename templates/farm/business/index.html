@@ -46,47 +46,4 @@
         </div>
     </div>
     <!-- Business End -->
-
-     <!-- Products Start -->
-     <div class="container-fluid py-5">
-        <div class="container py-5 px-lg-5">
-            <div class="wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="text-center mb-5">Products</h1>
-            </div>
-            <div class="d-flex justify-content-center mb-5" id="portfolio-flters">
-                <a class="py-2 px-4 bg-primary rounded-pill text-white me-2" href="{% url 'business:businesses' %}">All</a>
-                {% if business_categories %}
-                    {% for category in business_categories %}
-                        <a class="py-2 px-4 border border-primary rounded-pill me-2" href="{{category.get_absolute_url}}"><span>{{category}}</span></a>
-                    {% endfor %}
-                {% endif %}        
-            </div>
-            <div class="row g-4 portfolio-container">
-                {% if businesses %}
-                    {% for business in businesses %}
-                    <div class="card col-lg-3 col-md-4 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded overflow-hidden">
-                            <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{% if business.image %} {{business.image.url}}{% else %}{% static 'business/img/portfolio-1.jpg'%}{% endif %}" alt="{{business}}" title="{{business}}">
-                                <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="{% if business.image %} {{business.image.url}}{% else %}{% static 'business/img/portfolio-1.jpg'%}{% endif %}"
-                                        data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href="{{business.get_absolute_url}}"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                            <div class="bg-light p-4">
-                                <h4 class="lh-base mb-0">{{business}} - <span class="small text-muted">{{business.category}}</span></h4>
-                                <p class="text-primary fw-medium mb-2">{{business.description}}</p>
-                                <h5 class="lh-base mb-0">By: {{business.business.owner.get_full_name}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <p class="col-md-12 text-center">No available products.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <!-- Products End -->
 {% endblock %}
