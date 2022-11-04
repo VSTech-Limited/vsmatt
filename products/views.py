@@ -12,7 +12,7 @@ from .models import Product
 
 def products_view(request, category_slug=None):
     products = Product.objects.all()
-    businesses = BusinessBranch.objects.filter(is_approved=True)[:6]
+    businesses = BusinessBranch.objects.filter(is_approved=True)[:8]
     if category_slug:
         products = Product.objects.filter(category__slug=category_slug)
 

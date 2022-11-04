@@ -131,7 +131,7 @@
                           class="fas fa-star"></i></span><span class="mb-0 text-primary">{{business.reviews.all.count}} ratings</span>
                     </div>
                   </div>
-                  <span class="fw-light small fs-1 text-muted">{{ business.description | truncatechars:85 }}</span>
+                  <span class="fw-light small fs-1 text-muted">{{ business.description | truncatechars:85 |default:"This business has no description" }}</span>
                 </div>
               </div>
             </div>
