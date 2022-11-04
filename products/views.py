@@ -12,9 +12,15 @@ from .models import Product
 
 def products_view(request, category_slug=None):
     products = Product.objects.all()
+    businesses = BusinessBranch.objects.filter(is_approved=True)[:6]
     if category_slug:
         products = Product.objects.filter(category__slug=category_slug)
-    return render(request, 'farm/products/index.html', {'products': products})
+
+    context = {
+        'products': products,
+        'businesses': businesses,
+    }
+    return render(request, 'farm/products/index.html', context)
     # return render(request, 'shop/products/list.html', {'products': products})
 
 
