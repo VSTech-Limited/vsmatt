@@ -9,8 +9,9 @@
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                 id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                 <div class="navbar-nav w-100">
-                    {% for cartegory in product_categories %}
-                    <a href="{{cartegory.get_absolute_url}}" class="nav-item nav-link">{{cartegory}}</a>
+                    <a href="{% url 'shop:product_list' business.slug branch.slug %}" class="nav-item nav-link">All</a>
+                    {% for category in categories %}
+                    <a href="{% url 'shop:category' business.slug branch.slug category.slug %}" class="nav-item nav-link">{{category}}</a>
                     {% endfor %}
                 </div>
             </nav>
