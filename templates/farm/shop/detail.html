@@ -62,7 +62,7 @@ detail
                     {{ product.description|truncatechars:217|linebreaks }}
                 </p>
                 <!-- quantity change -->
-                <form action="" method="post">
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {% csrf_token %}
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">

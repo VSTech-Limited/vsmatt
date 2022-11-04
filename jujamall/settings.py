@@ -89,6 +89,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'products.context_processor.product_categories',
+                'cart.context_processor.cart',
                 'business.context_processor.business_categories',
                 'core.context_processor.jujamall',
 
@@ -122,7 +123,6 @@ else:
             }
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -192,3 +192,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_USERNAME_REQUIRED = True
+
+# cart
+CART_SESSION_ID = 'cart'
