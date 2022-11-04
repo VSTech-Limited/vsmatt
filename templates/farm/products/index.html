@@ -63,13 +63,11 @@
           <div class="carousel slide" id="carouselPopularItems" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
               {% if products %}
-              <!-- LOOP COROUSELS -->
-              <div class="carousel-item active" data-bs-interval="10000">
-                <div class="row gx-3 h-100 align-items-center">
+                <div class="row gx-2">
                   <!-- LOOP POPULAR PRODUCTS -->
                   {% for product in products %}
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100"
+                  <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
+                    <div class="card card-span rounded-3"><img class="img-fluid rounded-3 h-100"
                         src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="{{ product }}" />
                       <div class="card-body ps-0">
                         <h5 class="fw-bold text-1000 text-truncate mb-1">{{product}}</h5>
@@ -83,18 +81,10 @@
                   {% endfor %}
                   <!-- ENDLOOP -->
                 </div>
-              </div>
-              <!-- ENDLOOP -->
               {% else %}
                 <p class="text-center">No products available</p>
               {% endif %}
             </div>
-            <button class="carousel-control-prev carousel-icon" type="button" data-bs-target="#carouselPopularItems"
-              data-bs-slide="prev"><span class="carousel-control-prev-icon hover-top-shadow"
-                aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
-            <button class="carousel-control-next carousel-icon" type="button" data-bs-target="#carouselPopularItems"
-              data-bs-slide="next"><span class="carousel-control-next-icon hover-top-shadow"
-                aria-hidden="true"></span><span class="visually-hidden">Next </span></button>
           </div>
         </div>
       </div>
@@ -200,6 +190,8 @@
       </div>
     </div>
   </section>
+
+  
 
 </main>
 

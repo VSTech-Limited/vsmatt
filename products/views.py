@@ -34,7 +34,7 @@ def search(request):
             products = products.filter(name__contains=product)
         if business:
             businesses = businesses.filter(name__contains=business)
-            products = products.filter(branch__business__in=businesses)
+            products = products.filter(branch__in=businesses)
 
     context = {
         'products': products,
