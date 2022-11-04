@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.contrib import messages
 # Create your views here.
 from django.utils.text import slugify
+from django.views.decorators.http import require_POST
 
 from business.models import BusinessBranch
-from .forms import ProductsForm
+from .forms import ProductsForm, ReviewForm
 from .models import Product
 
 
@@ -52,3 +53,19 @@ def delete_product(request, business_slug, branch_slug):
                                business__slug=business_slug)
     # branch.delete()
     # return redirect()
+
+
+@login_required
+@require_POST
+def add_review(request, id):
+    product = get_object_or_404(Product, id=id)
+    review_form = ReviewForm(request.POST)
+    if review_form.is_valid():
+        new_review = review_form.save(commit=False)
+        new_review.user = request.user
+        new_review.product = product
+        new_review.save()
+        messages.success(request,"Review posted successfully")
+    else:
+        messages.error(request, "Invalid review data")
+    return redirect(product.get_absolute_url())
