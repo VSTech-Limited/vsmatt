@@ -33,6 +33,7 @@ def add_product(request, business_slug, branch_slug):
             new_product.save()
             new_product.slug = f"{slugify(new_product.name)}-{new_product.id}"
             new_product.save()
+            return redirect(branch.business.get_absolute_url())
 
     return render(request, 'farm/products/add_products.html', {'branch': branch, 'form': form})
 
