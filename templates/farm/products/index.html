@@ -1,42 +1,9 @@
 {% extends 'farm/products/base.html' %}
 {% load static %}
+{% block title %}Products{% endblock %}
 {% block content %}
 <main class="main" id="top">
-  <!-- <section> begin ============================-->
-  <section class="py-0">
-
-    <div class="container">
-      <div class="row h-100 gx-2 mt-7">
-        <!-- loop tagged product tags -->
-        <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-          <div class="card card-span h-100">
-            <div class="position-relative"> <img class="img-fluid rounded-3 w-100"
-                src="{% static 'products/assets/img/gallery/discount-item-1.png' %}" alt="..." />
-              <div class="card-actions">
-                <div class="badge badge-foodwagon bg-primary p-4">
-                  <div class="d-flex flex-between-center">
-                    <div class="text-white fs-7">15</div>
-                    <div class="d-block text-white fs-2">% <br />
-                      <div class="fw-normal fs-1 mt-2">Off</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body px-0">
-              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5><span
-                class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">6 days Remaining</span></span>
-            </div><a class="stretched-link" href="#"></a>
-          </div>
-        </div>
-        <!-- endloop -->
-      </div>
-    </div><!-- end of .container-->
-
-  </section>
-  <!-- <section> close ============================-->
-  <!-- <section> begin ============================-->
-    <!-- STEPS FOR USING PRODUCTS APP -->
+  <!-- STEPS FOR USING PRODUCTS APP -->
   <section class="py-0 bg-primary-gradient">
 
     <div class="container">
@@ -90,11 +57,12 @@
     <div class="container">
       <div class="row h-100">
         <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
-          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Popular items</h5>
+          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Popular Products</h5>
         </div>
         <div class="col-12">
           <div class="carousel slide" id="carouselPopularItems" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
+              {% if products %}
               <!-- LOOP COROUSELS -->
               <div class="carousel-item active" data-bs-interval="10000">
                 <div class="row gx-3 h-100 align-items-center">
@@ -102,11 +70,11 @@
                   {% for product in products %}
                   <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
                     <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100"
-                        src="{% static 'products/assets/img/gallery/cheese-burger.png' %}" alt="..." />
+                        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'products/assets/img/gallery/cheese-burger.png' %}{% endif %}" alt="{{ product }}" />
                       <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 text-truncate mb-1">Cheese Burger</h5>
+                        <h5 class="fw-bold text-1000 text-truncate mb-1">{{product}}</h5>
                         <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span
-                            class="text-primary">Burger Arena</span></div><span class="text-1000 fw-bold">$3.88</span>
+                            class="text-primary">{{product.branch}}</span></div><span class="text-1000 fw-bold">Ksh. {{product.price}}</span>
                       </div>
                     </div>
                     <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="#!" role="button">Order now</a>
@@ -117,6 +85,9 @@
                 </div>
               </div>
               <!-- ENDLOOP -->
+              {% else %}
+                <p class="text-center">No products available</p>
+              {% endif %}
             </div>
             <button class="carousel-control-prev carousel-icon" type="button" data-bs-target="#carouselPopularItems"
               data-bs-slide="prev"><span class="carousel-control-prev-icon hover-top-shadow"
@@ -130,39 +101,39 @@
     </div><!-- end of .container-->
 
   </section>
-  <!-- <section> close ============================-->
-  <!-- ============================================-->
-  <!-- FEATURED PRODUCTS SECTION -->
+  <!-- <section> close -->
+
   <section id="testimonial">
     <div class="container">
       <div class="row h-100">
         <div class="col-lg-7 mx-auto text-center mb-6">
-          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Featured Restaurants</h5>
+          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Featured business</h5>
         </div>
       </div>
       <div class="row gx-2">
-        <!-- LOOP FEATURED PRODUCTS -->
+        {% if businesses %}
         <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
           <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100"
-              src="{% static 'products/assets/img/gallery/food-world.png' %}" alt="..." />
+              src="{% if business.image %}{% else %}{% static 'products/assets/img/gallery/food-world.png' %}{% endif %}" alt="{{business}}" title="{{business}}"/>
             <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
-                  class="fas fa-tag me-2 fs-0"></i><span class="fs-0">20% off</span></span><span
+                  class="fas fa-tag me-2 fs-0"></i><span class="fs-0">Location</span></span><span
                 class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
-                  class="fs-0">Fast</span></span></div>
+                  class="fs-0">{{business.category}}</span></span></div>
             <div class="card-body ps-0">
               <div class="d-flex align-items-center mb-3"><img class="img-fluid"
-                  src="{% static 'products/assets/img/gallery/food-world-logo.png' %}" alt="" />
+                  src="{% if business.business.image %}{{business.business.image}}{% else %}{% static 'products/assets/img/gallery/food-world-logo.png' %}{% endif %}" alt="{{business}}" />
                 <div class="flex-1 ms-3">
-                  <h5 class="mb-0 fw-bold text-1000">Food world</h5><span class="text-primary fs--1 me-1"><i
-                      class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
+                  <h5 class="mb-0 fw-bold text-1000">{{business}}</h5><span class="text-primary fs--1 me-1"><i
+                      class="fas fa-star"></i></span><span class="mb-0 text-primary">46 ratings</span>
                 </div>
-              </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">Opens
-                  Tomorrow</span></span>
+              </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">{{ business.description | truncatechars:30 }}</span></span>
             </div>
           </div>
         </div>
-        <!-- END LOOP -->
-        <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-primary" href="#!">View All <i
+        {% else %}
+          <p class="text-center">No businesses available</p>
+        {% endif %}
+        <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-primary" href="{% url 'business:businesses' %}">View All <i
               class="fas fa-chevron-right ms-2"> </i></a></div>
       </div>
     </div>
@@ -215,8 +186,8 @@
             src="{% static 'products/assets/img/gallery/phone-cta-one.png' %}" alt="..." /></div>
         <div class="col-lg-5 mt-7 mt-md-0">
           <h1 class="text-primary">Install the app</h1>
-          <p>It's never been easier to order food. Look for the finest <br class="d-none d-xl-block" />discounts and
-            you'll be lost in a world of delectable food.</p><a class="pe-2" href="https://www.apple.com/app-store/"
+          <p>It's never been easier to order products. Look for the finest <br class="d-none d-xl-block" />discounts and
+            you'll be lost in a world of delectable products.</p><a class="pe-2" href="https://www.apple.com/app-store/"
             target="_blank"><img src="{% static 'products/assets/img/gallery/app-store.svg' %}" width="160" alt="" /></a><a
             href="https://play.google.com/store/apps" target="_blank"><img src="{% static 'products/assets/img/gallery/google-play.svg' %}"
               width="160" alt="" /></a>
@@ -224,9 +195,6 @@
       </div>
     </div>
   </section>
-
-
-
 
   <section class="py-0">
     <div class="bg-holder"
