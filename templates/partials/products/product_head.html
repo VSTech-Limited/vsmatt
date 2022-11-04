@@ -1,56 +1,92 @@
 {% load static %}
 
 <section class="py-5 overflow-hidden bg-primary" id="home">
-    <div class="container">
-        <div class="row flex-center">
-            <!-- replace image bellow dynamically -->
-            <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img
-                        class="img-fluid" src="{% static 'products/assets/img/gallery/hero-header.png' %}"
-                        alt="hero-header" /></a></div>
-            <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
-                <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Looking for product?</h1>
-                <h1 class="text-800 mb-5 fs-4">Within a few clicks, find all you need<br
-                        class="d-none d-xxl-block" />from you nearest provider.</h1>
-                
-                        <div class="card w-xxl-75">
-                            <div class="card-body">
-                              <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                  <button class="nav-link active mb-3" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><svg class="svg-inline--fa fa-motorcycle fa-w-20 me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="motorcycle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M512.9 192c-14.9-.1-29.1 2.3-42.4 6.9L437.6 144H520c13.3 0 24-10.7 24-24V88c0-13.3-10.7-24-24-24h-45.3c-6.8 0-13.3 2.9-17.8 7.9l-37.5 41.7-22.8-38C392.2 68.4 384.4 64 376 64h-80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h66.4l19.2 32H227.9c-17.7-23.1-44.9-40-99.9-40H72.5C59 104 47.7 115 48 128.5c.2 13 10.9 23.5 24 23.5h56c24.5 0 38.7 10.9 47.8 24.8l-11.3 20.5c-13-3.9-26.9-5.7-41.3-5.2C55.9 194.5 1.6 249.6 0 317c-1.6 72.1 56.3 131 128 131 59.6 0 109.7-40.8 124-96h84.2c13.7 0 24.6-11.4 24-25.1-2.1-47.1 17.5-93.7 56.2-125l12.5 20.8c-27.6 23.7-45.1 58.9-44.8 98.2.5 69.6 57.2 126.5 126.8 127.1 71.6.7 129.8-57.5 129.2-129.1-.7-69.6-57.6-126.4-127.2-126.9zM128 400c-44.1 0-80-35.9-80-80s35.9-80 80-80c4.2 0 8.4.3 12.5 1L99 316.4c-8.8 16 2.8 35.6 21 35.6h81.3c-12.4 28.2-40.6 48-73.3 48zm463.9-75.6c-2.2 40.6-35 73.4-75.5 75.5-46.1 2.5-84.4-34.3-84.4-79.9 0-21.4 8.4-40.8 22.1-55.1l49.4 82.4c4.5 7.6 14.4 10 22 5.5l13.7-8.2c7.6-4.5 10-14.4 5.5-22l-48.6-80.9c5.2-1.1 10.5-1.6 15.9-1.6 45.6-.1 82.3 38.2 79.9 84.3z"></path></svg>Products</button>
-                                  <button class="nav-link mb-3" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><svg class="svg-inline--fa fa-shopping-bag fa-w-14 me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-bag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z"></path></svg>Businesses</button>
-                                </div>
-                              </nav>
-                              <div class="tab-content mt-3" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                  <form class="row gx-2 gy-2 align-items-center">
-                                    <div class="col">
-                                      <div class="input-group-icon"><svg class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg><!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
-                                        <label class="visually-hidden" for="inputDelivery">Product</label>
-                                        <input class="form-control input-box form-foodwagon-control" id="inputDelivery" type="text" placeholder="Find a product">
-                                      </div>
-                                    </div>
-                                    <div class="d-grid gap-3 col-sm-auto">
-                                      <button class="btn btn-danger" type="submit">Find Product</button>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                  <form class="row gx-4 gy-2 align-items-center">
-                                    <div class="col">
-                                      <div class="input-group-icon"><svg class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg><!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
-                                        <label class="visually-hidden" for="inputPickup">Business</label>
-                                        <input class="form-control input-box form-foodwagon-control" id="inputPickup" type="text" placeholder="Find a business">
-                                      </div>
-                                    </div>
-                                    <div class="d-grid gap-3 col-sm-auto">
-                                      <button class="btn btn-danger" type="submit">Find Business</button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+  <div class="container">
+    <div class="row flex-center">
+      <!-- replace image bellow dynamically -->
+      <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img
+            class="img-fluid" src="{% static 'products/assets/img/gallery/hero-header.png' %}" alt="hero-header" /></a>
+      </div>
+      <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
+        <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Looking for product?</h1>
+        <h1 class="text-800 mb-5 fs-4">Within a few clicks, find all you need<br class="d-none d-xxl-block" />from you
+          nearest provider.</h1>
+
+        <div class="card w-xxl-75">
+          <div class="card-body">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active mb-3" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                  type="button" role="tab" aria-controls="nav-home" aria-selected="true"><svg
+                    class="svg-inline--fa fa-motorcycle fa-w-20 me-2" aria-hidden="true" focusable="false"
+                    data-prefix="fas" data-icon="motorcycle" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 512" data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M512.9 192c-14.9-.1-29.1 2.3-42.4 6.9L437.6 144H520c13.3 0 24-10.7 24-24V88c0-13.3-10.7-24-24-24h-45.3c-6.8 0-13.3 2.9-17.8 7.9l-37.5 41.7-22.8-38C392.2 68.4 384.4 64 376 64h-80c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h66.4l19.2 32H227.9c-17.7-23.1-44.9-40-99.9-40H72.5C59 104 47.7 115 48 128.5c.2 13 10.9 23.5 24 23.5h56c24.5 0 38.7 10.9 47.8 24.8l-11.3 20.5c-13-3.9-26.9-5.7-41.3-5.2C55.9 194.5 1.6 249.6 0 317c-1.6 72.1 56.3 131 128 131 59.6 0 109.7-40.8 124-96h84.2c13.7 0 24.6-11.4 24-25.1-2.1-47.1 17.5-93.7 56.2-125l12.5 20.8c-27.6 23.7-45.1 58.9-44.8 98.2.5 69.6 57.2 126.5 126.8 127.1 71.6.7 129.8-57.5 129.2-129.1-.7-69.6-57.6-126.4-127.2-126.9zM128 400c-44.1 0-80-35.9-80-80s35.9-80 80-80c4.2 0 8.4.3 12.5 1L99 316.4c-8.8 16 2.8 35.6 21 35.6h81.3c-12.4 28.2-40.6 48-73.3 48zm463.9-75.6c-2.2 40.6-35 73.4-75.5 75.5-46.1 2.5-84.4-34.3-84.4-79.9 0-21.4 8.4-40.8 22.1-55.1l49.4 82.4c4.5 7.6 14.4 10 22 5.5l13.7-8.2c7.6-4.5 10-14.4 5.5-22l-48.6-80.9c5.2-1.1 10.5-1.6 15.9-1.6 45.6-.1 82.3 38.2 79.9 84.3z">
+                    </path>
+                  </svg>Products</button>
+                <button class="nav-link mb-3" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                  type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><svg
+                    class="svg-inline--fa fa-shopping-bag fa-w-14 me-2" aria-hidden="true" focusable="false"
+                    data-prefix="fas" data-icon="shopping-bag" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512" data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z">
+                    </path>
+                  </svg>Businesses</button>
+              </div>
+            </nav>
+            <div class="tab-content mt-3" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <form class="row gx-2 gy-2 align-items-center" method="post" action="{% url 'products:search' %}">
+                  {% csrf_token %}
+                  <div class="col">
+                    <div class="input-group-icon"><svg
+                        class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                        </path>
+                      </svg>
+                      <!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
+                      <label class="visually-hidden" for="inputDelivery">Product</label>
+                      <input class="form-control input-box form-foodwagon-control" id="productSearch" name="productSearch" type="text"
+                        placeholder="Find a product">
+                    </div>
+                  </div>
+                  <div class="d-grid gap-3 col-sm-auto">
+                    <button class="btn btn-danger" type="submit">Find Product</button>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <form class="row gx-4 gy-2 align-items-center" method="post" action="{% url 'products:search' %}">
+                  {% csrf_token %}
+                  <div class="col">
+                    <div class="input-group-icon"><svg
+                        class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
+                        </path>
+                      </svg>
+                      <!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
+                      <label class="visually-hidden" for="inputPickup">Business</label>
+                      <input class="form-control input-box form-foodwagon-control" id="businessSearch" name="businessSearch" type="text"
+                        placeholder="Find a business">
+                    </div>
+                  </div>
+                  <div class="d-grid gap-3 col-sm-auto">
+                    <button class="btn btn-danger" type="submit">Find Business</button>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

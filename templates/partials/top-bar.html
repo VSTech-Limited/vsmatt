@@ -63,13 +63,13 @@
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
                   {% if user.is_authenticated %}
-                  {% if user.profile.profile_pic %}
-                  <img src="{{user.profile.profile_pic.url}}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
+                  {% if user.profile.image %}
+                  <img src="{{user.profile.image.url}}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
                   {% else %}
-                  <img src="{% static 'img/avatars/1.png' %}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
+                  <img src="{% static 'img/avatardefault.png' %}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
                   {% endif %}
                   {% else %}
-                  <img src="{% static 'img/avatars/1.png' %}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
+                  <img src="{% static 'img/avatardefault.png' %}" style="max-width: 50px; max-height: 50px;" class="rounded-circle" alt="...">
                   {% endif %}
                 </div>
               </div>
