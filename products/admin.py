@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import ProductCategory, Product, ProductSecondaryImages, Review
+from .models import ProductCategory, Product, ProductSecondaryImages, ProductReview
 
 
 @admin.register(ProductCategory)
@@ -28,8 +28,8 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductSecondaryImagesInline]
 
 
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
+@admin.register(ProductReview)
+class ProductReviewAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'rating', 'created', 'updated', 'review']
     list_filter = ['user', 'created', 'updated', 'rating', 'product']
     list_editable = ['rating', 'product']

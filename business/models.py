@@ -6,6 +6,15 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 import os
 
+RATING_CHOICES = [
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5)
+]
+
+
 BS_CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category", 'business')
 MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
 BUSINESS_IMAGES_PATH = os.path.join("uploads", "shop", "business")
@@ -92,6 +101,9 @@ class BusinessProfile(models.Model):
     def geolocation(self):
         return f"{self.latitude}, {self.longitude}"
 
+    def reviews(self):
+        return sum([len(branch.reviews.all()) for branch in self.branch.all()])
+
 
 class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
@@ -127,3 +139,21 @@ class BusinessBranch(models.Model):
                 self.slug
             ]
         )
+
+
+class BranchReview(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    business = models.ForeignKey(BusinessBranch, related_name="reviews", on_delete=models.CASCADE)
+    rating = models.IntegerField(
+        choices=RATING_CHOICES,
+        default=4
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    review = models.TextField()
+
+    def iter_full_stars(self) -> range:
+        return range(int(str(self.rating)))
+
+    def iter_empty_stars(self) -> range:
+        return range(len(self.iter_full_stars()), 5)

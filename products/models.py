@@ -110,7 +110,7 @@ class Product(models.Model):
         return range(len(self.iter_full_stars()), 5)
 
 
-class Review(models.Model):
+class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name="reviews", on_delete=models.CASCADE)
     rating = models.IntegerField(

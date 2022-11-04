@@ -106,7 +106,8 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                            type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
+                            type="button" role="tab" aria-controls="contact"
+                            aria-selected="false">Reviews({{business.reviews}})</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -114,7 +115,46 @@
                         {{business.description}}</div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         {{business.additional_info}}</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">No review yet
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+                        {% if business.reviews %}
+                        <div class="row">
+                            {% for branch in business.branch.all %}
+                            {% for review in branch.reviews.all %}
+                            <div class="col-lg-12">
+                                <h4 class="mb-4">Review for {{review.business}}</h4>
+                                <div class="media mb-4">
+                                    <img src="
+                                    {% if review.user.profile.image %}
+                                    {{ review.user.profile.image.url }}
+                                    {% else %}
+                                    {% static 'img/avatardefault.png' %}
+                                    {% endif %}
+                                    " alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <div class="media-body">
+                                        <h6>{{review.user.get_full_name}}<small> - <i>{{review.updated}}</i></small></h6>
+                                        <div class="text-primary mb-2">
+                                            {% for _ in review.iter_full_stars %}
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            {% endfor %}
+                                            {% for _ in review.iter_empty_stars %}
+                                            <small class="far fa-star text-primary mr-1"></small>
+                                            {% endfor %}
+                                        </div>
+                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam
+                                            ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
+                                            ipsum.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+
+                        No review yet
+                        {% endif %}
+
                     </div>
 
                 </div>

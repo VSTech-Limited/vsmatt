@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from business.models import BusinessCategory, BusinessBranch, BusinessProfile
+from business.models import BusinessCategory, BusinessBranch, BusinessProfile, BranchReview
 
 
 @admin.register(BusinessCategory)
@@ -32,3 +32,10 @@ class BusinessProfileAdmin(admin.ModelAdmin):
     # formfield_overrides = {
     #     map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
     # }
+
+
+@admin.register(BranchReview)
+class BranchReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'business', 'rating', 'created', 'updated', 'review']
+    list_filter = ['user', 'created', 'updated', 'rating', 'business']
+    list_editable = ['rating', 'business']
