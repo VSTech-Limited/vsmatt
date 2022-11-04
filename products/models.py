@@ -70,7 +70,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     tags = models.ManyToManyField('core.Tag', related_name="products", blank=True)
-    branch = models.ManyToManyField(BusinessBranch, related_name='products', blank=True)
+    branch = models.ForeignKey(BusinessBranch, related_name='products', on_delete=models.CASCADE)
     image = ResizedImageField(
         upload_to=product_file_name,
         blank=True,
