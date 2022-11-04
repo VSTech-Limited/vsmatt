@@ -17,7 +17,7 @@ class Reverse(GeoMapQuest):
     def reverse(self, latLng: tuple[Decimal, Decimal]) -> Tuple[GeoData, Response]:
         # TODO WORK ON RETURN TYPE
         if len(latLng) > 1:
-            self.query_params.update({'location': f"{latLng[1]}, {latLng[0]}"})
+            self.query_params.update({'location': f"{latLng[0]}, {latLng[1]}"})
             self.query_params.update({'includeRoadMetadata': 'true'})
             self.query_params.update({'includeNearestIntersection': 'true'})
             response = self.get()

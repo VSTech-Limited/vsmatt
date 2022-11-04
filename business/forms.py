@@ -21,7 +21,7 @@ class BusinessRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = BusinessProfile
-        fields = ['name', 'description', 'additional_info', 'image', 'longitude', 'latitude']
+        fields = ['name', 'description', 'additional_info', 'image', 'latitude', 'longitude']
 
 
 class BranchRegistrationForm(forms.ModelForm):
@@ -42,4 +42,4 @@ class BranchRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = BusinessBranch
-        fields = ['name', 'description', 'category', 'additional_info', 'image', 'longitude', 'latitude']
+        fields = ['name', 'description', 'category', 'additional_info', 'image', 'latitude', 'longitude']

@@ -63,10 +63,10 @@
         });
 
         let infoWindow = new google.maps.InfoWindow();
-        let lat = document.querySelector('#id_longitude');
+        let lat = document.querySelector('#id_latitude');
         // lat.addEventListener('click', () => { alert("Clicked") });
         lat.value = -1.1139084362152138
-        let lng = document.querySelector('#id_latitude');
+        let lng = document.querySelector('#id_longitude');
         lng.value = 37.0106327842076
         /*
         must be paid for use
@@ -114,6 +114,7 @@
                             lat: position.coords.latitude,
                             lng: position.coords.longitude,
                         };
+                        alert("lat: " + pos.lat + "lng: " + pos.lng);
                         // infoWindow.setPosition(pos);
                         infoWindow.setContent("your current Location found.Drag to change your location");
                         if (!currentPositionMarker) {

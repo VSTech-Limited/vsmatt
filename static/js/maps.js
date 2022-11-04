@@ -52,6 +52,7 @@ function myMap() {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
+                    
                     // infoWindow.setPosition(pos);
                     infoWindow.setContent("Your current Location.");
                     let currentPositionMarker = new google.maps.Marker({
@@ -138,23 +139,6 @@ function myMap() {
         });
     },
         2000);
-
-    //     {% for bs in bus %}
-    //     marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng({{ bs.geolocation }}),
-    //         map: map,
-    //             icon: { url: "{{bs.marker.url}}", scaledSize: new google.maps.Size(50, 50) },
-
-    // });
-    // google.maps.event.addListener(marker, 'click', function () {
-    //     //display business
-    //     info_window.setContent("{{bs}}");
-    //     info_window.open(map, marker);
-    //     //zoom on marker clicked
-    //     map.setZoom(9);
-    //     map.setCenter(marker.getPosition());
-    // });
-    // {% endfor %}
 
     google.maps.event.addListener(map, 'click', function (event) {
         placeMarker(map, event.latLng);
