@@ -62,7 +62,11 @@ class ProductCategory(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('products:category', args=[self.slug])
+        return reverse(
+            'products:category',
+            args=[
+                self.slug
+            ])
 
 
 class Product(models.Model):
@@ -100,7 +104,11 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse(
             'shop:product_detail',
-            args=[self.id, self.slug]
+            args=[
+                self.branch.business.slug,
+                self.branch.slug,
+                self.slug
+            ]
         )
 
     def iter_full_stars(self) -> range:

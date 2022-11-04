@@ -42,4 +42,5 @@ class BranchRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = BusinessBranch
-        fields = ['name', 'description', 'category', 'additional_info', 'image', 'latitude', 'longitude']
+        fields = ['name', 'description', 'customer_service_number', 'category', 'additional_info', 'image', 'latitude',
+                  'longitude']

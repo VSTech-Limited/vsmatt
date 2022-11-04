@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 from django.urls import reverse
 from django_resized import ResizedImageField
@@ -13,7 +13,6 @@ RATING_CHOICES = [
     (4, 4),
     (5, 5)
 ]
-
 
 BS_CATEGORY_IMAGES_PATH = os.path.join("uploads", "shop", "category", 'business')
 MARKER_IMAGES_PATH = os.path.join("uploads", "shop", "category", "marker")
@@ -109,6 +108,7 @@ class BusinessBranch(models.Model):
     business = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name="branch")
     name = models.CharField(max_length=100)
     category = models.ForeignKey(BusinessCategory, related_name='businesses', on_delete=models.CASCADE)
+    customer_service_number = PhoneNumberField(null=True, blank=True)
     slug = models.SlugField(db_index=True)
     longitude = models.DecimalField(max_digits=22, decimal_places=16)
     latitude = models.DecimalField(max_digits=22, decimal_places=16)
