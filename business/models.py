@@ -118,3 +118,12 @@ class BusinessBranch(models.Model):
 
     def geolocation(self):
         return f"{self.latitude}, {self.longitude}"
+
+    def get_absolute_url(self):
+        return reverse(
+            'shop:shop',
+            args=[
+                self.business.slug,
+                self.slug
+            ]
+        )

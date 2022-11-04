@@ -9,7 +9,6 @@
             <h2 class="text-center m-4">Add product</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                
                 {{form|crispy}}
                 <button type="submit" class="btn btn-primary mt-3">Submitt</button>
             </form>

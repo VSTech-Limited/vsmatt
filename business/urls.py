@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from shop.views import index
 
 app_name = 'business'
 urlpatterns = [
@@ -13,5 +14,4 @@ urlpatterns = [
     path('<slug:business_slug>/branch/add/', views.register_branch, name='register_branch'),
     path('own/', views.own_businesses_list, name='own_business_list'),
     path('own/<slug:business_slug>/', views.own_business_detailed, name='own_business_detailed'),
-    path("own/<slug:business_slug>/<slug:branch_slug>/", views.own_business_branch_detailed),
 ]
