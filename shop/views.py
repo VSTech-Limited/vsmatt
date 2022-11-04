@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-
-
+from products.forms import ReviewForm
+from cart.forms import CartAddProductForm
 # Create your views here.
 from business.models import BusinessBranch, BusinessProfile
 from products.models import Product, ProductCategory
@@ -22,6 +22,8 @@ def index(request, business_slug, branch_slug):
 
 
 def product_detailed(request, business_slug, branch_slug, product_slug):
+    form = CartAddProductForm()
+    review_form = ReviewForm()
     business = get_object_or_404(BusinessProfile, slug=business_slug)
     branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
     product = get_object_or_404(Product, slug=product_slug)
@@ -30,7 +32,9 @@ def product_detailed(request, business_slug, branch_slug, product_slug):
         'business': business,
         'branch': branch,
         'product': product,
-        'categories': categories
+        'categories': categories,
+        'form': form,
+        'review_form': review_form
     }
     return render(request, "farm/shop/detail.html", context)
 

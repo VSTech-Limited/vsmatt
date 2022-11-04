@@ -30,7 +30,7 @@ def category_file_name(instance, filename):
 def product_secondary_image_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.product.branch.slug, instance.id, ext)
-    return os.path.join(BUSINESS_IMAGES_PATH, instance.product.business.name, "branch", 'products', 'secondary',
+    return os.path.join(BUSINESS_IMAGES_PATH, instance.product.branch.name, "branch", 'products', 'secondary',
                         filename)
 
 
