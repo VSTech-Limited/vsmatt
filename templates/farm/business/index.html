@@ -24,17 +24,16 @@
                     <div class="col-lg-3 col-md-4 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{% if business.image %} {{business.image.url}}{% else %}{% static 'business/img/portfolio-1.jpg'%}{% endif %}" alt="{{business}}" title="{{business}}">
+                                <a href="{{business.get_absolute_url}}"><img class="img-fluid w-100" src="{% if business.image %} {{business.image.url}}{% else %}{% static 'business/img/portfolio-1.jpg'%}{% endif %}" alt="{{business}}" title="{{business}}"></a>
                                 <div class="portfolio-overlay d-flex bg-primary py-2 justify-content-evenly">
-                                    <h4 class="lh-base mb-0 me-2 text-white">{{business}} - <span class="small text-light">{{business.category}}</span></h4>
-                                    <a class="btn btn-square btn-outline-light mx-1" href="{% if business.image %} {{business.image.url}}{% else %}{% static 'business/img/portfolio-1.jpg'%}{% endif %}"
-                                        data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href="{{business.get_absolute_url}}"><i class="fa fa-link"></i></a>
+                                    <h5 class="lh-base mb-0 me-2 text-white">{{business.business}}</h5>
+                                    <h6 class="bg-warning small p-2 rounded-2">{{business}}</h6>
                                 </div>
                             </div>
                             <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">{{business.description}}</p>
-                                <h5 class="lh-base mb-0">By: {{business.business.owner.get_full_name}}</h5>
+                                <p class="text-muted fw-light mb-2 small">{{business.description|truncatechars:135|default:"Business has no description"}}</p>
+                                <span class="small text-light me-2"><i class="fa fa-shopping-basket me-2" aria-hidden="true"></i>{{business.category}}</span>
+                                <span class="small text-light me-2"><i class="fa fa-location-arrow"></i> {{business.business.owner.get_full_name}}</span>
                             </div>
                         </div>
                     </div>
