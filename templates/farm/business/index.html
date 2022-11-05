@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Businesses {% if category %}| {{category}}{% endif %}{% endblock %}
+{% block title %}Businesses {% if categories %}| {{categories }}{% endif %}{% endblock %}
 {% block content %}
 
 
@@ -11,10 +11,10 @@
                 <h1 class="text-center mb-5">Registered businesses</h1>
             </div>
             <div class="d-flex justify-content-center mb-5" id="portfolio-flters">
-                <a class="py-2 px-4 bg-primary rounded-pill text-white me-2" href="{% url 'business:businesses' %}">All</a>
+                <a class="py-2 px-4 rounded-pill border border-primary {% if not categories  %} bg-primary text-white {% endif %}  me-2" href="{% url 'business:businesses' %}">All</a>
                 {% if business_categories %}
                     {% for category in business_categories %}
-                        <a class="py-2 px-4 border border-primary rounded-pill me-2" href="{{category.get_absolute_url}}"><span>{{category}}</span></a>
+                        <a class="py-2 px-4 border border-primary {% if category.slug == categories %} bg-primary text-white {% endif %} rounded-pill me-2" href="{{category.get_absolute_url}}"><span>{{category}}</span></a>
                     {% endfor %}
                 {% endif %}        
             </div>

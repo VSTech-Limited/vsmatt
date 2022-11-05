@@ -17,6 +17,7 @@ def products_view(request, category_slug=None):
         products = Product.objects.filter(category__slug=category_slug)
 
     context = {
+        'categories': category_slug,
         'products': products,
         'businesses': businesses,
     }
