@@ -164,7 +164,7 @@ function placeBusinessMarkers(map, markerIcon, business) {
     const address = business['address'];
     const category = business['category'];
     const position = new google.maps.LatLng(lat, lng);
-    const page = `shop/${business['category_slug']}/${business['slug']}/`;
+    const page = `shop/${business['business']['slug']}/${business['slug']}/`;
     var marker = new google.maps.Marker({
         position: position,
         map: map,

@@ -10,4 +10,5 @@ urlpatterns = [
     path('<slug:business_slug>/<slug:branch_slug>/update/', views.update_product, name='update'),
     path('<slug:business_slug>/<slug:branch_slug>/delete/', views.delete_product, name='delete'),
     path('review/<int:id>/add/', views.add_review, name='add_review'),
+    path('item/search/result/', views.search, name='search'),
 ]

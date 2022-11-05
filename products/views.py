@@ -12,7 +12,7 @@ from .models import Product
 
 def products_view(request, category_slug=None):
     products = Product.objects.all()
-    businesses = BusinessBranch.objects.filter(is_approved=True)[:8]
+    businesses = BusinessBranch.objects.filter(is_approved=True)
     if category_slug:
         products = Product.objects.filter(category__slug=category_slug)
 
@@ -24,6 +24,24 @@ def products_view(request, category_slug=None):
     return render(request, 'farm/products/index.html', context)
     # return render(request, 'shop/products/list.html', {'products': products})
 
+
+def search(request):
+    products = Product.objects.all()
+    businesses = BusinessBranch.objects.filter(is_approved=True)
+    if request.method == 'POST':
+        product = request.POST.get('productSearch')
+        business = request.POST.get('businessSearch')
+        if product:
+            products = products.filter(name__contains=product)
+        if business:
+            businesses = businesses.filter(name__contains=business)
+            products = products.filter(branch__in=businesses)
+
+    context = {
+        'products': products,
+        'businesses': businesses,
+    }
+    return render(request, 'farm/products/index.html', context)
 
 @login_required
 def add_product(request, business_slug, branch_slug):
@@ -72,7 +90,10 @@ def add_review(request, id):
         new_review.user = request.user
         new_review.product = product
         new_review.save()
-        messages.success(request,"Review posted successfully")
+        messages.success(request, "Review posted successfully")
     else:
         messages.error(request, "Invalid review data")
     return redirect(product.get_absolute_url())
+
+
+
