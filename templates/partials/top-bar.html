@@ -123,7 +123,14 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-1" href="#"><i class="fas fa-cart-plus fa-lg fa-fw"></i><span>{{cart|length}}</span></a>
+          <a href="" class="btn btn-outline-secondary my-2 my-sm-0 mx-1"><i class="fa fa-heart" aria-hidden="true"></i>
+            <span class="badge badge-secondary">{{cart_wish|length}}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="btn btn-outline-primary my-2 my-sm-0 mx-1">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-primary">{{cart|length}}</span>
+          </a>
         </li>
       </ul>
     </div>

@@ -1,10 +1,10 @@
-{% extends "farm/shop/base.html" %}
+{% extends "farm/products/base.html" %}
 {% load static %}
-{% block title %}
-index
-{% endblock %}
+{% block title %} {{business}} - {{branch}}{% endblock %}
 {% block content %}
-
+{% include 'partials/shop/css.html' %}
+{% include 'partials/shop/nav.html' %}
+{% include 'partials/shop/top-bar.html' %}
 <!-- Carousel Start -->
 <div class="container-fluid mb-3">
     <div class="row px-xl-5">
@@ -127,13 +127,7 @@ index
             <a class="text-decoration-none" href="{% url 'shop:category' business.slug branch.slug category.slug %}">
                 <div class="cat-item d-flex align-items-center mb-4">
                     <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                        <img class="img-fluid" src="
-                            {% if category.image %}
-                            {{category.image.url}}
-                            {% else %}
-                            {% static 'img/product_cartegory_default.png' %}
-                            {% endif %}
-                            " alt="">
+                        <img class="img-fluid" src=" {% if category.image %} {{category.image.url}} {% else %} {% static 'img/elements/19.jpg' %} {% endif %}" alt="{{category}}">
                     </div>
                     <div class="flex-fill pl-3">
                         <h6>{{category}}</h6>
@@ -151,21 +145,14 @@ index
 
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
-            Products</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
     <div class="row px-xl-5">
         <!-- loop current shop products -->
         {% for product in branch.products.all %}
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
                 <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="
-                    {% if product.image %}
-                    {{product.image.url}}
-                    {% else %}
-                    {% static 'img/product_cartegory_default.png' %}
-                    {% endif %}
-                    " alt="">
+                    <img class="img-fluid w-100" src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="{{product}}" title="{{product}}">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href="{{product.get_absolute_url}}"><i
                                 class="fa fa-shopping-cart"></i></a>
@@ -174,22 +161,24 @@ index
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
+                <a href="{{ product.get_absolute_url }}">
                 <div class="text-center py-4">
-                    <a class="h6 text-decoration-none text-truncate" href="">{{product}}</a>
-                    <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5>${{product.price}}</h5>
-                        <h6 class="text-muted ml-2"><del>${{product.price}}</del></h6>
+                    <a class="h3 text-decoration-none text-truncate text-primary" href="{{product.get_absolute_url}}">{{product}}</a>
+                    <div class="text-center mt-2">
+                        <h5>{% if product.price %}Ksh. {{product.price}}{% else %}Free{% endif %}<br>
+                        <small class="muted text-small">{{ product.description|default:"No description"|truncatechars:120 }}</small>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         {% for _ in product.iter_full_stars %}
-                        <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
                         {% endfor %}
                         {% for _ in product.iter_empty_stars %}
-                        <small class="far fa-star text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
                         {% endfor %}
-                        <small>({{product.reviews.all | length}})</small>
+                            <small>({{product.reviews.all | length}})</small>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         {% endfor %}
@@ -197,34 +186,6 @@ index
     </div>
 </div>
 <!-- Products End -->
-
-
-<!-- Offer Start -->
-<div class="container-fluid pt-5 pb-3">
-    <div class="row px-xl-5">
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/offer-1.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Special Offer</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/offer-2.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Special Offer</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Offer End -->
 
 <!-- add products from other business or branches -->
 <!-- Products Start -->
@@ -250,7 +211,7 @@ index
         <div class="col">
             <div class="owl-carousel vendor-carousel">
                 <div class="bg-light p-4">
-                    <img src="{% static 'shop/img/vendor-1.jpg' %}" alt="">
+                    <img src="{% static 'shop/img/vendor-1.jpg' %}" alt="See this">
                 </div>
                 <div class="bg-light p-4">
                     <img src="{% static 'shop/img/vendor-2.jpg' %}" alt="">
@@ -281,4 +242,5 @@ index
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+{% include 'partials/shop/js.html' %}
 {% endblock %}

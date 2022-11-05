@@ -13,14 +13,18 @@
 <body>
     <!-- \{\% include 'partials/products/top-bar.html' \%\} -->
     {% include 'partials/top-bar.html' %}
-    {% include 'partials/products/product_head.html' %}
-
     {% if messages %}
     <div class="container">
         {% if messages %}
         {% for message in messages %}
-        <div class="text-center my-3 mx-5 alert alert-{{ message.tags }}" role="alert">
-            {{message}}
+        <div class="container px-5 my-3">
+            <div class="alert alert-{{ message.tags }} alert-sm alert-dismissible fade show custom-alert"
+                role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
         </div>
         {% endfor %}
         {% endif %}
