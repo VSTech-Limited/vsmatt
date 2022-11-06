@@ -24,18 +24,8 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <!-- right -->
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link {{nav.about}}">Shop</a>
-                        <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link {{nav.about}} ">Shop Detail</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shopping <i
-                                    class="fa fa-angle-down mt-1"></i></a>
-                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Shopping Cart</a>
-                                <a href="" class="dropdown-item">Wish List</a>
-                                <a href="" class="dropdown-item">Orders</a>
-                            </div>
-                        </div>
-
+                        <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link">Shop</a>
+                        <a href="{% url 'shop:product_list' business.slug branch.slug %}" class="nav-item nav-link">Products</a>
                         <a href="" class="nav-item nav-link {{nav.contact}}">Contact</a>
                     </div>
                 </div>

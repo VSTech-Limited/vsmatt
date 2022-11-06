@@ -1,6 +1,10 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
+from business.forms import ContactForm
 from products.forms import ReviewForm
 from cart.forms import CartAddProductForm
 # Create your views here.
@@ -55,4 +59,24 @@ def products_list(request, business_slug, branch_slug, category_slug=None):
     return render(request, "farm/shop/list.html", context)
 
 
-
+def contact(request, business_slug, branch_slug):
+    business = get_object_or_404(BusinessProfile, slug=business_slug)
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            new_contact = form.save(commit=False)
+            new_contact.business = business
+            new_contact.save()
+            messages.success(request, 'Your message has been sent successfully')
+            return redirect(reverse(
+                'shop:shop',
+                args=[
+                    business_slug,
+                    branch_slug
+                ]
+            ))
+    context = {
+        'form': form,
+    }
+    return render(request, 'farm/shop/contact.html', context)

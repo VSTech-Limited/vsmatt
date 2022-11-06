@@ -157,3 +157,19 @@ class BranchReview(models.Model):
 
     def iter_empty_stars(self) -> range:
         return range(len(self.iter_full_stars()), 5)
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=255)
+    phone_number = PhoneNumberField(null=True, blank=True)
+    message = models.TextField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_addressed = models.BooleanField(default=False)
+    business = models.ForeignKey(BusinessProfile, related_name='contacts', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('-created_at',)
