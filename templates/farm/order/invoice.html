@@ -179,8 +179,8 @@
                             <p class="lead marginbottom payment-info">Payment details</p>
                             <p>Date: {{order.updated|date:"d M Y"}}</p>
                             <p>VAT: DK888-777 </p>
-                            <p>Total Amount: ${{ order.get_total_cost }}</p>
-                            <p>Account Name: Ous</p>
+                            <p>Total Amount: Ksh. {{ order.get_total_cost }}</p>
+                            <p>Account Name: JujaMall-LTD</p>
                             <p>
                                 Payment status: {% if order.paid %}Paid{% else %}Pending{% endif %}
                             </p>
@@ -205,8 +205,8 @@
                                     <td class="text-center">{{ forloop.counter }}</td>
                                     <td>{{ item.product.name }}</td>
                                     <td class="text-right">{{ item.quantity }}</td>
-                                    <td class="text-right">${{ item.price }}</td>
-                                    <td class="text-right">${{ item.get_cost }}</td>
+                                    <td class="text-right">Ksh. {{ item.price }}</td>
+                                    <td class="text-right">Ksh. {{ item.get_cost }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -223,9 +223,9 @@
                             <button class="btn btn-danger"><i class="fa fa-envelope"></i> Mail Invoice</button>
                         </div>
                         <div class="col-sm-6 text-right pull-right invoice-total">
-                            <p>Subtotal : ${{ order.get_total_cost }}</p>
-                            <p>Discount (0%) : $0 </p>
-                            <p>Total : ${{ order.get_total_cost }} </p>
+                            <p>Subtotal : Ksh. {{ order.get_total_cost }}</p>
+                            <p>Discount (0%) : Ksh. 0 </p>
+                            <p>Total : Ksh. {{ order.get_total_cost }} </p>
                         </div>
                     </div>
 

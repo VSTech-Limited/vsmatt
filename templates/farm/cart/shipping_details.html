@@ -1,11 +1,10 @@
-{% extends "farm/cart/base.html" %}
+{% extends "farm/products/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block title %}
-Your Shipping details
-{% endblock %}
+{% block title %} Your Shipping details {% endblock %}
 {% block content %}
 <!-- Cart Start -->
+{% include 'partials/shop/css.html' %}
 <div class="container-fluid mt-3">
     <form action="" method="post">
         {% csrf_token %}
@@ -14,8 +13,7 @@ Your Shipping details
 
                 <div class="row">
                     <div class="col-lg-12 fw-bold">
-                        Please fill in the requared* fields accuratly for product delivery and invoice and report
-                        generation
+                        Please fill in the requared* fields accuratly for product delivery and invoice and report generation
                     </div>
                     <hr>
                     <div class="col-sm-4">
@@ -38,17 +36,17 @@ Your Shipping details
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>${{ cart.get_total_price }}</h6>
+                            <h6>Ksh. {{ cart.get_total_price }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$0</h6>
+                            <h6 class="font-weight-medium">Ksh. 0</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>${{ cart.get_total_price }}</h5>
+                            <h5>Ksh. {{ cart.get_total_price }}</h5>
                         </div>
                         <button type="submit" class="btn btn-block btn-success font-weight-bold my-3 py-3 rounded {% if not cart.get_total_price %} disabled {% endif %}">
                             <i class="fas fa-wallet"></i>
@@ -68,4 +66,5 @@ Your Shipping details
     </form>
 </div>
 <!-- Cart End -->
+{% include 'partials/shop/js.html' %}
 {% endblock %}

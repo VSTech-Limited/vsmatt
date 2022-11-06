@@ -1,11 +1,10 @@
-{% extends "farm/cart/base.html" %}
+{% extends "farm/products/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block title %}
-Your shopping cart
-{% endblock %}
+{% block title %}Your shopping cart{% endblock %}
 {% block content %}
 <!-- Cart Start -->
+{% include 'partials/shop/css.html' %}
 <div class="container-fluid mt-3">
 
     <div class="row px-xl-5">
@@ -39,7 +38,7 @@ Your shopping cart
                             " alt="" style="width: 50px;">
                             {{ product.name }}
                         </td>
-                        <td class="align-left">${{ product.price }}</td>
+                        <td class="align-left">Ksh. {{ product.price }}</td>
                         <form action="{% url 'cart:cart_add' product.id %}" class="form-group" method="post">
                             {% csrf_token %}
                             <td class="align-middle">
@@ -69,7 +68,7 @@ Your shopping cart
                                 </div>
                             </td>
                         </form>
-                        <td class="align-middle fw-bold">${{ item.total_price }}</td>
+                        <td class="align-middle fw-bold">Ksh. {{ item.total_price }}</td>
                         <td class="align-middle">
                             <a class="btn btn-sm btn-danger" href="{% url 'cart:cart_remove' product.id %}">
                                 <i class="fa fa-trash"></i>
@@ -102,17 +101,17 @@ Your shopping cart
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>${{ cart.get_total_price }}</h6>
+                        <h6>Ksh. {{ cart.get_total_price }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$0</h6>
+                        <h6 class="font-weight-medium">Ksh. 0</h6>
                     </div>
                 </div>
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>${{ cart.get_total_price }}</h5>
+                        <h5>Ksh. {{ cart.get_total_price }}</h5>
                     </div>
                     <a href="{% url 'cart:shipping_details' %}"
                         class="btn btn-block btn-success font-weight-bold my-3 py-3 {% if not cart.get_total_price %} disabled {% endif %}">Proceed
@@ -129,5 +128,5 @@ Your shopping cart
     </div>
 </div>
 <!-- Cart End -->
-
+{% include 'partials/shop/js.html' %}
 {% endblock %}
