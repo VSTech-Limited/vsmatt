@@ -18,18 +18,14 @@
         </div>
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                <a href="/" class="text-decoration-none d-block d-lg-none">
-                    <span class="text-uppercase text-dark bg-light px-2">{{contact_info.organization_name}}</span>
-                    <span class="text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
-                </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav mr-auto py-0">
-                        <a href="/" class="nav-item nav-link {{nav.home}}">Home</a>
-                        <a href="" class="nav-item nav-link {{nav.shop}}">Shop</a>
-                        <a href="" class="nav-item nav-link {{nav.about}} ">Shop Detail</a>
+                    <!-- right -->
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link {{nav.about}}">Shop</a>
+                        <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link {{nav.about}} ">Shop Detail</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Shopping <i
                                     class="fa fa-angle-down mt-1"></i></a>
@@ -39,16 +35,8 @@
                                 <a href="" class="dropdown-item">Orders</a>
                             </div>
                         </div>
+
                         <a href="" class="nav-item nav-link {{nav.contact}}">Contact</a>
-                    </div>
-                    <!-- right cart/wish list -->
-                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                        <a href="" class="btn btn-outline-secondary my-2 my-sm-0 mx-1"><i
-                                class="fa fa-heart" aria-hidden="true"></i>
-                            <span class="badge badge-secondary">{{cart_wish.length_wish}}</span></a>
-                        <a href="" class="btn btn-outline-primary my-2 my-sm-0 mx-1"><i
-                                class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="badge badge-primary">{{cart_wish.length_cart}}</span></a>
                     </div>
                 </div>
             </nav>

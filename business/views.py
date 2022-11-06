@@ -179,7 +179,7 @@ def businesses(request, category_slug=None):
     return render(request, 'farm/business/index.html', {
         'businesses': businesses,
         'title': "Businesses",
-        'category': category_slug
+        'categories': category_slug
     })
 
 

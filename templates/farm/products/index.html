@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Products{% endblock %}
 {% block content %}
+{% include 'partials/products/product_head.html' %}
 <main class="main" id="top">
   <!-- STEPS FOR USING PRODUCTS APP -->
   <section class="py-0 bg-primary-gradient">
@@ -53,11 +54,18 @@
   <!-- <section> begin ============================-->
     <!-- pPOPULAR PRODUCTS -->
   <section class="py-4 overflow-hidden">
-
     <div class="container">
       <div class="row h-100">
         <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
           <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Popular Products</h5>
+          <div class="d-flex justify-content-center" id="portfolio-flters">
+            <a class="py-2 px-4 border border-primary {% if not categories  %} bg-primary text-white {% endif %} rounded-pill me-2" href="{% url 'products:products_list' %}">All</a>
+            {% if product_categories %}
+                {% for category in product_categories %}
+                    <a class="py-2 px-4 border border-primary rounded-pill me-2 {% if category.slug == categories %} bg-primary text-white {% endif %}" href="{{category.get_absolute_url}}"><span>{{category}}</span></a>
+                {% endfor %}
+            {% endif %}        
+          </div>
         </div>
         <div class="col-12">
           <div class="carousel slide" id="carouselPopularItems" data-bs-touch="false" data-bs-interval="false">
@@ -184,7 +192,7 @@
     <div class="container">
       <div class="row flex-center">
         <div class="col-xxl-9 py-7 text-center">
-          <h1 class="fw-bold mb-4 text-white fs-6">Are you ready to order <br />with the best deals? </h1><a
+          <h1 class="fw-bold mb-4 text-primary fs-6">Are you ready to order <br />with the best deals? </h1><a
             class="btn btn-danger" href="#"> PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a>
         </div>
       </div>
