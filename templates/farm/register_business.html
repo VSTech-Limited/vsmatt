@@ -9,15 +9,16 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row py-5 justify-content-center">
+        <div class="col-md-5 card p-5 me-2">
+            <h5 class="text-muted">What a great step to tegister a business with us</h5>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{bs_reg_form|crispy}}
                 <button type="submit" class="btn btn-primary mt-3">Submitt</button>
             </form>
         </div>
-        <div class="col-md-6 p-5">
+        <div class="col-md-5 card p-5 me-2">
             <form autocomplete="off" action="">
                 <div class="autocomplete" style="width:300px; position: relative; display: inline-block;">
                     <input id="myInput" type="text" name="myCountry" placeholder="location">
@@ -99,8 +100,8 @@
         //map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
 
         const locationButton = document.createElement("button");
-        locationButton.textContent = "Pan to Current Location";
-        locationButton.className = "custom-map-control-button btn btn-success btn-sm text-dark fw-bold"
+        locationButton.textContent = "Find my location";
+        locationButton.className = "custom-map-control-button btn btn-light my-2 shadow-lg";
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
         let currentPositionMarker
         locationButton.addEventListener('click', () => {
