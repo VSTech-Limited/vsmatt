@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Details
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-12 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0 my-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Order Id</th>
+                        <th>Items Ordered</th>
+                        <th>Order Date</th>
+                        <th>Total Price</th>
+                        <th>Paid</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {% for order in orders %}
+                            <tr>
+                                <td>
+                                    {{forloop.counter}}
+                                </td>
+                                <td >
+                                    <a class="fw-bold text-primary" href="{% url 'order:order_details' order.id %}">
+                                        ORD-{{order.id}}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ order.items.all | length }}
+                                </td>
+                                <td>
+                                    {{order.updated}}
+                                </td>
+                                <td class="fw-bold text-success">
+                                    ${{order.get_total_cost}}
+                                </td>
+                                <td>
+                                    {% if order.paid %}
+                                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                                    {% else %}
+                                    <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'order:order_invoice' order.id %}" title="Invoice"><i
+                                            class="fas fa-file-invoice    "></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

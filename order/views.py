@@ -37,7 +37,7 @@ def order_create(request):
 @login_required
 def order_history(request):
     orders = Order.objects.filter(user=request.user)
-    return render(request, 'farm/order/order_history.html', {'orders': orders})
+    return render(request, 'farm/order/history.html', {'orders': orders})
 
 
 @login_required
