@@ -64,7 +64,7 @@
                     </div>
                     <small class="pt-1">({{product.reviews.all|length}})</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">${{ product.price }}</h3>
+                <h3 class="font-weight-semi-bold mb-4">Ksh. {{ product.price }}</h3>
                 <p class="mb-4">
                     {{ product.description|truncatechars:217|linebreaks }}
                 </p>
@@ -253,8 +253,8 @@
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href="">{{prod.name}}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>${{prod.price}}</h5>
-                            <h6 class="text-muted ml-2"><del>${{prod.get_discount}}</del></h6>
+                            <h5>Ksh. {{prod.price}}</h5>
+                            <h6 class="text-muted ml-2"><del>Ksh. {{prod.get_discount}}</del></h6>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             {% for star in prod.iter_full_stars %}
