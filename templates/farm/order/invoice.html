@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,7 +148,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-5 top-left">
-                            <i class="fa fa-rocket"></i>
+                            <img src="{% static 'img/favicon/logo.png' %}" style="max-height: 80px;" alt="Jujamall">
                         </div>
                         <div class="col-sm-7 top-right">
                             <h3 class="marginright">INVOICE-{{ order.id }}</h3>

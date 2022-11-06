@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}
-Details
-{% endblock %}
+{% block title %}Orders Details{% endblock %}
 {% block content %}
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -21,7 +19,7 @@ Details
                     {% for item in order.items.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td class="text-left fw-bold"><img src="{{item.product.image.url}}" alt="" style="width: 50px;">
+                        <td class="text-left fw-bold"><img src="{% if item.product.image %} {{item.product.image.url}} {% else %} {% static 'img/elements/1.jpg' %} {% endif %}" alt="{{item.product}}" style="width: 50px;">
                             {{ item.product }}
                         </td>
                         <td class="align-middle">Ksh. {{ item.price }}</td>
