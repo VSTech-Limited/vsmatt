@@ -70,10 +70,9 @@ Your shopping cart
                         </form>
                         <td class="align-middle fw-bold">${{ item.total_price }}</td>
                         <td class="align-middle">
-                            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                                {% csrf_token %}
-                            </form>
+                            <a class="btn btn-sm btn-danger" href="{% url 'cart:cart_remove' product.id %}">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                     {% endwith %}
@@ -118,9 +117,8 @@ Your shopping cart
                         class="btn btn-block btn-success font-weight-bold my-3 py-3 {% if not cart_wish.get_total_price %} disabled {% endif %}">Proceed
                         To
                         Checkout</a>
-                    <a href="{% url 'cart:resume' %}"
-                        class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i class="fa fa-shopping-bag"
-                            aria-hidden="true"></i> Continue shopping</a>
+                    <a href="{% url 'cart:resume' %}" class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i
+                            class="fa fa-shopping-bag" aria-hidden="true"></i> Continue shopping</a>
                 </div>
 
             </div>

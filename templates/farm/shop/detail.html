@@ -1,14 +1,15 @@
-{% extends "farm/shop/base.html" %}
+{% extends "farm/products/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block title %}
-detail
-{% endblock %}
+{% block title %} {{business}} - {{branch}}{% endblock %}
 {% block content %}
+{% include 'partials/shop/css.html' %}
+{% include 'partials/shop/nav.html' %}
+{% include 'partials/shop/top-bar.html' %}
 
 
 <!-- Shop Detail Start -->
-<div class="container-fluid pb-5">
+<div class="container-fluid pb-5 mt-3">
     <!-- About product row -->
     <div class="row px-xl-5">
         <!-- courosel column with products images -->
@@ -272,4 +273,5 @@ detail
     </div>
 </div>
 <!-- Products End -->
+{% include 'partials/shop/js.html' %}
 {% endblock %}
