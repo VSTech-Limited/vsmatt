@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/css.html' %}
+    <title>Invoice</title>
+
+    <style>
+        body {
+            margin-top: 20px;
+            background: #eee;
+        }
+
+        /*Invoice*/
+        .invoice .top-left {
+            font-size: 65px;
+            color: #3ba0ff;
+        }
+
+        .invoice .top-right {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .invoice .table-row {
+            margin-left: -15px;
+            margin-right: -15px;
+            margin-top: 25px;
+        }
+
+        .invoice .payment-info {
+            font-weight: 500;
+        }
+
+        .invoice .table-row .table>thead {
+            border-top: 1px solid #ddd;
+        }
+
+        .invoice .table-row .table>thead>tr>th {
+            border-bottom: none;
+        }
+
+        .invoice .table>tbody>tr>td {
+            padding: 8px 20px;
+        }
+
+        .invoice .invoice-total {
+            margin-right: -10px;
+            font-size: 16px;
+        }
+
+        .invoice .last-row {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .invoice-ribbon {
+            width: 85px;
+            height: 88px;
+            overflow: hidden;
+            position: absolute;
+            top: -1px;
+            right: 14px;
+        }
+
+        .ribbon-inner {
+            text-align: center;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            position: relative;
+            padding: 7px 0;
+            left: -5px;
+            top: 11px;
+            width: 120px;
+            background-color: #66c591;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .ribbon-inner:before,
+        .ribbon-inner:after {
+            content: "";
+            position: absolute;
+        }
+
+        .ribbon-inner:before {
+            left: 0;
+        }
+
+        .ribbon-inner:after {
+            right: 0;
+        }
+
+        @media(max-width:575px) {
+
+            .invoice .top-left,
+            .invoice .top-right,
+            .invoice .payment-details {
+                text-align: center;
+            }
+
+            .invoice .from,
+            .invoice .to,
+            .invoice .payment-details {
+                float: none;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .invoice p.lead,
+            .invoice .from p.lead,
+            .invoice .to p.lead,
+            .invoice .payment-details p.lead {
+                font-size: 22px;
+            }
+
+            .invoice .btn {
+                margin-top: 10px;
+            }
+        }
+
+        @media print {
+            .invoice {
+                width: 900px;
+                height: 800px;
+            }
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default invoice" id="invoice">
+                <div class="panel-body">
+                    <div class="invoice-ribbon">
+                        <div class="ribbon-inner {% if order.paid %} bg-success {% else %} bg-danger {% endif %}">
+                            <span class="">
+                                {% if order.paid %}Paid{% else %}Pending{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 top-left">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <div class="col-sm-7 top-right">
+                            <h3 class="marginright">INVOICE-{{ order.id }}</h3>
+                            <span class="marginright">{{ order.created|date:"d M Y" }}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <p class="lead marginbottom">{{contact_info.organization_name}} Shop</p>
+                            <p>{{contact_info.zip_code}} {{contact_info.town}}</p>
+                            <p>{{contact_info.city}}, {{contact_info.country}}</p>
+                            <p>Phone: {{contact_info.phone_number}}</p>
+                            <p>Email: {{contact_info.email}}</p>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p class="lead marginbottom">Bill To : {{ order.user.get_full_name }}
+                            </p>
+                            <p>{{ order.user.residentialinfo.address }}</p>
+                            <p>{% if order.user.residentialinfo.postal_code %} {{ order.user.residentialinfo.postal_code }} {% else %} - {% endif %}, {{ order.user.residentialinfo.city }}</p>
+                            <p>Phone: {{ order.user.userprofile.phone}}</p>
+                            <p>Email: {{order.user.email}}</p>
+
+                        </div>
+
+                        <div class="col-sm-4 text-right payment-details">
+                            <p class="lead marginbottom payment-info">Payment details</p>
+                            <p>Date: {{order.updated|date:"d M Y"}}</p>
+                            <p>VAT: DK888-777 </p>
+                            <p>Total Amount: ${{ order.get_total_cost }}</p>
+                            <p>Account Name: Ous</p>
+                            <p>
+                                Payment status: {% if order.paid %}Paid{% else %}Pending{% endif %}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row table-row">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width:5%">#</th>
+                                    <th style="width:50%">Item</th>
+                                    <th class="text-right" style="width:15%">Quantity</th>
+                                    <th class="text-right" style="width:15%">Unit Price</th>
+                                    <th class="text-right" style="width:15%">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in order.items.all %}
+                                <tr>
+                                    <td class="text-center">{{ forloop.counter }}</td>
+                                    <td>{{ item.product.name }}</td>
+                                    <td class="text-right">{{ item.quantity }}</td>
+                                    <td class="text-right">${{ item.price }}</td>
+                                    <td class="text-right">${{ item.get_cost }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 margintop">
+                            <p class="lead marginbottom">THANK YOU!</p>
+
+                            <button class="btn btn-success" id="invoice-print"><i class="fa fa-print"></i> Print
+                                Invoice</button>
+                            <button class="btn btn-danger"><i class="fa fa-envelope"></i> Mail Invoice</button>
+                        </div>
+                        <div class="col-sm-6 text-right pull-right invoice-total">
+                            <p>Subtotal : ${{ order.get_total_cost }}</p>
+                            <p>Discount (0%) : $0 </p>
+                            <p>Total : ${{ order.get_total_cost }} </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'partials/js.html' %}
+</body>
+
+</html>

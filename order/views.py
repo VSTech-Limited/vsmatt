@@ -12,7 +12,6 @@ from order.models import OrderItem, Order
 
 def order_create(request):
     cart = Cart(request)
-    cart.clear()
     session = SessionInfo(request)
     if len(cart):
         order = Order.objects.create(user=request.user)
@@ -49,4 +48,4 @@ def view_order_details(request, order_id):
 
 def view_invoice(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, 'farm/order/pdf.html', {"order": order})
+    return render(request, 'farm/order/invoice.html', {"order": order})
