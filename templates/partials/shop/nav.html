@@ -26,7 +26,7 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="{{ branch.get_absolute_url }}" class="nav-item nav-link">Shop</a>
                         <a href="{% url 'shop:product_list' business.slug branch.slug %}" class="nav-item nav-link">Products</a>
-                        <a href="" class="nav-item nav-link {{nav.contact}}">Contact</a>
+                        <a href="{% url 'shop:contact' business.slug branch.slug %}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
             </nav>

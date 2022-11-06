@@ -60,8 +60,11 @@ def products_list(request, business_slug, branch_slug, category_slug=None):
 
 
 def contact(request, business_slug, branch_slug):
-    business = get_object_or_404(BusinessProfile, slug=business_slug)
     form = ContactForm()
+    business = get_object_or_404(BusinessProfile, slug=business_slug)
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
+    products = branch.products.all()
+    categories = ProductCategory.objects.filter(product__in=products)
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -78,5 +81,9 @@ def contact(request, business_slug, branch_slug):
             ))
     context = {
         'form': form,
+        'business': business,
+        'branch': branch,
+        'products': products,
+        'categories': categories
     }
     return render(request, 'farm/shop/contact.html', context)
