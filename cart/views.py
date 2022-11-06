@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
@@ -6,6 +7,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from business.models import BusinessBranch
+from users.forms import UserEditForm, UserProfileInfo
 from .cart import Cart
 from .forms import CartAddProductForm
 from .session_info import SessionInfo
@@ -67,7 +69,6 @@ def resume_shop(request):
         return redirect("products:products_list")
 
 
-
 def view_detailed(request):
     cart = Cart(request)
     # branch_id = cart.getExtra("branch")
@@ -82,29 +83,27 @@ def view_detailed(request):
     return render(request, 'farm/cart/detail.html')
 
 
+@login_required
 def shipping_details(request):
-    # user_form = UserEditForm(instance=request.user)
-    # profile_form = UserProfileInfo(instance=request.user.userprofile)
+    user_form = UserEditForm(instance=request.user)
+    profile_form = UserProfileInfo(instance=request.user.profile)
     # residential_info_form = ResidentialInfoForm(instance=request.user.residentialinfo)
 
-    # if request.method == 'POST':
-    #     residential_info_form = ResidentialInfoForm(data=request.POST, instance=request.user.residentialinfo)
-    #     profile_form = UserProfileInfo(data=request.POST, instance=request.user.userprofile)
-    #     user_form = UserEditForm(instance=request.user, data=request.POST)
-    #
-    #     if residential_info_form.is_valid() and profile_form.is_valid() and user_form.is_valid():
-    #         residential_info_form.save()
-    #         profile_form.save()
-    #         user_form.save()
-    #         return redirect('order:order_create')
+    if request.method == 'POST':
+        profile_form = UserProfileInfo(data=request.POST, instance=request.user.profile)
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save()
+            return redirect('order:order_create')
 
     return render(
         request,
-        'cart/shipping_details.html',
+        'farm/cart/shipping_details.html',
         {
             # 'residential_info_form': residential_info_form,
-            # 'user_form': user_form,
-            # 'profile_form': profile_form,
+            'user_form': user_form,
+            'profile_form': profile_form,
             # 'bread_crumb': bread_crumb
         }
     )

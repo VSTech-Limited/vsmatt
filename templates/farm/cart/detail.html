@@ -7,6 +7,7 @@ Your shopping cart
 {% block content %}
 <!-- Cart Start -->
 <div class="container-fluid">
+
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -114,7 +115,7 @@ Your shopping cart
                         <h5>${{ cart.get_total_price }}</h5>
                     </div>
                     <a href="{% url 'cart:shipping_details' %}"
-                        class="btn btn-block btn-success font-weight-bold my-3 py-3 {% if not cart_wish.get_total_price %} disabled {% endif %}">Proceed
+                        class="btn btn-block btn-success font-weight-bold my-3 py-3 {% if not cart.get_total_price %} disabled {% endif %}">Proceed
                         To
                         Checkout</a>
                     <a href="{% url 'cart:resume' %}" class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i
