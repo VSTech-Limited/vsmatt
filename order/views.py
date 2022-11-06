@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
-
+from django.contrib import messages
 from cart.cart import Cart
 from order.models import OrderItem, Order
 
@@ -27,7 +27,8 @@ def order_create(request):
                 'order': order
             }
         )
-    return redirect('products:products_list')
+    messages.warning(request, "Cant place an order on an empty cart!")
+    return redirect('cart:shipping_details')
 
 
 @login_required
@@ -41,12 +42,6 @@ def view_order_details(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
 
     return render(request, 'farm/order/order_details.html', {"order": order})
-
-
-@login_required
-def order_payment_history(request, order_id):
-    order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, "farm/order/payment_history.html", {"order": order})
 
 
 def view_invoice(request, order_id):

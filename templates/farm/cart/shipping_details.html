@@ -6,7 +6,7 @@ Your Shipping details
 {% endblock %}
 {% block content %}
 <!-- Cart Start -->
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <form action="" method="post">
         {% csrf_token %}
         <div class="row px-xl-5">
@@ -50,8 +50,8 @@ Your Shipping details
                             <h5>Total</h5>
                             <h5>${{ cart.get_total_price }}</h5>
                         </div>
-                        <button type="submit" class="btn btn-block btn-success font-weight-bold my-3 py-3 rounded">
-                            <i class="fas fa-wallet    "></i>
+                        <button type="submit" class="btn btn-block btn-success font-weight-bold my-3 py-3 rounded {% if not cart.get_total_price %} disabled {% endif %}">
+                            <i class="fas fa-wallet"></i>
                             Place Order
                         </button>
                         <a href="{% url 'cart:resume' %}"
