@@ -24,9 +24,9 @@ Details
                         <td class="text-left fw-bold"><img src="{{item.product.image.url}}" alt="" style="width: 50px;">
                             {{ item.product }}
                         </td>
-                        <td class="align-middle">${{ item.price }}</td>
+                        <td class="align-middle">Ksh. {{ item.price }}</td>
                         <td class="align-middle">{{item.quantity}}</td>
-                        <td class="align-middle text-success fw-bold">${{ item.get_cost }}</td>
+                        <td class="align-middle text-success fw-bold">Ksh. {{ item.get_cost }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -40,7 +40,7 @@ Details
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>${{ order.get_total_cost }}</h6>
+                        <h6>Ksh. {{ order.get_total_cost }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Payment Status</h6>
@@ -55,7 +55,7 @@ Details
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>${{ order.get_total_cost }}</h5>
+                        <h5>Ksh. {{ order.get_total_cost }}</h5>
                     </div>
                     {% if not order.paid %}
                     <a href=""
