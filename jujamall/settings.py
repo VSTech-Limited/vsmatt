@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'business.apps.BusinessConfig',
     'products.apps.ProductsConfig',
+    'order.apps.OrderConfig',
 
     # Third Party Apps
     'crispy_forms',
