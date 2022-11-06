@@ -123,7 +123,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-1" href="#"><i class="fas fa-cart-plus fa-lg fa-fw"></i><span>{{cart|length}}</span></a>
+          <a class="nav-link mx-1" href="{% url 'cart:view_cart_detail' %}"><i class="fas fa-cart-plus fa-lg fa-fw"></i><span>{{cart|length}}</span></a>
         </li>
       </ul>
     </div>

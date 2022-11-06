@@ -195,3 +195,4 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 # cart
 CART_SESSION_ID = 'cart'
+META_SESSION_ID = 'session_meta'

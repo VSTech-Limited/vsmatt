@@ -1,0 +1,134 @@
+{% extends "farm/cart/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block content %}
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Update</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <!-- loop cart items here -->
+                    {% for item in cart %}
+                    {% with product=item.product %}
+
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td class="text-left fw-bold">
+                            <img src="
+                            {% if product.image %}
+                            {{product.image.url}}
+                            {% else %}
+                            {% static 'img/elements/1.jpg' %}
+                            {% endif %}
+                            " alt="" style="width: 50px;">
+                            {{ product.name }}
+                        </td>
+                        <td class="align-left">${{ product.price }}</td>
+                        <form action="{% url 'cart:cart_add' product.id %}" class="form-group" method="post">
+                            {% csrf_token %}
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary btn-minus">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.override }}
+
+                                    <!-- <input type="text"
+                                    class="form-control form-control-sm bg-secondary border-0 text-center" value="1"> -->
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-success" title="Update product quantity">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </form>
+                        <td class="align-middle fw-bold">${{ item.total_price }}</td>
+                        <td class="align-middle">
+                            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                    </tr>
+                    {% endwith %}
+                    {% endfor %}
+                    <!-- end loop -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Small righ column container for summary and coupon -->
+        <div class="col-lg-4">
+            <!-- coupon form -->
+            <form class="mb-30" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <!-- end-form -->
+            <!-- summary column  -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart
+                    Summary</span>
+            </h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Subtotal</h6>
+                        <h6>${{ cart.get_total_price }}</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$0</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5>${{ cart.get_total_price }}</h5>
+                    </div>
+                    <a href="{% url 'cart:shipping_details' %}"
+                        class="btn btn-block btn-success font-weight-bold my-3 py-3 {% if not cart_wish.get_total_price %} disabled {% endif %}">Proceed
+                        To
+                        Checkout</a>
+                    <a href="{% url 'cart:resume' %}"
+                        class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i class="fa fa-shopping-bag"
+                            aria-hidden="true"></i> Continue shopping</a>
+                </div>
+
+            </div>
+            <!-- summary end -->
+        </div>
+        <!-- end column -->
+    </div>
+</div>
+<!-- Cart End -->
+
+{% endblock %}

@@ -22,7 +22,13 @@ detail
                 <div class="carousel-inner bg-light">
                     <!-- Primary image -->
                     <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{product.image.url}}" alt="Image">
+                        <img class="w-100 h-100" src="
+                        {% if product.image %}
+                        {{product.image.url}}
+                        {% else %}
+                        {% static 'img/elements/1.jpg' %}
+                        {% endif %}
+                        " alt="Image">
                     </div>
                     <!-- primary end -->
                     <!-- loop secondary images -->
@@ -62,7 +68,7 @@ detail
                     {{ product.description|truncatechars:217|linebreaks }}
                 </p>
                 <!-- quantity change -->
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                <form action="{% url 'cart:cart_add' product.id branch.id %}" method="post">
                     {% csrf_token %}
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
@@ -85,10 +91,6 @@ detail
                         <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add
                             To
                             Cart</button>
-                        <a href="" class="btn btn-secondary px-3 mx-3"><i class="fa fa-heart" aria-hidden="true"></i>
-                            Add
-                            To
-                            Wish List</a>
 
                     </div>
                 </form>

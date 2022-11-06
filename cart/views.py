@@ -2,16 +2,20 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 
-from cart.cart import Cart
-from cart.forms import CartAddProductForm
+from business.models import BusinessBranch
+from .cart import Cart
+from .forms import CartAddProductForm
+from .session_info import SessionInfo
 from products.models import Product
 
 
 @require_POST
-def cart_add(request, product_id):
+def cart_add(request, product_id, branch_id=None):
     cart = Cart(request)
+    session = SessionInfo(request)
     product = get_object_or_404(Product, id=product_id)
     form = CartAddProductForm(request.POST)
     if form.is_valid():
@@ -21,10 +25,11 @@ def cart_add(request, product_id):
             quantity=cd['quantity'],
             override_quantity=cd['override']
         )
-    else:
-        print("VALIDATION ERROR")
+    # add current branch to session if if on update to allow redirect to the last shop products list
+    if branch_id:
+        session.add({'branch': branch_id})
     # cart.remove(product)
-    return redirect('cart:cart_detail')
+    return redirect('cart:view_cart_detail')
 
 
 def cart_remove(request, product_id):
@@ -45,8 +50,36 @@ def process_cart_detail(request):
     return redirect("shop:product_list")
 
 
+def resume_shop(request):
+    session = SessionInfo(request)
+    branch_id = session.pop("branch")
+    if branch_id:
+        branch = get_object_or_404(BusinessBranch, id=branch_id)
+        return redirect(reverse(
+            'shop:product_list',
+            args=[
+                branch.business.slug,
+                branch.slug,
+
+            ]
+        ))
+    else:
+        return redirect("products:products_list")
+
+
+
 def view_detailed(request):
-    return render(request, 'cart/detailed.html')
+    cart = Cart(request)
+    # branch_id = cart.getExtra("branch")
+    # if branch_id:
+    #     branch = get_object_or_404(BusinessBranch, id=branch_id)
+
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={
+            'quantity': item['quantity'],
+            'override': True
+        })
+    return render(request, 'farm/cart/detail.html')
 
 
 def shipping_details(request):
@@ -75,4 +108,3 @@ def shipping_details(request):
             # 'bread_crumb': bread_crumb
         }
     )
-
