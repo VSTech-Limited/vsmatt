@@ -28,6 +28,8 @@ def products_view(request, category_slug=None):
 def search(request):
     products = Product.objects.all()
     businesses = BusinessBranch.objects.filter(is_approved=True)
+    product = ""
+    business = ""
     if request.method == 'POST':
         product = request.POST.get('productSearch')
         business = request.POST.get('businessSearch')
@@ -40,6 +42,7 @@ def search(request):
     context = {
         'products': products,
         'businesses': businesses,
+        'query':f"Search Results for {'business' if business else 'product'}: \"{product if product else ''} {business if business else ''}\""
     }
     return render(request, 'farm/products/index.html', context)
 

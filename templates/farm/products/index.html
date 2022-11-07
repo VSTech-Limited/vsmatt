@@ -9,6 +9,11 @@
 
     <div class="container">
       <div class="row justify-content-center g-0">
+        {% if query %}
+        <div class="col-lg-6 text-center mx-auto">
+          <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">{{ query }}</h5>
+        </div>  
+        {% else %}
         <div class="col-xl-9">
           <div class="col-lg-6 text-center mx-auto mb-3 mb-md-5 mt-4">
             <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">How does it work</h5>
@@ -44,6 +49,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
     </div><!-- end of .container-->
 

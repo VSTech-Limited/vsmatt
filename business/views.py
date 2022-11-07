@@ -164,8 +164,14 @@ def own_businesses_list(request):
 
 @login_required
 def own_business_detailed(request, business_slug):
-    business = get_object_or_404(BusinessProfile, slug=business_slug)
+    business = get_object_or_404(BusinessProfile, slug=business_slug, owner=request.user)
     return render(request, "farm/business_detailed.html", {'business': business})
+    
+@login_required
+def orders(request):
+    businesses = BusinessProfile.objects.filter(owner=request.user)
+    branches = BusinessBranch.objects.filter(business__in=businesses)
+    return render(request, "farm/orders.html", {'businesses': businesses, 'branches':branches})
 
 
 def own_business_branch_detailed(request, business_slug, branch_slug):

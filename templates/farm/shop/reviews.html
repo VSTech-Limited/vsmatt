@@ -1,0 +1,58 @@
+{% extends "farm/products/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} {{business}} - {{branch}}{% endblock %}
+{% block content %}
+{% include 'partials/shop/css.html' %}
+{% include 'partials/shop/nav.html' %}
+{% include 'partials/shop/top-bar.html' %}
+
+<div class="container">
+    <h1 >Reviews</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            {% for review in branch.reviews.all %}
+            <div class="col-md-12">
+                <h4 class="mb-4">{{forloop.counter}}</h4>
+                <div class="media mb-4">
+                    <img src="{% if review.user.profile.image %} {{review.user.userprofile.image.url}} {% else %} {% static 'img/avatardefault.png' %} {% endif %}"
+                        alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                    <div class="media-body">
+                        <h6>
+                            {{review.user.get_full_name}}<small> - <i>
+                                    {{review.updated|date:"d M Y"}}</i></small>
+                        </h6>
+                        <div class="text-primary mb-2">
+                            {% for _ in review.iter_full_stars %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for _ in review.iter_empty_stars %}
+                            <i class="far fa-star"></i>
+                            {% endfor %}
+                        </div>
+                        <p>
+                            {{review.review}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <div class="col-lg-12">
+            <h3 class="text-center">
+                Drop your review
+            </h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary">Submitt</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+{% include 'partials/shop/js.html' %}
+{% endblock %}

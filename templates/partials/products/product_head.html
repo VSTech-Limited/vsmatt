@@ -11,7 +11,6 @@
                 <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Looking for product?</h1>
                 <h1 class="text-800 mb-5 fs-4">Within a few clicks, find all you need<br
                         class="d-none d-xxl-block" />from you nearest provider.</h1>
-                
                         <div class="card w-xxl-75">
                             <div class="card-body">
                               <nav>
@@ -22,11 +21,12 @@
                               </nav>
                               <div class="tab-content mt-3" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                  <form class="row gx-2 gy-2 align-items-center">
+                                  <form class="row gx-2 gy-2 align-items-center" method="post" action="{% url 'products:search' %}">
+                                    {% csrf_token %}
                                     <div class="col">
-                                      <div class="input-group-icon"><svg class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg><!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
+                                      <div class="input-group-icon"><i class="fa fa-search fa-w-12 text-danger input-box-icon" aria-hidden="true"></i>
                                         <label class="visually-hidden" for="inputDelivery">Product</label>
-                                        <input class="form-control input-box form-foodwagon-control" id="inputDelivery" type="text" placeholder="Find a product">
+                                        <input class="form-control input-box form-foodwagon-control" id="productSearch" name="productSearch" type="text" placeholder="Find a product">
                                       </div>
                                     </div>
                                     <div class="d-grid gap-3 col-sm-auto">
@@ -35,11 +35,12 @@
                                   </form>
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                  <form class="row gx-4 gy-2 align-items-center">
+                                  <form class="row gx-4 gy-2 align-items-center" method="post" action="{% url 'products:search' %}">
+                                    {% csrf_token %}
                                     <div class="col">
-                                      <div class="input-group-icon"><svg class="svg-inline--fa fa-map-marker-alt fa-w-12 text-danger input-box-icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg><!-- <i class="fas fa-map-marker-alt text-danger input-box-icon"></i> Font Awesome fontawesome.com -->
+                                      <div class="input-group-icon"><i class="fa fa-search fa-w-12 text-danger input-box-icon" aria-hidden="true"></i>
                                         <label class="visually-hidden" for="inputPickup">Business</label>
-                                        <input class="form-control input-box form-foodwagon-control" id="inputPickup" type="text" placeholder="Find a business">
+                                        <input class="form-control input-box form-foodwagon-control" id="businessSearch" name="businessSearch" type="text" placeholder="Find a business">
                                       </div>
                                     </div>
                                     <div class="d-grid gap-3 col-sm-auto">

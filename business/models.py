@@ -158,6 +158,10 @@ class BranchReview(models.Model):
     def iter_empty_stars(self) -> range:
         return range(len(self.iter_full_stars()), 5)
 
+    
+    def __str__(self) -> str:
+        return f"{self.user.get_full_name()}'s review"
+
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)

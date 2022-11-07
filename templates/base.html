@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +33,7 @@
     {% endblock %}
     {% include 'partials/footer.html' %}
     {% include 'partials/js.html' %}
+    {% static 'jquery.js' %}
     {% block mapdependancies %}
 
     {% endblock %}
