@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3dxpn&!736o$(pbypmhr4hnd$gftc&%+n2iinx-3h%7@+&0zd2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -114,11 +114,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT'),
+            'NAME': os.getenv('AZURE_POSTGRESQL_NAME'),
+            'USER': os.getenv('AZURE_POSTGRESQL_USER'),
+            'PASSWORD': os.getenv('AZURE_POSTGRESQL_PASSWORD'),
+            'HOST': os.getenv('AZURE_POSTGRESQL_HOST'),
+            'PORT': '5432',
             'OPTIONS': {
                 'sslmode': 'require',
             }

@@ -105,17 +105,24 @@
                             Information</button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#review"
+                            type="button" role="tab" aria-controls="review"
+                            aria-selected="false">Reviews({{business.reviews}})</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
                             type="button" role="tab" aria-controls="contact"
-                            aria-selected="false">Reviews({{business.reviews}})</button>
+                            aria-selected="false">Contants({{business.contacts.all | length}})</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        {{business.description}}</div>
+                        {{business.description}}
+                    </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        {{business.additional_info}}</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        {{business.additional_info}}
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="contact-tab">
 
                         {% if business.reviews %}
                         <div class="row">
@@ -156,7 +163,27 @@
                         {% endif %}
 
                     </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
+                        {% if business.contacts.all %}
+                        <div class="row">
+                            {% for contact in business.contacts.all %}
+                            <div class="col-lg-12">
+                                <h4 class="mb-4">Contact for {{business}}</h4>
+                                <div class="media mb-4">
+                                    <div class="media-body">
+                                        <h6>{{contact.user.get_full_name}}-{{contact.created_at}}<small><i>{{contact.phone_number}}</i></small></h6>
+                                        <p>{{contact.email}}</p>
+                                        <p>{{contact.message}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            No Contacts yet
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <!-- end tabs -->
