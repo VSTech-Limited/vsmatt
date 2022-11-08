@@ -146,7 +146,7 @@ class BranchReview(models.Model):
     business = models.ForeignKey(BusinessBranch, related_name="reviews", on_delete=models.CASCADE)
     rating = models.IntegerField(
         choices=RATING_CHOICES,
-        default=4
+        default=5
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

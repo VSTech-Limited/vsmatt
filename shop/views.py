@@ -18,11 +18,13 @@ def index(request, business_slug, branch_slug):
     business = get_object_or_404(BusinessProfile, slug=business_slug)
     branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
     products = branch.products.all()
+    c_products = branch.products.all()[:3]
     categories = ProductCategory.objects.filter(product__in=products)
     context = {
         'business': business,
         'branch': branch,
-        'categories': categories
+        'categories': categories,
+        'c_products': c_products
     }
     return render(request, "farm/shop/index.html", context)
 
