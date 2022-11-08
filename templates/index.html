@@ -12,45 +12,45 @@
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-<script >
+<script>
   var businessesList = [];
   //var location = [];
   var productsList = [];
   function getData(url) {
     $.ajax({
-        url: url,
-        method: 'GET',
-        success: (categories, status, resp) => {
-            for (const category of categories) {
-                const markerIcon = category['marker'];
-                const businesses = category['businesses'];
-                for (const business of businesses) {
-                  if(businessesList.indexOf(business['name']) == -1){
-                    businessesList.push(business['name']);
-                    //console.log(business['name']);
-                  } 
-                  
-                  const products = business['products'];
-                  for (const product of products) {
-                    //console.log(product['name']);
-                    productsList.push(product['name']);
-                  }              
-                }
-                
+      url: url,
+      method: 'GET',
+      success: (categories, status, resp) => {
+        for (const category of categories) {
+          const markerIcon = category['marker'];
+          const businesses = category['businesses'];
+          for (const business of businesses) {
+            if (businessesList.indexOf(business['name']) == -1) {
+              businessesList.push(business['name']);
+              //console.log(business['name']);
             }
-        },
-        error: (data, status, resp) => {
-            console.log(result.status);
+
+            const products = business['products'];
+            for (const product of products) {
+              //console.log(product['name']);
+              productsList.push(product['name']);
+            }
+          }
+
         }
+      },
+      error: (data, status, resp) => {
+        console.log(result.status);
+      }
 
     });
-}
- $(document).ready(function() {
+  }
+  $(document).ready(function () {
     getData('/api/category/');
-    $( "#productSearch" ).autocomplete({
+    $("#productSearch").autocomplete({
       source: productsList
     });
-    $( "#businessSearch" ).autocomplete({
+    $("#businessSearch").autocomplete({
       source: businessesList
     });
   });

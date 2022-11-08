@@ -26,6 +26,7 @@ def index(request, business_slug, branch_slug):
     }
     return render(request, "farm/shop/index.html", context)
 
+
 def reviews(request, business_slug, branch_slug):
     form = BranchReviewForm()
     business = get_object_or_404(BusinessProfile, slug=business_slug)
@@ -84,6 +85,8 @@ def products_list(request, business_slug, branch_slug, category_slug=None):
 
 
 def contact(request, business_slug, branch_slug):
+    # todo, the map should be rendered at exact base location of the business.The contact information
+    #  bellow map should also be dynamic and accurate
     form = ContactForm()
     business = get_object_or_404(BusinessProfile, slug=business_slug)
     branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
@@ -111,3 +114,9 @@ def contact(request, business_slug, branch_slug):
         'categories': categories
     }
     return render(request, 'farm/shop/contact.html', context)
+
+
+def sort(request):
+    rating = request.GET.get("rating")
+    popular = request.GET.get("popular")
+    latest = request.GET.get("latest")
