@@ -21,7 +21,7 @@
         <div class="col-md-5 card p-5 me-2">
             <form autocomplete="off" action="">
                 <div class="autocomplete" style="width:300px; position: relative; display: inline-block;">
-                    <input id="myInput" type="text" name="myCountry" placeholder="location">
+                    <input id="locationSearch" type="text" name="locationSearch" placeholder="Location">
                 </div>
                 <button type="button" class="btn btn-md btn-info" id="ok">Ok</button>
             </form>
@@ -207,11 +207,7 @@
 {% block mapdependancies %}
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{% static 'js/auto.js' %}"></script>
-<script>
-    autocomplete(document.getElementById("myInput"), countries);
-</script>
 
 {% endblock %}
 
