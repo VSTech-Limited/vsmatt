@@ -12,7 +12,7 @@ class BusinessSerializer(serializers.ModelSerializer):
 class ProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['name', 'slug', 'price', 'rating', 'image', 'updated']
+        fields = ['name', 'slug', 'price', 'image', 'updated']
 
 
 class BusinessBranchSerializer(serializers.ModelSerializer):
