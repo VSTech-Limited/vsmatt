@@ -14,6 +14,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <script>
   var businessesList = [];
+  var businessSlug = []
   //var location = [];
   var productsList = [];
   function getData(url) {
@@ -27,6 +28,7 @@
           for (const business of businesses) {
             if (businessesList.indexOf(business['name']) == -1) {
               businessesList.push(business['name']);
+              businessSlug.push(business['slug'])
               //console.log(business['name']);
             }
 
@@ -54,6 +56,10 @@
       source: businessesList
     });
   });
+</script>
+
+<script>
+ 
 </script>
 
 {% endblock %}

@@ -14,12 +14,14 @@ class ProductsSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['name', 'slug', 'price', 'rating', 'image', 'updated']
 
+
 class BusinessBranchSerializer(serializers.ModelSerializer):
     products = ProductsSerializer(many=True, read_only=True)
     business = BusinessSerializer(read_only=True)
+
     class Meta:
         model = BusinessBranch
-        fields = ['name', 'slug', 'business','products', 'latitude', 'longitude', 'address', 'customer_service_number']
+        fields = ['name', 'slug', 'business', 'products', 'latitude', 'longitude', 'address', 'customer_service_number']
 
 
 class BusinessCategorySerializer(serializers.ModelSerializer):
@@ -28,3 +30,21 @@ class BusinessCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = BusinessCategory
         fields = ['title', 'slug', 'marker', 'businesses']
+
+
+# has no businesses
+class BusinessCategoryMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusinessCategory
+        fields = ['title', 'slug', 'marker']
+
+
+class BusinessBranchSerializerWithCategory(serializers.ModelSerializer):
+    products = ProductsSerializer(many=True, read_only=True)
+    business = BusinessSerializer(read_only=True)
+    category = BusinessCategoryMiniSerializer()
+
+    class Meta:
+        model = BusinessBranch
+        fields = ['name', 'slug', 'business', 'category', 'products', 'latitude', 'longitude', 'address',
+                  'customer_service_number']

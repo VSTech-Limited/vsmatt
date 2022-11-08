@@ -1,4 +1,5 @@
 let map, infoWindow;
+var intervalId;
 let markersArray = [];
 var business_category_slug = ""
 var product_cartegory_slug = ""
@@ -98,7 +99,7 @@ function myMap() {
                 break;
         }
     }
-    setInterval(() => {
+    intervalId = setInterval(() => {
         getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
     },
         5000);
@@ -131,31 +132,7 @@ function getLiveData(map, url) {
 
     });
 }
-function placeBusinessMarkers(map, lat, lng, markerIcon, business) {
-    let position = new google.maps.LatLng(lat, lng)
-    var marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        title: business['name'],
-        animation: google.maps.Animation.BOUNCE,
-        icon: { url: markerIcon, scaledSize: new google.maps.Size(50, 50) },
-    });
-    //add listener on marker
-    google.maps.event.addListener(marker, 'click', (event) => {
-        map.setCenter(position);
-        map.setZoom(12)
-        let info = new google.maps.InfoWindow({
-            content: `${business['name']} ${business['address']} ${business['category']}`
-        });
-        //add listener on info window
-        google.maps.event.addListener(info, 'click', (event) => {
-            alert("yes yes");
-        });
 
-        info.open(map, marker);
-    });
-    markersArray.push(marker)
-}
 
 function placeBusinessMarkers(map, markerIcon, business) {
     const lat = business['latitude'];
@@ -192,6 +169,16 @@ function placeBusinessMarkers(map, markerIcon, business) {
     markersArray.push(marker)
 }
 
+function placeAndZoom(map, icon, business) {
+    placeBusinessMarkers(map, icon, business);
+    const lat = business['latitude'];
+    const lng = business['longitude'];
+    const position = new google.maps.LatLng(lat, lng);
+    map.setCenter(position);
+    map.setZoom(16)
+    
+}
+
 function getBusinessCartegorySlug(slug) {
     business_category_slug = slug;
     if (slug.length > 0)
@@ -207,6 +194,34 @@ function getProductCartegorySlug(slug) {
     getLiveData(map, `http://127.0.0.1:8000/api/category/${business_category_slug}`);
 
 }
+
+function getBusinessDetail(map, url) {
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: (business, status, resp) => {
+            clearOverlays()
+            const markerIcon = business['category']['marker'];
+            placeAndZoom(map, markerIcon, business);
+        },
+        error: (data, status, resp) => {
+            console.log(result.status);
+        }
+
+    });
+}
+
+document.getElementById('businessSearch').addEventListener('keypress', function (event) {
+    if (event.code == 'Enter') {
+        event.preventDefault();
+        clearInterval(intervalId)
+        const index = businessesList.indexOf(document.getElementById('businessSearch').value);
+        product_cartegory_slug = "";
+        business_category_slug = "";
+        const slug = businessSlug[index];
+        getBusinessDetail(map, `http://127.0.0.1:8000/api/category/${slug}`)
+    }
+});
 
 /*
 function getLiveData(map, url) {
