@@ -146,7 +146,7 @@ class BranchReview(models.Model):
     business = models.ForeignKey(BusinessBranch, related_name="reviews", on_delete=models.CASCADE)
     rating = models.IntegerField(
         choices=RATING_CHOICES,
-        default=4
+        default=5
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -157,6 +157,10 @@ class BranchReview(models.Model):
 
     def iter_empty_stars(self) -> range:
         return range(len(self.iter_full_stars()), 5)
+
+    
+    def __str__(self) -> str:
+        return f"{self.user.get_full_name()}'s review"
 
 
 class Contact(models.Model):

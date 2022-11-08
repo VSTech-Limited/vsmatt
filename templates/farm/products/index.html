@@ -9,6 +9,11 @@
 
     <div class="container">
       <div class="row justify-content-center g-0">
+        {% if query %}
+        <div class="col-lg-6 text-center mx-auto">
+          <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">{{ query }}</h5>
+        </div>  
+        {% else %}
         <div class="col-xl-9">
           <div class="col-lg-6 text-center mx-auto mb-3 mb-md-5 mt-4">
             <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">How does it work</h5>
@@ -44,6 +49,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
     </div><!-- end of .container-->
 
@@ -115,10 +121,9 @@
               <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" style="max-width: 300px;max-height: 300px;"
                   src="{% if business.image %}{{business.image.url}}{% else %}{% static 'img/elements/3.jpg' %}{% endif %}" alt="{{business}}" title="{{business}}"/>
                 <a href="{{business.get_absolute_url}}" class="text-white">
-                  <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
-                        class="fas fa-tag me-2 fs-0"></i><span class="fs-0">Location</span></span><span
+                  <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0"><small>{{business.address}}</small></span></span><span
                       class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
-                        class="fs-0">{{business.category}}</span></span>
+                        class="fs-0"><small>{{business.category}}</small></span></span>
                   </div>
                 </a>
                 <div class="card-body ps-0">

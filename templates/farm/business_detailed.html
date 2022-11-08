@@ -148,9 +148,7 @@
                                             <small class="far fa-star text-primary mr-1"></small>
                                             {% endfor %}
                                         </div>
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam
-                                            ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
-                                            ipsum.</p>
+                                        <p>{{review.review}}.</p>
                                     </div>
                                 </div>
                             </div>
@@ -164,12 +162,11 @@
 
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
                         {% if business.contacts.all %}
                         <div class="row">
                             {% for contact in business.contacts.all %}
                             <div class="col-lg-12">
-                                <h4 class="mb-4">Contact for {{business}}</h4>
+                                <h4 class="mb-4">Message from {{contact.name}}</h4>
                                 <div class="media mb-4">
                                     <div class="media-body">
                                         <h6>{{contact.user.get_full_name}}-{{contact.created_at}}<small><i>{{contact.phone_number}}</i></small></h6>

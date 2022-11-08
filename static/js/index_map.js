@@ -175,7 +175,7 @@ function placeBusinessMarkers(map, markerIcon, business) {
     //add listener on marker
     google.maps.event.addListener(marker, 'click', (event) => {
         map.setCenter(position);
-        map.setZoom(12)
+        map.setZoom(16)
         let info = new google.maps.InfoWindow({
             content: `<a href="${page}">
             Name: <b>${name}</b> <br/>

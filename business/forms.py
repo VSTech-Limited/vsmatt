@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import BusinessProfile, BusinessBranch, Contact
+from .models import BranchReview, BusinessProfile, BusinessBranch, Contact
 
 
 class BusinessRegistrationForm(forms.ModelForm):
@@ -51,3 +51,9 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = "__all__"
         exclude = ('is_addressed','business')
+
+
+class BranchReviewForm(forms.ModelForm):
+    class Meta:
+        model = BranchReview
+        fields = ('rating', "review")

@@ -5,7 +5,6 @@ from django.db import models
 # Create your models here.
 from products.models import Product
 
-
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
     created = models.DateTimeField(auto_now_add=True)

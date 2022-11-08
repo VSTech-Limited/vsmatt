@@ -7,7 +7,9 @@ from django.urls import reverse
 from business.forms import ContactForm
 from products.forms import ReviewForm
 from cart.forms import CartAddProductForm
+from business.forms import BranchReviewForm
 # Create your views here.
+from django.contrib import messages
 from business.models import BusinessBranch, BusinessProfile
 from products.models import Product, ProductCategory
 
@@ -16,13 +18,37 @@ def index(request, business_slug, branch_slug):
     business = get_object_or_404(BusinessProfile, slug=business_slug)
     branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
     products = branch.products.all()
+    c_products = branch.products.all()[:3]
     categories = ProductCategory.objects.filter(product__in=products)
     context = {
         'business': business,
         'branch': branch,
-        'categories': categories
+        'categories': categories,
+        'c_products': c_products
     }
     return render(request, "farm/shop/index.html", context)
+
+def reviews(request, business_slug, branch_slug):
+    form = BranchReviewForm()
+    business = get_object_or_404(BusinessProfile, slug=business_slug)
+    branch = get_object_or_404(BusinessBranch, slug=branch_slug, business=business)
+    products = branch.products.all()
+    categories = ProductCategory.objects.filter(product__in=products)
+    if request.method == 'POST':
+        form = BranchReviewForm(request.POST)
+        if form.is_valid():
+            new_review = form.save(commit=False)
+            new_review.user = request.user
+            new_review.business = branch
+            new_review.save()
+            messages.success(request, "Review dropped successfully!!")
+    context = {
+        'business': business,
+        'branch': branch,
+        'categories': categories,
+        'form': form
+    }
+    return render(request, "farm/shop/reviews.html", context)
 
 
 def product_detailed(request, business_slug, branch_slug, product_slug):
