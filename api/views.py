@@ -2,9 +2,10 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from business.models import BusinessProfile, BusinessCategory
+from business.models import BusinessProfile, BusinessCategory, BusinessBranch
 from products.models import ProductCategory
-from .serializers.busineness_by_cartegory_serialisers import BusinessCategorySerializer
+from .serializers.busineness_by_cartegory_serialisers import BusinessCategorySerializer, BusinessBranchSerializer, \
+    BusinessBranchSerializerWithCategory
 from .serializers.serializers import BusinessSerializer
 
 
@@ -27,6 +28,13 @@ class BusinessByCategoryView(APIView):
         if business_category_slug:
             categories = BusinessCategory.objects.filter(slug=business_category_slug)
         serializer = BusinessCategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
+
+class BranchDetailedView(APIView):
+    def get(self, request, branch_slug):
+        branch = get_object_or_404(BusinessBranch, slug=branch_slug)
+        serializer = BusinessBranchSerializerWithCategory(branch, many=False)
         return Response(serializer.data)
 
 

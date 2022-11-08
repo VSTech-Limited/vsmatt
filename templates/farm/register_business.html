@@ -21,9 +21,8 @@
         <div class="col-md-5 card p-5 me-2">
             <form autocomplete="off" action="">
                 <div class="autocomplete" style="width:300px; position: relative; display: inline-block;">
-                    <input id="myInput" type="text" name="myCountry" placeholder="location">
+                    <input id="locationSearch" type="text" name="locationSearch" placeholder="Location">
                 </div>
-                <button type="button" class="btn btn-md btn-info" id="ok">Ok</button>
             </form>
             <!-- <input type="search" id="place-search-input" placeholder="Start Searching..." /> -->
             <div id="googleMap" style="width:100%;height:100%;"></div>
@@ -31,8 +30,13 @@
     </div>
 </div>
 <script>
-    let map, infoWindow;
-
+    var map, infoWindow, markersArray=[];
+    function clearOverlays() {
+        for (var i = 0; i < markersArray.length; i++) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
     function myMap() {
         let vstecPosition = new google.maps.LatLng(-1.1139084362152138, 37.0106327842076)
         let mapOptions = {
@@ -57,6 +61,7 @@
             draggable: true,
             icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
         });
+        markersArray.push(vstecMarker)
         google.maps.event.addListener(vstecMarker, "drag", (e) => {
             lat.value = e.latLng.lat()
             lng.value = e.latLng.lng()
@@ -103,9 +108,10 @@
         locationButton.textContent = "Find my location";
         locationButton.className = "custom-map-control-button btn btn-light my-2 shadow-lg";
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-        let currentPositionMarker
+        let currentPositionMarker;
+        
         locationButton.addEventListener('click', () => {
-            vstecMarker.setMap(null);
+            clearOverlays()
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
@@ -124,6 +130,7 @@
                                 icon: { url: "{% static 'markers/7.png' %}", scaledSize: new google.maps.Size(70, 70) },
                                 draggable: true
                             });
+                            markersArray.push(currentPositionMarker);
                         }
 
                         google.maps.event.addListener(currentPositionMarker, "drag", (e) => {
@@ -171,6 +178,7 @@
             draggable: true,
             icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
         });
+        markersArray.push(placeMarker)
         ok.addEventListener('click', () => {
 
             $.getJSON(
@@ -201,16 +209,24 @@
         });
 
     }
+   
+    
 </script>
 
 
 {% block mapdependancies %}
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{% static 'js/auto.js' %}"></script>
+
 <script>
-    autocomplete(document.getElementById("myInput"), countries);
+    $(document).ready(onReady);
+    $('#locationSearch').on('keypress',function(event){
+        clearOverlays()
+        onEnter(event, map, "{% static 'markers/6.png' %}")
+
+
+    })
 </script>
 
 {% endblock %}

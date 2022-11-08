@@ -3,13 +3,16 @@
     <h3 class="font-weight-light my-4">Get Started, find a location, business or product</h3>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Location</button>
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+          role="tab" aria-controls="home-tab-pane" aria-selected="true">Location</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Business</button>
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+          role="tab" aria-controls="profile-tab-pane" aria-selected="false">Business</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Product</button>
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
+          role="tab" aria-controls="contact-tab-pane" aria-selected="false">Product</button>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -18,67 +21,69 @@
           {% csrf_token %}
           <div class="input-group input-group-merge">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search Location" aria-label="Search Location" aria-describedby="basic-addon-search31">
+            <input type="text" class="form-control" placeholder="Search Location" id="locationSearch" name="locationSearch" aria-label="Search Location"
+              aria-describedby="basic-addon-search31">
           </div>
         </form>
       </div>
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <form action="" method="post">
-          {% csrf_token %}
+        <form>
           <div class="input-group input-group-merge">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search Business" id="businessSearch" name="businessSearch" aria-label="Search Business" aria-describedby="basic-addon-search31">
+            <input type="text" class="form-control" placeholder="Search Business" id="businessSearch"
+              name="businessSearch" aria-label="Search Business" aria-describedby="basic-addon-search31">
           </div>
         </form>
       </div>
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-        <form action="" method="post">
+        <form action="{% url 'products:search' %}" method="post">
           {% csrf_token %}
           <div class="input-group input-group-merge">
             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search Product" id="productSearch" name="productSearch" aria-label="Search Product" aria-describedby="basic-addon-search31">
+            <input type="text" class="form-control" placeholder="Search Product" id="productSearch" name="productSearch"
+              aria-label="Search Product" aria-describedby="basic-addon-search31">
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-<script >
- /* var businessesList = [];
-  //var location = [];
-  var products = [];
-  function getData(url) {
-    $.ajax({
-        url: url,
-        method: 'GET',
-        success: (categories, status, resp) => {
-            for (const category of categories) {
-                const markerIcon = category['marker'];
-                const businesses = category['businesses'];
-                for (const business of businesses) {
-                  businessesList.push(business['business']['name']);
-                  const products = business['products'];
-                  for (const product of products) {
-                    products.push(product['name']);
-                  }
-                }
-            }
-        },
-        error: (data, status, resp) => {
-            console.log(result.status);
-        }
-
-    });
-}
-
- $(document).ready(function() {
-  alert("ready");
-    getData('/api/categories/');
-    $( "#productSearch" ).autocomplete({
-      source: products
-    });
-    $( "#businessSearch" ).autocomplete({
-      source: businessesList
-    });
-  });8*/
+<script>
+  /* var businessesList = [];
+   //var location = [];
+   var products = [];
+   function getData(url) {
+     $.ajax({
+         url: url,
+         method: 'GET',
+         success: (categories, status, resp) => {
+             for (const category of categories) {
+                 const markerIcon = category['marker'];
+                 const businesses = category['businesses'];
+                 for (const business of businesses) {
+                   businessesList.push(business['business']['name']);
+                   const products = business['products'];
+                   for (const product of products) {
+                     products.push(product['name']);
+                   }
+                 }
+             }
+         },
+         error: (data, status, resp) => {
+             console.log(result.status);
+         }
+ 
+     });
+ }
+ 
+  $(document).ready(function() {
+   alert("ready");
+     getData('/api/categories/');
+     $( "#productSearch" ).autocomplete({
+       source: products
+     });
+     $( "#businessSearch" ).autocomplete({
+       source: businessesList
+     });
+   });8*/
 </script>
