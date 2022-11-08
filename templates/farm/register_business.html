@@ -178,6 +178,7 @@
             draggable: true,
             icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
         });
+        markersArray.push(placeMarker)
         ok.addEventListener('click', () => {
 
             $.getJSON(
@@ -221,7 +222,9 @@
 <script>
     $(document).ready(onReady);
     $('#locationSearch').on('keypress',function(event){
-        onEnter(event, map)
+        clearOverlays()
+        onEnter(event, map, "{% static 'markers/6.png' %}")
+
 
     })
 </script>

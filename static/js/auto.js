@@ -80,7 +80,7 @@ function onReady() {
     
 }
 
-function onEnter(event, map) {
+function onEnter(event, map, markerIcon) {
     if (event.code == 'Enter') {
         event.preventDefault();
         const currIndex = places.indexOf($('#locationSearch').val())
@@ -90,15 +90,17 @@ function onEnter(event, map) {
             // alert(coords[currIndex]['geometry']['coordinates'])
             // // alert(map)
             const position = new google.maps.LatLng(lat, lng);
-            placeAndZoom(map, position)
+            placeAndZoom(map, position, markerIcon)
         }
     }
 }
 
-function placeAndZoom(map, position) {
+function placeAndZoom(map, position, markerIcon) {
     new google.maps.Marker({
         position: position,
+        draggable:true,
         map: map,
+        icon: { url: markerIcon, scaledSize: new google.maps.Size(70, 70) },
         animation: google.maps.Animation.BOUNCE,
     });
     map.setCenter(position);
