@@ -96,12 +96,21 @@ function onEnter(event, map, markerIcon) {
 }
 
 function placeAndZoom(map, position, markerIcon) {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
         position: position,
         draggable:true,
         map: map,
         icon: { url: markerIcon, scaledSize: new google.maps.Size(70, 70) },
         animation: google.maps.Animation.BOUNCE,
+    });
+
+    let lat = document.querySelector('#id_latitude');
+    let lng = document.querySelector('#id_longitude');
+    
+    google.maps.event.addListener(marker, "drag", (e) => {
+        lat.value = e.latLng.lat()
+        lng.value = e.latLng.lng()
+
     });
     map.setCenter(position);
     map.setZoom(16);
