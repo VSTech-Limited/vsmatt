@@ -14,5 +14,5 @@ urlpatterns = [
     path('<slug:business_slug>/branch/add/', views.register_branch, name='register_branch'),
     path('own/', views.own_businesses_list, name='own_business_list'),
     path('own/<slug:business_slug>/', views.own_business_detailed, name='own_business_detailed'),
-    path('/orders/', views.orders, name='orders'),
+    path('orders/', views.orders, name='orders'),
 ]
