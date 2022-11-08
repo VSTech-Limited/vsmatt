@@ -26,21 +26,29 @@ var places1 = [
     "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu",
     "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"
 ];
-var places = ['Kenya'];
+var places = [];
 function aheadOfTimeSearch(country) {
     if (country.length > 2) {
         $.getJSON(
             `http://www.mapquestapi.com/search/v3/prediction?key=2dVBKmPmnGAdhlP4AG9HPv7X4dAznIYt&limit=5&collection=adminArea,poi,address,category,franchise,airport&q=${country}`,
             (resp) => {
                 results = resp['results'];
+                places[country] = []
                 for (const result of results) {
-                    const displayString = result['displayString'];
-                    if (places.indexOf(displayString) === -1) {
-                        places.push(displayString);
-                        //console.log(displayString)
-                        // console.log(places)
+                    const s = result['displayString']
+                    if(places.indexOf(s) === -1){
+                        places.push(s)
                     }
+                    /*
+                    places[country].push({
+                        'displayString': result['displayString'],
+                        'name': result['name']
 
+                    })
+                    //console.log(displayString)
+                    // console.log(places)
+
+*/
                 }
             },
         );
@@ -51,14 +59,44 @@ $(document).ready(function () {
     $("#locationSearch").autocomplete({
         //called on input event
         source: (request, response) => {
+            //works for now but inefficient, to be improved later
             const seachLocation = request.term;
             aheadOfTimeSearch(seachLocation)
-            //console.log(places);
-            return places1
+            const p = places.filter(function(place){
+                const lowerp = place.toLowerCase()
+                return lowerp.includes(seachLocation.toLowerCase())
+            })
+            response(p);
+            /*
+            //checks if location had already been queried before reducing server calls
+            if (seachLocation in places) {
+                const p = places[seachLocation]
+                .map(function(place){
+                    //console.log(place)
+                    return place['displayString'];
+                })
+                response(p);
+                return;
+            }
+            aheadOfTimeSearch(seachLocation)
+            //check after update if thee exist search place in result
+            if(seachLocation in places){
+                const p = places[seachLocation]
+                .map(function(place){
+                    return place['displayString'];
+                })
+                response(p);
+                return;
+            }
+            // response(places);
+            // console.log(places);
+            //response(places)
+            // return places1
+            */
         },
         minLength: 2,
         autofocus: true,
-        delay: 500,
+        // delay: 500,
     });
 });
 
