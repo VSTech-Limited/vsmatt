@@ -65,9 +65,7 @@
         google.maps.event.addListener(vstecMarker, "drag", (e) => {
             lat.value = e.latLng.lat()
             lng.value = e.latLng.lng()
-
         });
-
         let infoWindow = new google.maps.InfoWindow();
         let lat = document.querySelector('#id_latitude');
         // lat.addEventListener('click', () => { alert("Clicked") });
@@ -207,7 +205,6 @@
             //TODO ADD THE MAKER HERE
 
         });
-
     }
    
     
@@ -224,8 +221,6 @@
     $('#locationSearch').on('keypress',function(event){
         clearOverlays()
         onEnter(event, map, "{% static 'markers/6.png' %}")
-
-
     })
 </script>
 

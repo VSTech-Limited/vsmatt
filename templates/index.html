@@ -17,6 +17,37 @@
   var businessSlug = []
   //var location = [];
   var productsList = [];
+  var places = [];
+  var coords = [];
+  function aheadOfTimeSearch(country) {
+    if (country.length > 2) {
+      $.getJSON(
+        `http://www.mapquestapi.com/search/v3/prediction?key=2dVBKmPmnGAdhlP4AG9HPv7X4dAznIYt&limit=5&collection=adminArea,poi,address,category,franchise,airport&q=${country}`,
+        (resp) => {
+          results = resp['results'];
+          places[country] = []
+          for (const result of results) {
+            const s = result['displayString']
+            const c = result['place']
+            if (places.indexOf(s) === -1 && c) {
+              places.push(s);
+              coords.push(c)
+            }
+            /*
+            places[country].push({
+                'displayString': result['displayString'],
+                'name': result['name']
+
+            })
+            //console.log(displayString)
+            // console.log(places)
+
+*/
+          }
+        },
+      );
+    }
+  }
   function getData(url) {
     $.ajax({
       url: url,
@@ -47,6 +78,34 @@
 
     });
   }
+  function placeAndZoom(map, position, markerIcon) {
+    const marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      icon: { url: markerIcon, scaledSize: new google.maps.Size(70, 70) },
+      animation: google.maps.Animation.BOUNCE,
+    });
+
+    map.setCenter(position);
+    map.setZoom(16);
+
+  }
+  function onEnter(event, map, markerIcon) {
+    if (event.code == 'Enter') {
+      event.preventDefault();
+      const currIndex = places.indexOf($('#locationSearch').val())
+      if (currIndex !== -1) {
+        const lng = coords[currIndex]['geometry']['coordinates'][0]
+        const lat = coords[currIndex]['geometry']['coordinates'][1]
+        // alert(coords[currIndex]['geometry']['coordinates'])
+        // // alert(map)
+        const position = new google.maps.LatLng(lat, lng);
+        placeAndZoom(map, position, markerIcon)
+      }
+    }
+  }
+
+
   $(document).ready(function () {
     getData('/api/category/');
     $("#productSearch").autocomplete({
@@ -55,6 +114,26 @@
     $("#businessSearch").autocomplete({
       source: businessesList
     });
+    $('#locationSearch').on('keypress', function (event) {
+      clearOverlays()
+      onEnter(event, map, "{% static 'markers/6.png' %}")
+    });
+    $("#locationSearch").autocomplete({
+      //called on input event
+      source: (request, response) => {
+        //works for now but inefficient, to be improved later
+        const seachLocation = request.term;
+        aheadOfTimeSearch(seachLocation)
+        const p = places.filter(function (place) {
+          const lowerp = place.toLowerCase()
+          return lowerp.includes(seachLocation.toLowerCase())
+        })
+        response(p);
+      },
+      minLength: 2,
+      autofocus: true,
+    });
+    
   });
 </script>
 
