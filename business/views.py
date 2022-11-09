@@ -147,7 +147,6 @@ def update_branch(request, business_slug, branch_slug):
                       f" {location.admin_area5 if not location.admin_area4 else ''} " \
                       f"{location.admin_area4} {location.postal_code}"
             new_branch.address = address
-            print(f"{new_branch.business.owner.id=}")
             new_branch.save()
             new_branch.slug = f"{slugify(cd['name'])}-{new_branch.id}"
             new_branch.save()

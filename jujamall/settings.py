@@ -29,7 +29,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '*.azurewebsites.net',
-    'jujamall.azurewebsites.net',
     '*.vstech.live',
 ]
 

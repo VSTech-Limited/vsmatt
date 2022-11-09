@@ -125,7 +125,7 @@
                             currentPositionMarker = new google.maps.Marker({
                                 position: pos,
                                 map: map,
-                                icon: { url: "{% static 'markers/7.png' %}", scaledSize: new google.maps.Size(70, 70) },
+                                icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(50, 50) },
                                 draggable: true
                             });
                             markersArray.push(currentPositionMarker);
@@ -174,7 +174,7 @@
         let place = document.querySelector("#myInput");
         let placeMarker = new google.maps.Marker({
             draggable: true,
-            icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(70, 70) },
+            icon: { url: "{% static 'markers/6.png' %}", scaledSize: new google.maps.Size(50, 50) },
         });
         markersArray.push(placeMarker)
         ok.addEventListener('click', () => {

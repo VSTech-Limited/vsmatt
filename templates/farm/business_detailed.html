@@ -44,7 +44,7 @@
                         {% if business %}
                         {% for branch in business.branch.all %}
                         <tr>
-                            <td><a href="{{branch.get_absolute_url}}">{{branch.name}}</a></td>
+                            <td><a href="{{branch.get_absolute_url}}">{{branch}}</a></td>
                             <td>
                                 {% if branch.is_approved %}
                                 <span class="badge bg-label-success me-1">Approved</span>
