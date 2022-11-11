@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Language, Tag, JujaMall, Team
+from .models import Contact, Language, Tag, VSMatt, Team
 
 
 @admin.register(Contact)
@@ -17,8 +17,8 @@ class TagAdmin(admin.ModelAdmin):
     list_editable = ['slug']
 
 
-@admin.register(JujaMall)
-class JujaMallAdmin(admin.ModelAdmin):
+@admin.register(VSMatt)
+class VSMattAdmin(admin.ModelAdmin):
     list_display = ['title', 'logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',
                     'address']
     list_editable = ['logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',

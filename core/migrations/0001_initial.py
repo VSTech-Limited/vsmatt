@@ -32,11 +32,11 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='JujaMall',
+            name='vsmatt',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
-                ('logo', models.ImageField(blank=True, null=True, upload_to='uploads/jujamall/logo')),
+                ('logo', models.ImageField(blank=True, null=True, upload_to='uploads/vsmatt/logo')),
                 ('about_us', models.TextField(blank=True, null=True)),
                 ('phone_number', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, null=True, region=None)),
                 ('twitter', models.URLField(blank=True, null=True)),

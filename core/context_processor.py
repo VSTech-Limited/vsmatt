@@ -1,5 +1,5 @@
-from .models import JujaMall
+from .models import vsmatt
 
 
-def jujamall(request):
-    return {'jujamall': JujaMall.objects.filter(set_current=True).first()}
+def vsmatt(request):
+    return {'vsmatt': vsmatt.objects.filter(set_current=True).first()}

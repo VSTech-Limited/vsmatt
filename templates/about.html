@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block meta %}
+    <meta name="keywords" content="VSMatt, online shop, e-comerce, all in one shop, eshop, e-shop, all shop">
+    <meta name="description" content="VSMatt is an online shop that allows you to buy and sell products from different shops in one place. It was mainly started by VSTech Limited Organization to help small businesses in managing their products and sales">
+{% endblock %}
 {% block title %}About us{% endblock %}
 {% block content %}
 <!-- About us -->
 {% if vsmatt %}
 <div class="container my-5">
     <h2>{{vsmatt.title}}</h2>
-    <p><span>
-            {{vsmatt.about_us | linebreaks }}
-        </span></p>
+    <p><span>{{vsmatt.about_us | linebreaks }}</span></p>
 </div>
 {% endif %}
 <!-- Meet Team -->
