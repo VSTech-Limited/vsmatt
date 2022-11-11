@@ -98,7 +98,7 @@ class Testimony(models.Model):
 # containes general information
 class JujaMall(models.Model):
     title = models.CharField(max_length=255)
-    logo = models.ImageField(upload_to='uploads/jujamall/logo', blank=True, null=True)
+    logo = models.ImageField(upload_to='uploads/vsmatt/logo', blank=True, null=True)
     about_us = models.TextField(blank=True, null=True)
     phone_number = PhoneNumberField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
