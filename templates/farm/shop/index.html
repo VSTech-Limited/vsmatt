@@ -1,11 +1,14 @@
 {% extends "farm/products/base.html" %}
+{% block meta %}
+    <meta name="keywords" content="vsmatt, {{business}}, {{business}} {{branch}}">
+    <meta name="description" content="{{business.description}}, {{ branch.description }}">
+{% endblock %}
 {% load static %}
-{% block title %} {{business}} - {{branch}}{% endblock %}
+{% block title %}Businesses-  {{business}} - {{branch}}{% endblock %}
 {% block content %}
 {% include 'partials/shop/css.html' %}
 {% include 'partials/shop/nav.html' %}
 {% include 'partials/shop/top-bar.html' %}
-<!-- Carousel Start -->
 <div class="container-fluid mb-3 mt-3">
     <div class="row px-xl-5">
         {% if c_products %}
@@ -60,8 +63,6 @@
         {% endif %}
     </div>
 </div>
-<!-- Carousel End -->
-
 
 <!-- Featured Start -->
 <div class="container-fluid pt-5">
@@ -146,14 +147,12 @@
                     <div class="text-center mt-2">
                         <h5>{% if product.price %}Ksh. {{product.price}}{% else %}Free{% endif %}
                     </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        
+                    <div class="d-flex align-items-center justify-content-center mb-1">                     
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
                             <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                        
+                            <small class="far fa-star text-primary mr-1"></small>                       
                             <small>({{product.reviews.all | length}})</small>
                     </div>
                 </div>
@@ -166,15 +165,11 @@
 </div>
 <!-- Products End -->
 
-<!-- add products from other business or branches -->
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
 </div>
 <!-- Products End -->
-
-<!-- TODO  RENDER THIS DYNAMICALLY -->
-<!-- Vendor Start -->
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
         {% if branch.products.all %}
@@ -194,7 +189,6 @@
         {% endif %}
     </div>
 </div>
-<!-- Vendor End -->
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

@@ -19,32 +19,23 @@
 
 <body>
     <head>
-        <!-- Topbar Start -->
         {% include 'partials/top-bar.html' %}
-        <!-- Topbar End -->
-        <!-- Navbar Start -->
-        <!-- Navbar End -->
-        <!-- {#% include 'nav-bar.html' %#} -->
-        <!-- Breadcrumb Start -->
         {% include 'partials/shop/breadcrumb.html' %}
-        <!-- Breadcrumb End -->
     </head>
     <section>
         <section>
-            <!-- message.tags tell us the type of
-            message i.e., success, info or warning etc -->
             {% if messages %}
-            {% for message in messages %}
-            <div class="container px-5 my-3">
-                <div class="alert alert-{{ message.tags }} alert-sm alert-dismissible fade show custom-alert"
-                    role="alert">
-                    <strong>{{ message }}</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            </div>
-            {% endfor %}
+                {% for message in messages %}
+                    <div class="container px-5 my-3">
+                        <div class="alert alert-{{ message.tags }} alert-sm alert-dismissible fade show custom-alert"
+                            role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
             {% endif %}
         </section>
     </section>

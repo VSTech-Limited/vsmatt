@@ -1,5 +1,9 @@
 {% extends "farm/products/base.html" %}
 {% load crispy_forms_tags %}
+{% block meta %}
+    <meta name="keywords" content="contact, contact {{business}}, {{business}} {{branch}}, {{business}} {{branch}} contact, how to contact {{business}}, {{business}} team">
+    <meta name="description" content="Contact {{business}} through phone number  {{ branch.customer_service_number }}, or our email {{business.owner.email}} or use the form below">
+{% endblock %}
 {% load static %}
 {% block title %} {{business}} - {{branch}} - contact{% endblock %}
 {% block content %}
@@ -18,10 +22,7 @@
                     <form method="post">
                         {{form | crispy}}
                         {% csrf_token %}
-                        <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit">Send
-                                Message</button>
-                        </div>
+                        <div><button class="btn btn-primary py-2 px-4" type="submit">Send Message</button></div>
                     </form>
                 </div>
             </div>
@@ -34,14 +35,14 @@
                 </div>
                 <div class="bg-light p-30 mb-3">
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>
-                        1234 Juja, Kiambu, Kenya
+                        {{business.address}}
                     </p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>
-                        {{business}}@gmail.com
+                        <a href="mailto:{{business.owner.email}}">{{business.owner.email}}</a>
                     </p>
                     <p class="mb-2"><i
                             class="fa fa-phone-alt text-primary mr-3"></i>
-                            +254793889658
+                            {{ branch.customer_service_number }}
                         </p>
                 </div>
             </div>
