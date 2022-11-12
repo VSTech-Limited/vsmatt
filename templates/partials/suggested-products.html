@@ -1,9 +1,9 @@
 {% load static %}
 {% if products %}
 <div class="container-fluid position-absolute">
-    <div class="row">
+    <div class="d-flex flex-nowrap">
     {% for product in products %}
-        <div class="card shadow col-md-3 col-sm-6 col-lg-2 m-2" style="z-index: 10;top: -10rem;" title="{{product}}">
+        <div class="card shadow col-md-4 col-sm-6 col-lg-2 m-2" style="z-index: 10;top: -10rem;" title="{{product}}">
             <div class="row align-items-center">
                 <div class="col-sm-5">
                     <a href="{{ product.get_absolute_url }}"><img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" class="img-fluid m-0 p-0" alt="{{product}}"></a>
