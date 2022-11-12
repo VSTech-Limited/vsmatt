@@ -1,0 +1,22 @@
+{% load static %}
+{% if products %}
+<div class="container-fluid position-absolute">
+    <div class="row">
+    {% for product in products %}
+        <div class="card shadow col-md-3 col-sm-6 col-lg-2 m-2" style="z-index: 10;top: -10rem;" title="{{product}}">
+            <div class="row align-items-center">
+                <div class="col-sm-5">
+                    <a href="{{ product.get_absolute_url }}"><img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" class="img-fluid m-0 p-0" alt="{{product}}"></a>
+                </div>
+                <div class="col-sm-7">
+                    <h5 class="text-muted py-2 m-0"><a href="{{ product.get_absolute_url }}">{{product|truncatechars:15}}</a></h5>
+                    <p class="m-0 pb-2">
+                        <a href="{{product.branch.get_absolute_url}}" class="text-muted">{{product.branch}}</a> - {{product.branch.address}}<br> <a href="{{product.category.get_absolute_url}}" class="text-muted">{{product.category}}</a> <br>Ksh. {{product.price}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}

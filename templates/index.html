@@ -7,10 +7,8 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% include 'partials/base-search.html' %}
-  <div class="container-fluid" id="googleMap" style="min-height: 80vh;">
-
-    
-  </div>
+  <div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
+{% include 'partials/suggested-products.html' %} 
   <script src="{% static 'js/index_map.js' %}"></script>
 {% endblock %}
 {% block mapdependancies %}
