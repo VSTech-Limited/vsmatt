@@ -11,7 +11,7 @@
                 <div class="col-sm-7">
                     <h5 class="text-muted py-2 m-0"><a href="{{ product.get_absolute_url }}">{{product|truncatechars:15}}</a></h5>
                     <p class="m-0 pb-2">
-                        <a href="{{product.branch.get_absolute_url}}" class="text-muted">{{product.branch|truncatechars:8}}</a> - {{product.branch.address|truncatechars:10}}<br> <a href="{{product.category.get_absolute_url}}" class="text-muted">{{product.category|truncatechars:20}}</a> <br>Ksh. {{product.price}}
+                        <a href="{{product.branch.get_absolute_url}}" class="text-muted">{{product.branch|truncatechars:8}}</a> - {{product.branch.address|truncatechars:10}}<br> <a href="{{product.category.get_absolute_url}}" class="text-muted">{{product.category|truncatechars:20}}</a> <br><b>Ksh. {{product.price}}</b>
                     </p>
                 </div>
             </div>
