@@ -12,15 +12,15 @@ Some of the challenges that we are still currently facing is that our system req
 ## Table of Content
 1. [How to install and run the project](#1-how-to-install-and-run-the-project)
 2. [How to use the project](#2-how-to-use-the-project)
-3. [Team Members](#team)
+3. [Team Members](#3-team)
 
 ## 1. How to install and run the project
 
 First clone our project if you wish to run it remotely, and to achieve that change directory to location where you would like it installed e.g. to install it to Desktop and you are in the root directory run `cd Users\<user_name>\Desktop`. Once in the desired folder run `git clone https://github.com/smartjef/vsmatt.git` 
 
-**Note:** You need to have git installed in your machine to use git commands. If you dont kindly visit [url](url) to download and install
+**Note:** You need to have git installed in your machine to use git commands. If you dont kindly visit [https://git-scm.com/downloads](https://git-scm.com/downloads) to download and install
 
-Once you have the project cloned, you can cd into it by running command `cd vsmatt`then create a virtualenvironment by running either `python -m venv <environment_name>` or `virtualenv <environment_name>` and activate the environment.
+Once you have the project cloned, you can cd into it by running command `cd vsmatt` then create a virtualenvironment by running either `python -m venv <environment_name>` or `virtualenv <environment_name>` and activate the environment.
 
 To activate environment run `<environment_name>\Scripts\activate` on windows or `source <environment_name>/bin/activate` on Linux systems. Once your environment is active run `pip install -r requirements.txt` to install requirements for this application.
 
@@ -44,3 +44,15 @@ Quit the server with CTRL-BREAK.
 You can change the port is there is an application already using that port by passing port number as an argument e.g. `python manage.py runserver 80` to start the server at port 80 or you can provide your desired ip address and port number e.g. `python manage.py runserver 192.168.10.1:80`.
 
 Assuming you are using the default visit [127.0.0.1:8000](http://127.0.0.1:8000) to view the application. You can add businesses and product and you can as well login to admin pannel to approve them [127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+
+
+## 3. Team
+The application was designed and build by:
+
+    +-------------------+------------------------------+
+    |       Name        |       Github account         |
+    +-------------------+------------------------------+
+    | 1. Jeff Odhiambo  | https://github.com/smartjef  |
+    +-------------------+------------------------------+
+    | 2. Laurent Ouma   | https://github.com/Omoshlawi |
+    +-------------------+------------------------------+
