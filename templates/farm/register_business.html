@@ -54,7 +54,7 @@
             position: vstecPosition,
             map: map,
             draggable: true,
-            icon: { url: "{% static 'markers/8.png' %}", scaledSize: new google.maps.Size(70, 70) },
+            icon: { url: "{% static 'markers/8.png' %}", scaledSize: new google.maps.Size(50, 50) },
         });
         markersArray.push(vstecMarker)
         google.maps.event.addListener(vstecMarker, "drag", (e) => {
