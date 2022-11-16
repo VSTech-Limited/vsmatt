@@ -196,3 +196,9 @@ ACCOUNT_USERNAME_REQUIRED = True
 # cart
 CART_SESSION_ID = 'cart'
 META_SESSION_ID = 'session_meta'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.azurewebsites.net',
+    'http://*.vstech.live',
+    'https://*.vstech.live',
+]
