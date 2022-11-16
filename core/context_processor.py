@@ -1,5 +1,5 @@
-from .models import VSMatt
+from .models import Vsmatt
 
 
 def vsmatt(request):
-    return {'VSMatt': VSMatt.objects.filter(set_current=True).first()}
+    return {'vsmatt': Vsmatt.objects.filter(set_current=True).first()}

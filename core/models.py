@@ -96,7 +96,7 @@ class Testimony(models.Model):
 
 
 # containes general information
-class VSMatt(models.Model):
+class Vsmatt(models.Model):
     title = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='uploads/VSMatt/logo', blank=True, null=True)
     about_us = models.TextField(blank=True, null=True)
