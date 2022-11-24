@@ -35,7 +35,7 @@ GENDER_CHOICES = (
 def content_file_name(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s_%s.%s" % (instance.user.id, instance.user.first_name, ext)
-    return os.path.join('uploads', 'JujaMall', 'team', "profile", filename)
+    return os.path.join('uploads', 'VSMatt', 'team', "profile", filename)
 
 
 class Team(models.Model):
@@ -96,9 +96,9 @@ class Testimony(models.Model):
 
 
 # containes general information
-class JujaMall(models.Model):
+class Vsmatt(models.Model):
     title = models.CharField(max_length=255)
-    logo = models.ImageField(upload_to='uploads/vsmatt/logo', blank=True, null=True)
+    logo = models.ImageField(upload_to='uploads/jujamall/logo', blank=True, null=True)
     about_us = models.TextField(blank=True, null=True)
     phone_number = PhoneNumberField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)

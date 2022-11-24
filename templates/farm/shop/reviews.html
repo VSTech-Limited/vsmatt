@@ -1,5 +1,9 @@
 {% extends "farm/products/base.html" %}
 {% load crispy_forms_tags %}
+{% block meta %}
+    <meta name="keywords" content="review, review {{business}}, {{business}} {{branch}}, {{business}} {{branch}} review, how to review {{business}}">
+    <meta name="description" content="review {{business}} the form below">
+{% endblock %}
 {% load static %}
 {% block title %} {{business}} - {{branch}}{% endblock %}
 {% block content %}

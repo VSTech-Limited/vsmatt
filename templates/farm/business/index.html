@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% block meta %}
+    <meta name="keywords" content="vsmatt registered businesses, businnesses in vsmatt, vsmatt businesses">
+    <meta name="description" content="There are lots of businesses which have registered with vsmatt, Some of them include {% if businesses %} {% for business in businesses %} {{business}}{% endfor %}{% endif %}">
+{% endblock %}
 {% load static %}
-{% block title %}Businesses {% if categories %}| {{categories }}{% endif %}{% endblock %}
+{% block title %}Businesses {% if categories %}- {{categories }}{% endif %}{% endblock %}
 {% block content %}
 
 

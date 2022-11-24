@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Orders Details{% endblock %}
+{% block title %}{{user}} - Orders Details{% endblock %}
 {% block content %}
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -42,12 +42,7 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Payment Status</h6>
-                        {% if order.paid %}
-                        <span class="text-success">Paid</span>
-                        {% else %}
-                        <span class="text-danger">Pending</span>
-                        {% endif %}
-
+                        {% if order.paid %}<span class="text-success">Paid</span>{% else %}<span class="text-danger">Pending</span>{% endif %}
                     </div>
                 </div>
                 <div class="pt-2">
@@ -56,21 +51,13 @@
                         <h5>Ksh. {{ order.get_total_cost }}</h5>
                     </div>
                     {% if not order.paid %}
-                    <a href=""
-                        class="btn btn-block btn-success font-weight-bold my-3 py-3"><i class="fa fa-credit-card"
-                            aria-hidden="true"></i> Make
-                        Payment</a>
+                        <a href="" class="btn btn-block btn-success font-weight-bold my-3 py-3"><i class="fa fa-credit-card" aria-hidden="true"></i> Make Payment</a>
                     {% endif %}
-                    <a href="{% url 'order:order_invoice' order.id %}"
-                        class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i class="fas fa-file-invoice"
-                            aria-hidden="true"></i> Invoice</a>
+                    <a href="{% url 'order:order_invoice' order.id %}" class="btn btn-block btn-primary font-weight-bold my-3 py-3"><i class="fas fa-file-invoice" aria-hidden="true"></i> Invoice</a>
                     {% if order.get_amount_paid %}
-                    <a href="{% url 'order:order_payment_history' order.id %}"
-                        class="btn btn-block btn-secondary font-weight-bold my-3 py-3"><i class="fas fa-file-invoice"
-                            aria-hidden="true"></i> View Payment History</a>
+                    <a href="{% url 'order:order_payment_history' order.id %}" class="btn btn-block btn-secondary font-weight-bold my-3 py-3"><i class="fas fa-file-invoice" aria-hidden="true"></i> View Payment History</a>
                     {% endif %}
                 </div>
-
             </div>
         </div>
     </div>

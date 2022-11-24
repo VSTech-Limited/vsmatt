@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block meta %}
+    <meta name="keywords" content="vsmatt, vsmatt homepage, vsmatt indexpage, vsmatt mainpage">
+    <meta name="description" content="Our homepage contains a map displaying all businesses registered with us. User is allowed to change location, search for products which will return all the related products, they are also allowed to search for business as well which will center the search business if it exists.">
+{% endblock %}
 {% block title %}Home{% endblock %}
-
 {% block content %}
 {% include 'partials/base-search.html' %}
-<div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
-<script src="{% static 'js/index_map.js' %}"></script>
-
+  <div class="container-fluid" id="googleMap" style="min-height: 80vh;"></div>
+{% include 'partials/suggested-products.html' %} 
+  <script src="{% static 'js/index_map.js' %}"></script>
 {% endblock %}
 {% block mapdependancies %}
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo&callback=myMap"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <script>
   var businessesList = [];
   var businessSlug = []
-  //var location = [];
   var productsList = [];
   var places = [];
   var coords = [];
@@ -33,16 +34,6 @@
               places.push(s);
               coords.push(c)
             }
-            /*
-            places[country].push({
-                'displayString': result['displayString'],
-                'name': result['name']
-
-            })
-            //console.log(displayString)
-            // console.log(places)
-
-*/
           }
         },
       );
@@ -136,9 +127,4 @@
     
   });
 </script>
-
-<script>
-
-</script>
-
 {% endblock %}

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
+{% block meta %}
+    <meta name="keywords" content="vsmatt registered businesses, {{business}}, {{business.owner.get_full_name}}'s businesses">
+    <meta name="description" content="{{business.description}}, {{business.additional_info}}">
+{% endblock %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}Business Detail{% endblock %}
+{% block title %}Businesses - {{user}} - Manage {{business}}{% endblock %}
 {% block content %}
 
 <div class="container-fluid py-5">

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from business.models import BusinessBranch
+from products.models import Product
 from core.forms import ContactForm
 from core.models import Team
 from django.contrib import messages
@@ -7,11 +7,11 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    business_branch = BusinessBranch.objects.all()
     title = 'home'
+    products = Product.objects.all()[:6]
     context = {
         'title': title,
-        'business_branch': business_branch
+        'products' : products
     }
     # print(f"\n\n{title}\n\n")
     return render(request, 'index.html', context)

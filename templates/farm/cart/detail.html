@@ -29,13 +29,7 @@
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td class="text-left fw-bold">
-                            <img src="
-                            {% if product.image %}
-                            {{product.image.url}}
-                            {% else %}
-                            {% static 'img/elements/1.jpg' %}
-                            {% endif %}
-                            " alt="" style="width: 50px;">
+                            <img src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="{{product}}" style="width: 50px;">
                             {{ product.name }}
                         </td>
                         <td class="align-left">Ksh. {{ product.price }}</td>
@@ -70,9 +64,7 @@
                         </form>
                         <td class="align-middle fw-bold">Ksh. {{ item.total_price }}</td>
                         <td class="align-middle">
-                            <a class="btn btn-sm btn-danger" href="{% url 'cart:cart_remove' product.id %}">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                            <a class="btn btn-sm btn-danger" href="{% url 'cart:cart_remove' product.id %}"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endwith %}

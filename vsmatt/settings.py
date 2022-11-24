@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '*.azurewebsites.net',
+    'vsmatt.azurewebsites.net',
     '*.vstech.live',
 ]
 
@@ -75,7 +75,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'jujamall.urls'
+ROOT_URLCONF = 'vsmatt.urls'
 
 TEMPLATES = [
     {
@@ -91,7 +91,7 @@ TEMPLATES = [
                 'products.context_processor.product_categories',
                 'cart.context_processor.cart',
                 'business.context_processor.business_categories',
-                'core.context_processor.jujamall',
+                'core.context_processor.vsmatt',
 
             ],
         },
@@ -196,3 +196,9 @@ ACCOUNT_USERNAME_REQUIRED = True
 # cart
 CART_SESSION_ID = 'cart'
 META_SESSION_ID = 'session_meta'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.azurewebsites.net',
+    'http://*.vstech.live',
+    'https://*.vstech.live',
+]

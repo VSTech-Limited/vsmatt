@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 
-{% block title %}{% trans "E-mail Addresses" %}{% endblock %}
+{% block title %}{% trans "Accounts - E-mail Addresses" %}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -15,11 +15,11 @@
             <!-- Logo -->
             <div class="app-brand justify-content-center my-4">
               <a href="/" class="app-brand-link gap-2">
-                <span class="app-brand-text demo text-body fw-bolder">{{jujamall | default:"VSMatt" }}</span>
+                <span class="app-brand-text demo text-body fw-bolder">{{vsmatt | default:"VSMatt" }}</span>
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Welcome to {{jujamall | default:"VSMatt" }}! 👋, Manage you emails here</h4>
+            <h4 class="mb-2">Welcome to {{vsmatt | default:"VSMatt" }}! 👋, Manage you emails here</h4>
               <h1>{% trans "E-mail Addresses" %}</h1>
               {% if user.emailaddress_set.all %}
               <p class="my-2">{% trans 'The following e-mail addresses are associated with your account:' %}</p>

@@ -1,8 +1,10 @@
 {% extends "farm/products/base.html" %}
-{% load static %}
-{% block title %}
-index
+{% block meta %}
+    <meta name="keywords" content="vsmatt, {{business}}, {{business}} {{branch}}">
+    <meta name="description" content="{{business.description}}, {{ branch.description }}">
 {% endblock %}
+{% load static %}
+{% block title %}Businesses - {{business}} - {{branch}} - List Items{% endblock %}
 {% block content %}
 {% include 'partials/shop/css.html' %}
 {% include 'partials/shop/nav.html' %}

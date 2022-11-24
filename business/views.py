@@ -1,14 +1,10 @@
 from decimal import Decimal
-
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from products.models import ProductCategory
 from django.contrib import messages
 # Create your views here.
 from django.utils.text import slugify
-
 from geo.geofactory import GeoMapQuestFactory
 from .forms import BusinessRegistrationForm, BranchRegistrationForm
 from .models import BusinessProfile, BusinessBranch

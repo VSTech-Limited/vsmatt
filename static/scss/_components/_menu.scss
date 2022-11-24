@@ -186,7 +186,7 @@
 
     > .menu-item {
       margin: $menu-item-spacer 0;
-      // Sneat menu-link spacing
+      // vsmatt menu-link spacing
       .menu-link {
         margin: $menu-vertical-link-margin-y $menu-vertical-link-margin-x;
       }
@@ -197,7 +197,7 @@
   .menu-block {
     padding: $menu-vertical-link-padding-y $menu-vertical-link-padding-x;
   }
-  // Sneat menu-header spacing
+  // vsmatt menu-header spacing
   .menu-header {
     margin: $menu-vertical-header-margin-y 0 $menu-vertical-header-margin-y / 2 0;
     padding: $menu-vertical-link-padding-y $menu-vertical-link-padding-x * 2 $menu-vertical-link-padding-y
@@ -276,7 +276,7 @@
 
 // Vertical Menu Collapsed
 // *******************************************************************************
-// ! Updated menu collapsed styles for sneat in this mixin
+// ! Updated menu collapsed styles for vsmatt in this mixin
 @mixin layout-menu-collapsed() {
   width: $menu-collapsed-width;
 
@@ -312,7 +312,7 @@
       top: 1.1875rem;
     }
   }
-  // Custom for sneat only
+  // Custom for vsmatt only
   .menu-block {
     &::before {
       bottom: 0.75rem;
