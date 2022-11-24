@@ -1,5 +1,5 @@
 from .models import Vsmatt
 
 
-def jujamall(request):
-    return {'jujamall': JujaMall.objects.filter(set_current=True).first()}
+def vsmatt(request):
+    return {'vsmatt': Vsmatt.objects.filter(set_current=True).first()}
