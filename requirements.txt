@@ -31,7 +31,7 @@ idna==3.3
 kombu==5.2.4
 oauthlib==3.2.1
 phonenumbers==8.12.57
-Pillow==9.2.0
+Pillow==9.3.0
 prompt-toolkit==3.0.31
 pycparser==2.21
 PyJWT==2.6.0
