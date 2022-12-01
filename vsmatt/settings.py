@@ -149,8 +149,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 #     BASE_DIR / "static",
 # ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -184,6 +184,4 @@ META_SESSION_ID = 'session_meta'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.azurewebsites.net',
-    'http://*.vstech.live',
-    'https://*.vstech.live',
 ]
