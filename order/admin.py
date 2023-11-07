@@ -42,12 +42,11 @@ export_to_csv.short_description = 'Export to CSV'
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
-
+    extra = 1 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'paid',
-                    'created', 'updated']
+    list_display = ['user', 'paid', 'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
     actions = [export_to_csv]

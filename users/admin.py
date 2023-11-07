@@ -6,8 +6,8 @@ from .models import Profile
 
 @admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user','gender', 'image', 'bio', 'phone_number', 'dob')
+    list_display = ('user','gender', 'image', 'phone_number', 'dob', 'created_at')
     list_filter = ('user', 'gender', 'languages')
+    autocomplete_fields = ('user',)
     search_fields = ('user', 'bio', 'phone_number')
-    raw_id_fields = ('user',)
     date_hierarchy = 'created_at'

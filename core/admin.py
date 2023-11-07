@@ -14,21 +14,15 @@ class ContactAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug']
     prepopulated_fields = {'slug': ('title',)}
-    list_editable = ['slug']
-
 
 @admin.register(Vsmatt)
 class VsmattAdmin(admin.ModelAdmin):
-    list_display = ['title', 'logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',
-                    'address']
-    list_editable = ['logo', 'phone_number', 'twitter', 'facebook', 'linkedin', 'instagram', 'github', 'email',
-                     'address']
+    list_display = ['title', 'logo', 'phone_number', 'twitter', 'linkedin', 'github', 'email', 'address']
 
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ['user', 'position', 'image']
-    list_editable = ['position', 'image']
+    list_display = ['user', 'position', 'image', 'created_at', 'updated_at']
     search_fields = ['user', 'position']
     list_filter = ['position', 'created_at', 'updated_at']
     date_hierarchy = 'updated_at'
@@ -39,4 +33,4 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
 
-admin.site.site_header = "VSMatt's Admin"
+admin.site.site_header = "BizBoost Admin"

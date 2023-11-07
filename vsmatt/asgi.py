@@ -1,5 +1,5 @@
 """
-ASGI config for vsmatt project.
+ASGI config for BizBoost project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-8">
             <div class="card">
-                <h5 class="card-header">{{business}}'s Branches</h5>
+                <h5 class="card-header">{{ business.name }}'s Branches</h5>
                 <div class="table-responsive text-nowrap"></div>
                 <table class="table table-striped">
                     <thead class="table table-head">
@@ -83,15 +83,13 @@
                         {% else %}
                         <tr>
                             <td colspan="5" class="py-4 text-center">
-                                <h3>No business found, <a href="{% url 'business:register_business' %}">Create one
-                                        now!</a> and enjoy selling.</h3>
+                                <h3>No business found, <a href="{% url 'business:register_business' %}">Create one now!</a> and enjoy selling.</h3>
                             </td>
                         </tr>
                         {% endif %}
                         <tr>
                             <td colspan="4"></td>
-                            <td><a href="{% url 'business:register_branch' business.slug %}"><i class="fa fa-plus"
-                                        aria-hidden="true"></i> Add Branch</a></td>
+                            <td><a href="{% url 'business:register_branch' business.slug %}"><i class="fa fa-plus" aria-hidden="true"></i> Add Branch</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,10 +119,10 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        {{business.description}}
+                        {{business.description|linebreaks }}
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        {{business.additional_info}}
+                        {{business.additional_info|linebreaks }}
                     </div>
                     <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="contact-tab">
 
@@ -135,13 +133,7 @@
                             <div class="col-lg-12">
                                 <h4 class="mb-4">Review for {{review.business}}</h4>
                                 <div class="media mb-4">
-                                    <img src="
-                                    {% if review.user.profile.image %}
-                                    {{ review.user.profile.image.url }}
-                                    {% else %}
-                                    {% static 'img/avatardefault.png' %}
-                                    {% endif %}
-                                    " alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <img src="{% if review.user.profile.image %}{{ review.user.profile.image.url }}{% else %}{% static 'img/avatardefault.png' %}{% endif %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                                     <div class="media-body">
                                         <h6>{{review.user.get_full_name}}<small> - <i>{{review.updated}}</i></small></h6>
                                         <div class="text-primary mb-2">

@@ -28,7 +28,7 @@
                             <div class="p-3" style="max-width: 700px;">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">{{c_product.category}}
                                 </h1>
-                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">{{c_product.description}}</p>
+                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">{{c_product.description|truncatechars:120 }}</p>
                                 <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                     href="{{c_product.get_absolute_url}}">Shop Now</a>
                             </div>
@@ -177,7 +177,7 @@
             <div class="owl-carousel vendor-carousel">
                 {% for product in branch.products.all %}
                 <div class="bg-light p-4">
-                   <a href="{{ product.get_absolute_url}}"><img class="img-fluid" src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="{{product}}"></a>
+                    <a href="{{ product.get_absolute_url}}"><img class="img-fluid" src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="{{product}}"></a>
                     <h6 class="mt-3 mb-0">{{product}}</h6>
                     <small class="text-body">{{product.price}}</small>
                 </div> 

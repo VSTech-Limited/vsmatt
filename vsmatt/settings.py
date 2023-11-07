@@ -138,16 +138,14 @@ USE_TZ = True
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_ROOT = BASE_DIR / 'static'
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Default primary key field type
@@ -159,10 +157,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GOOGLE_MAPS_API_KEY = "AIzaSyA0WoecFWukfc9lUgCVcA20W11Eoj49jpo"
 MAPS_QUEST_API_KEY = "2dVBKmPmnGAdhlP4AG9HPv7X4dAznIYt"
 
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.users.auth_backends.AuthenticationBackend',
-# ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Allauth configurations
 SITE_ID = 1
@@ -178,5 +176,5 @@ CART_SESSION_ID = 'cart'
 META_SESSION_ID = 'session_meta'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.azurewebsites.net',
+    'https://*.vstech.co.ke',
 ]
