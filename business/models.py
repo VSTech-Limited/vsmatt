@@ -126,7 +126,7 @@ class BusinessBranch(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f"{self.business.name} - {self.name}"
 
     def geolocation(self):
         return f"{self.latitude}, {self.longitude}"

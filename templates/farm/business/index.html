@@ -28,7 +28,7 @@
                     <div class="col-lg-3 col-md-4 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href="{{business.get_absolute_url}}"><img class="img-fluid w-100" src="{% if business.image %} {{business.image.url}}{% else %}{% static 'img/elements/1.jpg'%}{% endif %}" alt="{{business}}" title="{{business}}"></a>
+                                <a href="{{business.get_absolute_url}}"><img class="img-fluid w-100" src="{% if business.image %} {{business.image.url}}{% else %}{% static 'img/business_default.png'%}{% endif %}" alt="{{business}}" title="{{business}}"></a>
                                 <div class="portfolio-overlay d-flex bg-primary py-2 justify-content-evenly">
                                     <h5 class="lh-base mb-0 me-2 text-white">{{business.business}}</h5>
                                     <h6 class="bg-warning small p-2 rounded-2">{{business}}</h6>

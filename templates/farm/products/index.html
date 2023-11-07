@@ -90,10 +90,10 @@
                       <div class="card-body ps-0">
                         <h5 class="fw-bold text-1000 text-truncate mb-1">{{product}}</h5>
                         <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span
-                            class="text-primary">{{product.branch}}</span></div><span class="text-1000 fw-bold">{% if product.price %}Ksh. {{product.price}}{% else %}Free{% endif %}</span>
+                            class="text-primary">{{product.branch.business}}</span>({{ product.branch }})</div><span class="text-1000 fw-bold">{% if product.price %}Ksh. {{product.price}}{% else %}Free{% endif %}</span>
                       </div>
                     </div>
-                    <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="{{product.get_absolute_url}}" role="button">Order now</a>
+                    <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="{{product.get_absolute_url}}" role="button">View >></a>
                     </div>
                   </div>
                   {% endfor %}
@@ -123,7 +123,7 @@
           {% for business in businesses %}
             <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
               <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" style="max-width: 300px;max-height: 300px;"
-                  src="{% if business.image %}{{business.image.url}}{% else %}{% static 'img/elements/3.jpg' %}{% endif %}" alt="{{business}}" title="{{business}}"/>
+                  src="{% if business.image %}{{business.image.url}}{% else %}{% static 'img/business_default.png' %}{% endif %}" alt="{{business}}" title="{{business}}"/>
                 <a href="{{business.get_absolute_url}}" class="text-white">
                   <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0"><small>{{business.address}}</small></span></span><span
                       class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
@@ -134,7 +134,7 @@
                   <div class="d-flex align-items-center mb-3">
                     <a href="{{ business.business.get_absolute_url }}"><img class="img-fluid" style="max-width: 70px;max-height: 70px;" src="{% if business.business.image %}{{business.business.image.url}}{% else %}{% static 'products/assets/img/gallery/food-world-logo.png' %}{% endif %}" alt="{{business}}" /></a>
                     <div class="flex-1 ms-3">
-                      <h5 class="mb-0 fw-bold text-1000"><a href=" business.get_absolute_url ">{{business}}</a></h5><span class="text-primary fs--1 me-1"><i
+                      <h5 class="mb-0 fw-bold text-1000"><a href=" business.get_absolute_url ">{{ business.business }}</a><small class="text-muted">({{ business }})</small></h5><span class="text-primary fs--1 me-1"><i
                           class="fas fa-star"></i></span><span class="mb-0 text-primary">{{business.reviews.all.count}} ratings</span>
                     </div>
                   </div>

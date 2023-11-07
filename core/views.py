@@ -8,7 +8,7 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     title = 'home'
-    products = Product.objects.all()[:6]
+    products = Product.objects.all()[:5]
     context = {
         'title': title,
         'products' : products
