@@ -1,5 +1,5 @@
 """
-WSGI config for vsmatt project.
+WSGI config for BizBoost project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

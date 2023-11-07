@@ -147,7 +147,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-5 top-left">
-                            <a href="/"><img src="{% static 'img/favicon/logo.png' %}" style="max-height: 80px;" alt="VSMatt"></a>
+                            <a href="/"><img src="{% static 'img/favicon/logo.png' %}" style="max-height: 80px;" alt="BizBoost"></a>
                         </div>
                         <div class="col-sm-7 top-right">
                             <h3 class="marginright">INVOICE-{{ order.id }}</h3>
@@ -180,7 +180,7 @@
                             <p>Date: {{order.updated|date:"d M Y"}}</p>
                             <p>VAT: DK888-777 </p>
                             <p>Total Amount: Ksh. {{ order.get_total_cost }}</p>
-                            <p>Account Name: VSMatt-LTD</p>
+                            <p>Account Name: BizBoost-LTD</p>
                             <p>
                                 Payment status: {% if order.paid %}Paid{% else %}Pending{% endif %}
                             </p>

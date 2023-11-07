@@ -1,4 +1,4 @@
-"""vsmatt URL Configuration
+"""BizBoost URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('vs-tech/', admin.site.urls),
+    path('2b/', admin.site.urls),
     path('', include('core.urls')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('accounts/', include('allauth.urls')),

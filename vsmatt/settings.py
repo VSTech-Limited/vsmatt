@@ -23,13 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3dxpn&!736o$(pbypmhr4hnd$gftc&%+n2iinx-3h%7@+&0zd2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'vsmatt.azurewebsites.net',
-    '*.vstech.live',
+    'bizboost.vstech.co.ke',
 ]
 
 # Application definition
@@ -39,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
@@ -63,10 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # ...
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    # ...
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

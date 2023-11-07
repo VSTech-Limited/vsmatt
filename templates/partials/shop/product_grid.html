@@ -2,13 +2,7 @@
 
 <div class="product-item bg-light mb-4">
     <div class="product-img position-relative overflow-hidden">
-        <img class="img-fluid w-100" src="
-{% if product.image %}
-{{product.image.url}}
-{% else %}
-{% static 'img/elements/1.jpg' %}
-{% endif %}
-" alt="">
+        <img class="img-fluid w-100" src="{% if product.image %}{{product.image.url}}{% else %}{% static 'img/elements/1.jpg' %}{% endif %}" alt="">
         <div class="product-action">
             <a class="btn btn-outline-dark btn-square" href="{{product.get_absolute_url}}"><i
                     class="fa fa-shopping-cart"></i></a>
@@ -22,11 +16,11 @@
         <div class="d-flex align-items-center justify-content-center mt-2">
             <h5>Ksh. {{product.price}}</h5>
         </div>
-        <div class="d-flex align-items-center justify-content-center mb-1">  
-            <small class="fa fa-star text-primary mr-1"></small>    
-            <small class="fa fa-star text-primary mr-1"></small> 
-            <small class="fa fa-star text-primary mr-1"></small> 
-            <small class="fa fa-star text-primary mr-1"></small> 
+        <div class="d-flex align-items-center justify-content-center mb-1">
+            <small class="fa fa-star text-primary mr-1"></small>
+            <small class="fa fa-star text-primary mr-1"></small>
+            <small class="fa fa-star text-primary mr-1"></small>
+            <small class="fa fa-star text-primary mr-1"></small>
             <small class="far fa-star text-primary mr-1"></small>
             <small>({{product.reviews.all | length}})</small>
         </div>
